@@ -1,17 +1,11 @@
 ---
 type: sop
-summary: Oh Susannah product facts and owner rules for Shopify and Amazon copy and images (shared with the team)
+summary: Oh Susannah owner rules for Shopify and Amazon copy and images (shared with the team)
 updated: 2026-10-07
 ---
 # Oh Susannah copy and image rules
 
-Shared with the team through the ai-business repo. Keep ownership, finance, and legal details in [[Oh-Susannah]], not here.
-
-## Product facts
-- Novelty and decorated pillowcases designed by Susannah. Started on Etsy in 2013; Amazon is now the main channel.
-- Website: ohsusannah.com (primary domain `https://www.ohsusannah.com`). Facebook and Instagram: `osusannahs`.
-- Pillowcase blanks are made in China; designs are printed or decorated to order in the North Carolina studio. Owner confirmed 2026-09-30.
-- Hubs & Wifey Throw option includes two 18x18 covers (confirmed 2026-10-01).
+Shared with the team through the ai-business repo. Brand facts and SEO status: [[Oh-Susannah]]. Primary domain `https://www.ohsusannah.com`.
 
 ## Copy rules
 - Do not join synonymous item names with "and" or "&" in a way that implies a bundle. Name one item clearly, explain size choices and included quantity, and use alternate terms naturally in descriptions.

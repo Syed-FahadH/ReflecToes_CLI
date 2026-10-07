@@ -5,6 +5,8 @@ updated: 2026-10-04
 ---
 # ReflecToes
 
+> Shared with the team through the ai-business repo. No ownership, finance, legal, or personal details here.
+
 ## Standing facts
 - Reflective safety gear: socks, vests, jersey, rain jacket, gloves, LED clip light, bands, wheel decals.
 - Channels: Amazon FBA (main), Shopify reflectoes.com, Faire (about 3,300 retailers), Walmart, eBay.

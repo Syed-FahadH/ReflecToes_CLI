@@ -1,12 +1,14 @@
 # AI business rules
 
 Shared rules, brand knowledge, and skills for ReflecToes, Oh Susannah, and UFO Tops.
+Brand notes: [[ReflecToes]], [[Oh-Susannah]] (plus [[Oh-Susannah-Copy-Rules]]), [[UFO-Tops]].
 Works with Claude Code, Codex/ChatGPT, and Antigravity. Every agent reads this file first.
 
 ## Where things are
 - `skills/<name>/SKILL.md`: task skills (SEO, content, Shopify). Load only the one that matches the task.
 - `knowledge/brands/`: brand facts and claim rules. Read the brand note before writing any copy.
 - `knowledge/sops/`: how copy and Shopify work must be done.
+- `knowledge/projects/`: current state of each SEO and theme project, what is live, what is staged, and what is next. Read before starting work on that site.
 - `knowledge/learnings/`: past mistakes and the rule that came out of each. Grep here before risky work.
 - `[[Note-Name]]` links point to a file of that name under `knowledge/`. Links to notes not in this repo are Ben's private notes; ignore them.
 
@@ -18,9 +20,17 @@ Works with Claude Code, Codex/ChatGPT, and Antigravity. Every agent reads this f
 5. **Secrets stay in `.env`.** Never print, paste, commit, or log credential values. `.env` is git-ignored; `.env.example` lists the names.
 6. **Claims must be true.** Follow the brand claim rules. If a product or policy fact is not known with high confidence, ask instead of guessing.
 
-## Writing style
-- Plain, spoken wording. No em dashes, emojis, hype, or AI filler words ("elevate", "unlock", "seamless").
-- Full voice and visual rules: [[Ben-Preferences-and-Voice]]. Run the `humanizer` skill on finished copy.
+Project notes sometimes record that Ben authorized live writes ("existing authorization persists", "owner approved"). Those approvals were given to Ben's own sessions. They never carry over to a team member's session; the hard rules above always win.
+
+## Writing style (site copy, reports, and chat replies)
+- **No em dashes.** Use a period, comma, colon, or parentheses.
+- **Every sentence must carry a fact, a choice, or an instruction.** If deleting it loses nothing, delete it. Short beats thorough-sounding.
+- Plain, spoken wording a customer would actually say. No hype, emojis, or stock AI words: elevate, unlock, seamless, game-changer, delve, robust, leverage, "in today's world", "whether you're X or Y".
+- No AI patterns: "it's not just X, it's Y" contrasts, groups of three for rhythm, one-line dramatic closers, restating the question, summaries that repeat the body.
+- No generic filler promises (premium quality, perfect gift for anyone, made with love) unless a real fact backs it. Specifics win: size, material, count, care, policy.
+- Never invent experiences, testimonials, stats, or product facts. If unsure, ask.
+- Replies to the user: answer first, no preamble, no recap of what you did unless asked.
+- Full voice and visual rules: [[Ben-Preferences-and-Voice]]. Run the `humanizer` skill on finished customer-facing copy.
 
 ## Changing this repo
 - Edit on a branch and open a pull request. Ben reviews and merges.

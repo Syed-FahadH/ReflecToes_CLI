@@ -5,6 +5,8 @@ updated: 2026-09-21
 ---
 # UFO Tops
 
+> Shared with the team through the ai-business repo. No ownership, finance, legal, or personal details here.
+
 ## Standing facts
 - Early-stage brand making high-precision machined metal spinning tops.
 - Designs are inspired by UFO sightings and emphasize long spin times.

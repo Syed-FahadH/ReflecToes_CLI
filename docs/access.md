@@ -7,29 +7,50 @@ The real guardrails are the permissions on each platform. Claude settings only c
 1. **Staff account** on each store (not collaborator, not owner). Allow: Products, Online Store (pages, blogs, navigation, themes), Files, Analytics. Leave off: Orders, Customers, Finances, Settings, Apps, Staff, Payments, Discounts.
    The Shopify CLI and the Shopify AI Toolkit sign in as this account, so whatever it cannot do, Claude cannot do.
 2. **Themes through Git only.** Connect each theme to GitHub with Shopify's GitHub integration. He works in his own dev theme (`shopify theme dev`) and opens pull requests. Branch protection on `main` requires Ben's review. Only Ben publishes.
-3. **Custom app per person, only if he needs scripts** (Dev Dashboard). Scopes:
+3. **One custom app per person per store** (Dev Dashboard), scoped for SEO work:
 
-| Give | For |
+| Scope | For |
 |---|---|
-| `read_products`, `write_products` | SEO titles, descriptions, product metafields (also allows price edits; start with read only if that worries you) |
-| `read_content`, `write_content` | Blogs, articles, pages |
-| `read_online_store_navigation`, `write_online_store_navigation` | Menus (no undo, see AGENTS.md rule 3) |
-| `read_metaobjects`, `write_metaobjects` | Structured content |
-| `read_files`, `write_files` | Images |
-| `read_themes` | Read only. Theme changes go through Git |
-| `read_reports` | ShopifyQL analytics |
-| `read_inventory` | Context only |
+| `read_products`, `write_products` | Product and collection SEO title/description, body copy, image alt text, product metafields. Also allows price edits; no scope separates them |
+| `read_content`, `write_content` | Pages, blogs, articles, and their SEO fields |
+| `read_online_store_navigation`, `write_online_store_navigation` | Menus and URL redirects (menus have no undo, AGENTS.md rule 3) |
+| `read_files`, `write_files` | Upload images, set file alt text |
+| `read_metaobjects`, `write_metaobjects`, `read_metaobject_definitions` | FAQ blocks and other structured content |
+| `read_themes` | Read theme files and find draft theme IDs |
+| `write_themes` | **Optional, see below** |
+| `read_reports` | ShopifyQL sales and traffic for prioritizing pages |
+| `read_translations`, `write_translations` | Only if you sell in more than one language |
 
-Never: `write_themes`, `read_customers`, `read_orders`, `write_discounts`, `write_price_rules`, `write_shipping`, `write_script_tags`, anything payments or staff.
+Never: `read_customers`, `read_orders`, `write_orders`, `write_discounts`, `write_price_rules`, `write_shipping`, `write_script_tags`, `write_inventory`, anything payments or staff.
+
+**Theme writes, drafts only.** No Shopify scope or staff permission limits theme edits to unpublished themes. `write_themes` also allows `themePublish` and `themeDelete`. Two options:
+- **Recommended:** leave `write_themes` off the API key. He edits themes with the Shopify CLI against his own unpublished theme (`shopify theme dev`, `shopify theme push --unpublished`), commits to a branch, and opens a PR. The CLI asks before touching the live theme, and the managed settings block `theme publish` and live pushes.
+- If he needs API theme edits for bulk scripts: add `write_themes`, keep the managed deny rules, and keep the live theme connected to GitHub `main` so any change to it shows up as a commit you can revert.
 
 ## Amazon SP-API
 SP-API has no true read-only mode. Access is by role, and the roles that read listings and pricing (Product Listing, Pricing) also allow writes.
 - **Recommended:** do not give him SP-API keys. Give him the data through sales-dashboard or a read-only build of the SP-API MCP server (allowlist of GET tools only, running on the server with Ben's credentials, write tools not registered).
 - **Seller Central:** add him as a user with "View" (not "View & Edit") on only the pages he needs. Users cannot create SP-API apps without developer permissions, so leave those off.
 
-## Amazon Ads
-- Invite him in Advertising Console > User management with a **view-only** role on the brands he needs. API calls made with a token he authorizes inherit that role, so writes fail.
-- Better for now: same as SP-API, read the data through sales-dashboard rather than holding his own Ads tokens.
+## Amazon Ads (view only)
+Seller accounts control Ads access from Seller Central:
+1. Seller Central > Settings (gear) > **User Permissions** > enter his email > **Invite**.
+2. After he accepts, click **Manage Permissions** on his row.
+3. Under **Advertising**, set **Campaign Manager** to **View**. Leave every other row at **None** unless he needs it (Brand Analytics: View is useful for SEO keyword work).
+4. Repeat per seller account (ReflecToes and Oh Susannah are separate).
+He then sees campaigns at advertising.amazon.com but cannot change bids, budgets, or campaigns. If the Advertising row is missing, use advertising.amazon.com > Settings > **User management** > Invite user > **View only** (labels move around; check current Amazon help if they differ).
+An Ads API token he authorizes inherits his view-only access, but read the data through sales-dashboard first rather than giving him API tokens.
+
+## GitHub repo access and branch protection
+1. github.com/sdtdb/ai-business > **Settings** > **Collaborators** > **Add people** > his GitHub username > role **Write**.
+2. **Settings** > **Rules** > **Rulesets** > **New ruleset** > **New branch ruleset**:
+   - Name `protect main`, Enforcement **Active**.
+   - **Bypass list** > Add bypass > **Repository admin** (that is you, and it lets the nightly vault sync keep pushing to `main`).
+   - Target branches > **Include default branch**.
+   - Check **Restrict deletions**, **Require a pull request before merging** (required approvals **1**), **Block force pushes**.
+   - **Create**.
+3. Do the same on each theme repo (`reflectoes-theme`, `OS-Shopify`).
+Rulesets on private repos need a paid GitHub plan (Pro for a personal account, Team for an organization). Without it the ruleset saves but is not enforced; the page shows a warning if so.
 
 ## Sharing environment variables
 - Never send Ben's `.env`. It holds finance, Etsy, Amazon, and AI keys he does not need.
