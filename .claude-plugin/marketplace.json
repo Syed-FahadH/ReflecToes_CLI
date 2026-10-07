@@ -1,0 +1,11 @@
+{
+  "name": "ai-business",
+  "owner": { "name": "Ben O'Brien" },
+  "plugins": [
+    {
+      "name": "business",
+      "source": "./",
+      "description": "SEO, content, and Shopify skills plus brand rules for ReflecToes, Oh Susannah, and UFO Tops"
+    }
+  ]
+}

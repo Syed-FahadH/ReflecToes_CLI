@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "disableBypassPermissionsMode": "disable",
+    "deny": [
+      "Bash(shopify theme publish *)",
+      "Bash(shopify theme delete *)",
+      "Bash(shopify theme push *--live*)",
+      "Bash(shopify theme push *--allow-live*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push origin main*)",
+      "Read(**/.env)"
+    ],
+    "ask": [
+      "Bash(shopify theme push *)",
+      "Bash(shopify store execute *)",
+      "Bash(git push *)"
+    ]
+  },
+  "extraKnownMarketplaces": {
+    "ai-business": {
+      "source": { "source": "github", "repo": "sdtdb/ai-business" }
+    }
+  },
+  "enabledPlugins": {
+    "business@ai-business": true
+  }
+}

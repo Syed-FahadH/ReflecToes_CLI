@@ -1,0 +1,36 @@
+{
+  "_readme": "Shared with Ben's vault by Vault/Meta/scripts/sync_ai_business.py (nightly, two-way). Every folder in skills/ syncs with Vault/Skills/<name>. 'files' maps repo path to vault path. Only business material belongs here: no finance, ownership, personal, or credential content.",
+  "skills": [
+    "content-writer",
+    "geo-optimizer",
+    "humanizer",
+    "keyword-research",
+    "meta-tags-optimizer",
+    "performance-optimization",
+    "playwright-cli",
+    "schema-markup-generator",
+    "seo-analysis",
+    "seo-page",
+    "shopify-admin",
+    "shopify-custom-data",
+    "shopify-dev",
+    "shopify-liquid",
+    "shopify-shopifyql",
+    "shopify-storefront-graphql",
+    "shopify-use-shopify-cli"
+  ],
+  "files": {
+    "knowledge/brands/ReflecToes.md": "Areas/ReflecToes.md",
+    "knowledge/brands/UFO-Tops.md": "Areas/UFO-Tops.md",
+    "knowledge/sops/Oh-Susannah-Copy-Rules.md": "SOPs/Oh-Susannah-Copy-Rules.md",
+    "knowledge/sops/Ben-Preferences-and-Voice.md": "SOPs/Ben-Preferences-and-Voice.md",
+    "knowledge/sops/Shopify-Liquid-Rules.md": "SOPs/Shopify-Liquid-Rules.md",
+    "knowledge/learnings/AI-Agent-Live-Platform-Mutations.md": "Learnings/AI-Agent-Live-Platform-Mutations.md",
+    "knowledge/learnings/Shopify-Admin-No-Undo-Mutations.md": "Learnings/Shopify-Admin-No-Undo-Mutations.md",
+    "knowledge/learnings/Shopify-Theme-SEO-Readback.md": "Learnings/Shopify-Theme-SEO-Readback.md",
+    "knowledge/learnings/ReflecToes-Shopify-Claims-Guardrails.md": "Learnings/ReflecToes-Shopify-Claims-Guardrails.md",
+    "knowledge/learnings/ReflecToes-Shopify-Claims-and-Merchandising-Guardrails.md": "Learnings/ReflecToes-Shopify-Claims-and-Merchandising-Guardrails.md",
+    "knowledge/learnings/Amazon-Listing-Copy-75-Char-Titles.md": "Learnings/Amazon-Listing-Copy-75-Char-Titles.md",
+    "knowledge/learnings/CSS-Media-Query-Stray-Brace-Leak.md": "Learnings/CSS-Media-Query-Stray-Brace-Leak.md"
+  }
+}

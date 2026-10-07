@@ -1,0 +1,2 @@
+# Keep bytes identical to the vault copies so the two-way sync does not see line-ending churn.
+* -text
