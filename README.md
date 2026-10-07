@@ -16,7 +16,11 @@ Rules for agents: [AGENTS.md](AGENTS.md). Access and permissions: [docs/access.m
    ```
    (Skipped if Ben's managed settings already enable it.)
 4. Copy `.env.example` to `.env` and fill in only the values Ben gives you through the password manager.
-5. Run `git pull` in this folder at the start of each week, and `/plugin marketplace update ai-business` in Claude Code.
+5. Opt out of Shopify skill telemetry (it can send your prompts to Shopify). In PowerShell:
+   ```
+   New-Item -ItemType File -Force "$env:APPDATA\shopify-ai-toolkit\opt-out"
+   ```
+6. Run `git pull` in this folder at the start of each week, and `/plugin marketplace update ai-business` in Claude Code.
 
 ## Changing skills or rules
 Branch, edit, open a pull request. Ben merges. Changes reach Ben's vault the next night, and his edits come back the same way.
