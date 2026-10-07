@@ -46,6 +46,7 @@ updated: 2026-10-04
 - Night Kit and Daylight Kit have custom HTML/CSS/JS builders. Preserve their product IDs, pricing, discount logic, and JavaScript when updating science copy.
 
 ## Rules
+- Reviewing claims: find and add the source, never delete for a missing citation. [[Marketing-Claims-Find-The-Source]].
 - Voice and visuals: [[Ben-Preferences-and-Voice]].
 - Shopify: [[Shopify-Liquid-Rules]].
 - Amazon listings: [[Amazon-Listing-Copy-75-Char-Titles]].

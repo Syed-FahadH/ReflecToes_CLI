@@ -1,9 +1,19 @@
 ---
 type: learning
 summary: Durable ReflecToes rules for Shopify claims, product accuracy, variant images, visual generation, care, and warranty
-updated: 2026-10-01
+updated: 2026-10-07
 ---
 # ReflecToes Shopify claims and merchandising guardrails
+
+## Never weaken claims (Ben correction 2026-10-07, highest priority)
+- Do not remove, soften, or propose deleting a claim because no source is visible. Ben added many specifics personally.
+- Unsourced claim: search Ben's Google Drive visibility research and the literature for the source. If not found, leave the claim exactly as is. Do not report it as a problem.
+- Only fix actual inaccuracies or obvious mistakes, and keep the fixed claim as strong as the evidence allows.
+- Different pages may use different studies (pedestrian vs cyclist, different comparators). Identify the study before calling numbers a conflict.
+- Supplier specs (330+ and 720+ cd/lx/m2) are valid and private. Never ask Ben to share supplier documents.
+- "Meets highway brightness standards" product copy is approved. Keep it.
+- "10x brighter than color reflective" is Ben's own unpublished test knowledge (metalized mirror backing vs colored backing). Approved.
+- Not every claim needs a citation. Think as a marketer: boilerplate can be improved for conversion, never stripped.
 
 ## Marketing claims
 - Keep the strongest truthful claim. Do not weaken or delete a strong claim until the original research has been checked.

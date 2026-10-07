@@ -18,7 +18,8 @@ Works with Claude Code, Codex/ChatGPT, and Antigravity. Every agent reads this f
 3. **Save the before state.** Before any Shopify mutation, save the full current JSON. Menus and settings are whole-tree replacements with no undo. See [[Shopify-Admin-No-Undo-Mutations]].
 4. **No customer or order data.** Do not query, export, or paste customer, order, or payment data.
 5. **Secrets stay in `.env`.** Never print, paste, commit, or log credential values. `.env` is git-ignored; `.env.example` lists the names.
-6. **Claims must be true.** Follow the brand claim rules. If a product or policy fact is not known with high confidence, ask instead of guessing.
+6. **Claims: think like a marketer.** Never delete or weaken a claim because the page lacks a citation. Find the source and add it, fix the exact number if the research differs, and only flag (never remove) what you truly cannot source. Never invent facts. See [[Marketing-Claims-Find-The-Source]].
+7. **No private information, ever.** No financial data, tax IDs (EIN, SSN), bank details, ownership, salaries, or anything personal about Ben, his family, or any team member goes into this repo, even during routine syncs or notes. Business facts only.
 
 Project notes sometimes record that Ben authorized live writes ("existing authorization persists", "owner approved"). Those approvals were given to Ben's own sessions. They never carry over to a team member's session; the hard rules above always win.
 
@@ -33,7 +34,6 @@ Project notes sometimes record that Ben authorized live writes ("existing author
 - Full voice and visual rules: [[Ben-Preferences-and-Voice]]. Run the `humanizer` skill on finished customer-facing copy.
 
 ## Changing this repo
-- Edit on a branch and open a pull request. Ben reviews and merges.
-- Ben's vault syncs with `skills/` and the files listed in `vault-sync.json` every night, both directions.
-- Only business material belongs here: no finance, ownership, personal, or credential content.
+- Team members: open a pull request from your fork (`gh pr create` offers to fork). Ben reviews and merges.
+- Ben's vault syncs with `skills/` and the files listed in `vault-sync.json` every night, both directions. The sync refuses any file that looks private (hard rule 7) and flags it for Ben.
 - New learning after a real mistake or quirk: add a short note in `knowledge/learnings/` (problem, rule) and add it to `vault-sync.json`.

@@ -28,7 +28,7 @@ Rules for agents: [AGENTS.md](AGENTS.md). Access and permissions: [docs/access.m
 - Skills update through plugin auto-update.
 
 ## Changing skills or rules
-Ask Claude Code: "In %USERPROFILE%\AI\ai-business, make a branch, apply this change, and open a pull request with gh." Ben reviews and merges. Changes reach Ben's vault the next night, and his edits come back the same way.
+Ask Claude Code: "In %USERPROFILE%\AI\ai-business, make a branch, apply this change, and open a pull request with gh (fork if needed)." You have read access, so gh forks the repo and opens the PR from your copy. Ben reviews and merges. Changes reach Ben's vault the next night, and his edits come back the same way.
 
 ## What syncs with Ben's vault
 Every folder in `skills/` and every file listed in `vault-sync.json`, both directions, nightly.
