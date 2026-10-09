@@ -1,0 +1,37 @@
+{% comment %} ReflecToes Workshop Kit popup: 50% scroll trigger, once per session {% endcomment %}
+<div id="rtwk-pop" style="display:none;position:fixed;bottom:16px;left:16px;right:16px;max-width:420px;margin:0 auto;background:#121212;color:#f5f5f5;border-radius:14px;padding:20px 44px 20px 20px;z-index:99999;box-shadow:0 8px 30px rgba(0,0,0,0.45);">
+<button id="rtwk-x" aria-label="Close" style="position:absolute;top:8px;right:10px;background:none;border:0;color:#888;font-size:22px;cursor:pointer;line-height:1;">&times;</button>
+<p style="margin:0 0 4px;color:#D6FF3D;font-weight:700;font-size:1.05em;">Free: The Night Safety Workshop Kit</p>
+<p style="margin:0 0 12px;font-size:0.9em;color:#ddd;">The 30 minute workshop we built for run clubs and coaches: agenda, flashlight demo script, and a printable handout.</p>
+<a href="/pages/workshop-kit" style="display:inline-block;background:#D6FF3D;color:#121212;font-weight:700;text-decoration:none;padding:10px 18px;border-radius:8px;font-size:0.95em;">Get the Free Kit</a>
+</div>
+<script>
+(function(){
+var pop=document.getElementById("rtwk-pop");
+if(!pop){return;}
+try{if(sessionStorage.getItem("rtwkPopShown")){return;}}catch(e){}
+var shown=false;
+function maybeShow(){
+  if(shown){return;}
+  var doc=document.documentElement;
+  var denom=doc.scrollHeight-window.innerHeight;
+  if(denom<=0){return;}
+  var scrolled=(window.scrollY||doc.scrollTop||0)/denom;
+  if(scrolled>0.5){
+    shown=true;
+    pop.style.display="block";
+    try{sessionStorage.setItem("rtwkPopShown","1");}catch(e){}
+    window.removeEventListener("scroll",maybeShow);
+  }
+}
+window.addEventListener("scroll",maybeShow,{passive:true});
+document.getElementById("rtwk-x").onclick=function(){pop.style.display="none";};
+})();
+</script>
+{% schema %}
+{
+  "name": "RT Workshop Popup",
+  "settings": [],
+  "enabled_on": { "templates": ["page"] }
+}
+{% endschema %}

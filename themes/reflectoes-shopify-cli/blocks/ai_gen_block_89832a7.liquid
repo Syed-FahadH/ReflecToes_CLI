@@ -1,0 +1,683 @@
+{% doc %}
+  @prompt
+    Create a dynamic blog section that displays the latest blog posts on the homepage. The section should automatically update to show the most recent posts with titles, excerpts, featured images, and publish dates. Include customizable options for the number of posts to display and section styling., Make it full width, dynamically adjusting to the width of the screen
+    
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-blog-section-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    width: 100%;
+  }
+
+  .ai-blog-container-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 0 {{ block.settings.container_padding }}px;
+  }
+
+  .ai-blog-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: {{ block.settings.header_spacing }}px;
+  }
+
+  .ai-blog-title-{{ ai_gen_id }} {
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_size }}px;
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .ai-blog-subtitle-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.subtitle_size }}px;
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .ai-blog-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+    margin-bottom: {{ block.settings.button_spacing }}px;
+    width: 100%;
+  }
+
+  .ai-blog-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid {{ block.settings.card_border_color }};
+    width: 100%;
+  }
+
+  .ai-blog-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-blog-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    overflow: hidden;
+  }
+
+  .ai-blog-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-blog-card-{{ ai_gen_id }}:hover .ai-blog-image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-blog-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-blog-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60px;
+    height: 60px;
+    opacity: 0.5;
+  }
+
+  .ai-blog-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.card_padding }}px;
+  }
+
+  .ai-blog-date-{{ ai_gen_id }} {
+    color: {{ block.settings.date_color }};
+    font-size: {{ block.settings.date_size }}px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  .ai-blog-post-title-{{ ai_gen_id }} {
+    color: {{ block.settings.post_title_color }};
+    font-size: {{ block.settings.post_title_size }}px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    line-height: 1.3;
+    text-decoration: none;
+    display: block;
+  }
+
+  .ai-blog-post-title-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-blog-excerpt-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.excerpt_size }}px;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .ai-blog-view-all-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-blog-button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .ai-blog-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 1024px) {
+    .ai-blog-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+
+    .ai-blog-container-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.container_padding | times: 0.8 }}px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-blog-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.grid_gap | times: 0.7 }}px;
+    }
+
+    .ai-blog-container-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.container_padding | times: 0.6 }}px;
+    }
+
+    .ai-blog-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-blog-image-wrapper-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height | times: 0.8 }}px;
+    }
+
+    .ai-blog-content-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding | times: 0.8 }}px;
+    }
+
+    .ai-blog-post-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.post_title_size | times: 0.9 }}px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .ai-blog-container-{{ ai_gen_id }} {
+      padding: 0 {{ block.settings.container_padding | times: 0.5 }}px;
+    }
+
+    .ai-blog-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top | times: 0.7 }}px 0 {{ block.settings.section_padding_bottom | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-blog-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-blog-container-{{ ai_gen_id }}">
+    {% if block.settings.section_title != blank or block.settings.section_subtitle != blank %}
+      <div class="ai-blog-header-{{ ai_gen_id }}">
+        {% if block.settings.section_title != blank %}
+          <h2 class="ai-blog-title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+        {% endif %}
+        {% if block.settings.section_subtitle != blank %}
+          <p class="ai-blog-subtitle-{{ ai_gen_id }}">{{ block.settings.section_subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.blog != blank %}
+      <div class="ai-blog-grid-{{ ai_gen_id }}">
+        {% for article in block.settings.blog.articles limit: block.settings.posts_to_show %}
+          <article class="ai-blog-card-{{ ai_gen_id }}">
+            <div class="ai-blog-image-wrapper-{{ ai_gen_id }}">
+              {% if article.image %}
+                <img
+                  src="{{ article.image | image_url: width: 800 }}"
+                  alt="{{ article.image.alt | escape }}"
+                  class="ai-blog-image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="800"
+                  height="{{ block.settings.image_height }}"
+                >
+              {% else %}
+                <div class="ai-blog-image-placeholder-{{ ai_gen_id }}">
+                  {{ 'blog-apparel-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="ai-blog-content-{{ ai_gen_id }}">
+              {% if block.settings.show_date %}
+                <div class="ai-blog-date-{{ ai_gen_id }}">
+                  {{ article.published_at | date: block.settings.date_format }}
+                </div>
+              {% endif %}
+
+              <a href="{{ article.url }}" class="ai-blog-post-title-{{ ai_gen_id }}">
+                {{ article.title }}
+              </a>
+
+              {% if block.settings.show_excerpt and article.excerpt != blank %}
+                <p class="ai-blog-excerpt-{{ ai_gen_id }}">
+                  {{ article.excerpt | truncate: block.settings.excerpt_length }}
+                </p>
+              {% elsif block.settings.show_excerpt %}
+                <p class="ai-blog-excerpt-{{ ai_gen_id }}">
+                  {{ article.content | strip_html | truncate: block.settings.excerpt_length }}
+                </p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      {% if block.settings.show_view_all_button and block.settings.button_text != blank %}
+        <div class="ai-blog-view-all-{{ ai_gen_id }}">
+          <a href="{{ block.settings.blog.url }}" class="ai-blog-button-{{ ai_gen_id }}">
+            {{ block.settings.button_text }}
+          </a>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="ai-blog-grid-{{ ai_gen_id }}">
+        {% for i in (1..block.settings.posts_to_show) %}
+          <article class="ai-blog-card-{{ ai_gen_id }}">
+            <div class="ai-blog-image-wrapper-{{ ai_gen_id }}">
+              <div class="ai-blog-image-placeholder-{{ ai_gen_id }}">
+                {{ 'blog-apparel-1' | placeholder_svg_tag }}
+              </div>
+            </div>
+            <div class="ai-blog-content-{{ ai_gen_id }}">
+              {% if block.settings.show_date %}
+                <div class="ai-blog-date-{{ ai_gen_id }}">
+                  {{ 'now' | date: block.settings.date_format }}
+                </div>
+              {% endif %}
+              <a href="#" class="ai-blog-post-title-{{ ai_gen_id }}">
+                Sample Blog Post Title {{ i }}
+              </a>
+              {% if block.settings.show_excerpt %}
+                <p class="ai-blog-excerpt-{{ ai_gen_id }}">
+                  This is a sample excerpt for blog post {{ i }}. Select a blog to display your actual posts.
+                </p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Latest Blog Posts",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "range",
+      "id": "posts_to_show",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "label": "Number of posts to show",
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Latest from our blog"
+    },
+    {
+      "type": "text",
+      "id": "section_subtitle",
+      "label": "Section subtitle",
+      "default": "Stay updated with our latest news and insights"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show publish date",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "label": "Date format",
+      "options": [
+        {
+          "value": "%B %d, %Y",
+          "label": "January 15, 2024"
+        },
+        {
+          "value": "%b %d, %Y",
+          "label": "Jan 15, 2024"
+        },
+        {
+          "value": "%m/%d/%Y",
+          "label": "01/15/2024"
+        },
+        {
+          "value": "%d/%m/%Y",
+          "label": "15/01/2024"
+        }
+      ],
+      "default": "%B %d, %Y"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "excerpt_length",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "label": "Excerpt length",
+      "default": 120
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all_button",
+      "label": "Show view all button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "View all posts"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on tablet",
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Container padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height",
+      "default": 250
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Header spacing",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_spacing",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Button spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section Styling"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding bottom",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "post_title_color",
+      "label": "Post title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "date_color",
+      "label": "Date color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "header",
+      "content": "Button Styling"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#000f9f"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Section title size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Section subtitle size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "post_title_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Post title size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "date_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Date size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "excerpt_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Excerpt size",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Latest Blog Posts"
+    }
+  ]
+}
+{% endschema %}

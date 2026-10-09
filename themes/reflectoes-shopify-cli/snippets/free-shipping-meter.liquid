@@ -1,0 +1,261 @@
+{%- doc -%}
+  ReflecToes free-shipping progress meter + add-on upsell. Self-contained: delete this
+  file and the one render call in cart-summary.liquid to fully remove the feature.
+
+  CONFIG IS THE BLOCK DIRECTLY BELOW. The threshold must match the store's real
+  free-shipping rule (Settings > Shipping, "Free US shipping over $50"). If that rule
+  changes, change fsm_threshold_cents here — nothing else.
+
+  @param {string} [section_id] - section to re-render after an upsell add
+    ('cart-drawer-section' in the drawer; the cart page passes its own section id).
+{%- enddoc -%}
+
+{%- liquid
+  # ============ CONFIG — the only lines anyone should ever edit ============
+  assign fsm_threshold_cents = 5000
+  assign fsm_collection_handle = 'free-shipping-add-ons'
+  assign fsm_max_suggestions = 3
+  # =========================================================================
+
+  assign fsm_section_id = section_id | default: 'cart-drawer-section'
+
+  # Guards: render nothing unless everything is safe. US-only offer, so hide for
+  # any non-USD presentment currency.
+  assign fsm_enabled = true
+  if cart == blank or cart.item_count == 0
+    assign fsm_enabled = false
+  endif
+  if cart.currency.iso_code != 'USD'
+    assign fsm_enabled = false
+  endif
+-%}
+{%- if fsm_enabled -%}
+  {%- liquid
+    assign fsm_remaining = fsm_threshold_cents | minus: cart.total_price
+    assign fsm_pct = cart.total_price | times: 100 | divided_by: fsm_threshold_cents
+    if fsm_pct > 100
+      assign fsm_pct = 100
+    endif
+  -%}
+  <div class="rt-fsm" role="status" aria-live="polite">
+    {%- if fsm_remaining > 0 -%}
+      <p class="rt-fsm__msg">
+        You're <strong>{{ fsm_remaining | money }}</strong> away from <strong>FREE US shipping</strong>
+      </p>
+    {%- else -%}
+      <p class="rt-fsm__msg rt-fsm__msg--unlocked">
+        &#127881; You've unlocked <strong>FREE US shipping</strong>
+      </p>
+    {%- endif -%}
+
+    <div class="rt-fsm__track" aria-hidden="true">
+      <div class="rt-fsm__fill{% if fsm_remaining <= 0 %} rt-fsm__fill--full{% endif %}" style="width: {{ fsm_pct }}%;"></div>
+    </div>
+
+    {%- if fsm_remaining > 0 -%}
+      {%- liquid
+        # ---- Upsell candidates -------------------------------------------------
+        # Fully automatic, zero admin setup beyond "put products in this
+        # collection." For every product we look at ALL its variants and let
+        # price decide which one to offer — no manual tagging, no per-product
+        # config, no ordering the collection in a particular way.
+        #
+        # Rule per product:
+        #   - if fsm_has_unlocker is true (see pass 1 below): offer that
+        #     product's CHEAPEST available variant whose price alone would
+        #     fully close the gap (skip the product if it has none)
+        #   - otherwise: offer that product's cheapest available variant,
+        #     period (a "progress helper", doesn't need to close the gap)
+        # This is why Reflective Bands works with zero setup: on a ~$8 gap the
+        # 2-pack ($7.99) doesn't qualify as an unlocker so the code shows some
+        # other item's cheap variant as a helper; on a ~$19 gap the 8-pack
+        # ($19.99) is the cheapest variant that clears it, so it gets shown
+        # automatically as the "closes it in one tap" option — no metafield,
+        # no manual flagging, it falls out of the price math.
+        #
+        # Two passes over the collection: pass 1 just answers "does ANYTHING
+        # in this collection, at any variant, fully close the gap?" (sets
+        # fsm_has_unlocker). Pass 2 renders, applying the rule above.
+        assign fsm_col = collections[fsm_collection_handle]
+        assign fsm_cart_pids = cart.items | map: 'product_id'
+        assign fsm_has_unlocker = false
+
+        if fsm_col != blank and fsm_col.products.size > 0
+          for fsm_p in fsm_col.products
+            if fsm_cart_pids contains fsm_p.id
+              continue
+            endif
+            for fsm_scan_v in fsm_p.variants
+              if fsm_scan_v.available and fsm_scan_v.price >= fsm_remaining
+                assign fsm_has_unlocker = true
+                break
+              endif
+            endfor
+            if fsm_has_unlocker
+              break
+            endif
+          endfor
+        endif
+      -%}
+      {%- if fsm_col != blank and fsm_col.products.size > 0 -%}
+        {%- assign fsm_shown = 0 -%}
+        {%- assign fsm_sorted_products = fsm_col.products | sort: 'price' -%}
+        {%- capture fsm_items_html -%}
+          {%- for fsm_p in fsm_sorted_products -%}
+            {%- if fsm_shown >= fsm_max_suggestions %}{% break %}{% endif -%}
+            {%- if fsm_cart_pids contains fsm_p.id %}{% continue %}{% endif -%}
+
+            {%- liquid
+              # Pick the best variant for THIS product under the rule above.
+              assign fsm_v = blank
+              assign fsm_v_price = blank
+              for fsm_cand in fsm_p.variants
+                unless fsm_cand.available
+                  continue
+                endunless
+                if fsm_has_unlocker and fsm_cand.price < fsm_remaining
+                  continue
+                endif
+                if fsm_v == blank or fsm_cand.price < fsm_v_price
+                  assign fsm_v = fsm_cand
+                  assign fsm_v_price = fsm_cand.price
+                endif
+              endfor
+            -%}
+            {%- if fsm_v == blank %}{% continue %}{% endif -%}
+            {%- assign fsm_shown = fsm_shown | plus: 1 -%}
+            <li class="rt-fsm__item">
+              <a class="rt-fsm__item-link" href="{{ fsm_p.url }}">
+                {%- if fsm_p.featured_image -%}
+                  <img
+                    class="rt-fsm__item-img"
+                    src="{{ fsm_p.featured_image | image_url: width: 96 }}"
+                    alt="{{ fsm_p.featured_image.alt | default: fsm_p.title | escape }}"
+                    width="48" height="48" loading="lazy"
+                  >
+                {%- endif -%}
+                <span class="rt-fsm__item-text">
+                  <span class="rt-fsm__item-title">{{ fsm_p.title | truncate: 30 }}{% unless fsm_p.has_only_default_variant %} — {{ fsm_v.title }}{% endunless %}</span>
+                  <span class="rt-fsm__item-price">{{ fsm_v.price | money }}</span>
+                </span>
+              </a>
+              {%- comment -%}
+                ⚠ Theme add-to-cart contract, copied from blocks/buy-buttons.liquid.
+                If product-form-component ever stops attaching, this remains a valid
+                plain HTML POST to /cart/add (page reload, item still added).
+              {%- endcomment -%}
+              <product-form-component
+                data-section-id="{{ fsm_section_id }}"
+                data-product-id="{{ fsm_p.id }}"
+                data-product-url="{{ fsm_p.url }}"
+                on:submit="/handleSubmit"
+                data-quantity-default="1"
+                data-quantity-error-max=""
+              >
+                <div class="visually-hidden" aria-live="assertive" role="status" aria-atomic="true" ref="liveRegion"></div>
+                {%- form 'product', fsm_p, data-type: 'add-to-cart-form', class: 'rt-fsm__form' -%}
+                  <input type="hidden" name="id" ref="variantId" value="{{ fsm_v.id }}">
+                  <input type="hidden" name="properties[_source]" value="free-shipping-meter">
+                  <button
+                    type="submit" name="add" ref="addToCartButton"
+                    class="button rt-fsm__add"
+                    aria-label="Add {{ fsm_p.title | escape }} to cart"
+                  >Add</button>
+                {%- endform -%}
+              </product-form-component>
+            </li>
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if fsm_shown > 0 -%}
+          <p class="rt-fsm__upsell-label">Add one to get there:</p>
+          <ul class="rt-fsm__items" role="list">
+            {{ fsm_items_html }}
+          </ul>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  /* All rules namespaced rt-fsm; only inherited theme vars, each with a neutral
+     fallback. No selector touches theme markup. */
+  .rt-fsm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs, 8px);
+    min-height: 2.25rem; /* reserve space: no CLS when state changes */
+    color: var(--color-foreground, #333);
+    font-size: var(--font-size--sm, 0.875rem);
+  }
+  .rt-fsm__msg { margin: 0; }
+  .rt-fsm__msg--unlocked { font-weight: 600; }
+  .rt-fsm__track {
+    height: 6px;
+    border-radius: 999px;
+    background: rgb(var(--color-foreground-rgb, 51 51 51) / 0.12);
+    overflow: hidden;
+  }
+  .rt-fsm__fill {
+    height: 100%;
+    min-width: 6px;
+    border-radius: inherit;
+    background: var(--color-foreground, #333);
+    transition: width 0.4s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rt-fsm__fill { transition: none; }
+  }
+  .rt-fsm__upsell-label {
+    margin: 0;
+    font-size: var(--font-size--2xs, 0.75rem);
+    color: var(--color-foreground-subdued, #666);
+  }
+  .rt-fsm__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-2xs, 6px);
+  }
+  .rt-fsm__item {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs, 8px);
+  }
+  .rt-fsm__item-link {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs, 8px);
+    flex: 1;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+  }
+  .rt-fsm__item-img {
+    width: 48px; height: 48px;
+    object-fit: cover;
+    border-radius: var(--style-border-radius-inputs, 4px);
+    flex-shrink: 0;
+  }
+  .rt-fsm__item-text { display: flex; flex-direction: column; min-width: 0; }
+  .rt-fsm__item-title {
+    font-size: var(--font-size--2xs, 0.75rem);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .rt-fsm__item-price { font-size: var(--font-size--2xs, 0.75rem); font-weight: 600; }
+  .rt-fsm__form { margin: 0; }
+  .rt-fsm__add {
+    /* theme .button carries scheme colors; we only shrink it */
+    min-height: 2rem;
+    padding-block: 0.25rem;
+    padding-inline: var(--padding-md, 12px);
+    font-size: var(--font-size--2xs, 0.75rem);
+  }
+{% endstylesheet %}

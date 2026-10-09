@@ -1,0 +1,63 @@
+{% comment %}
+  Output all of Shopify's default robots.txt rules, excluding /policies/ to allow Google
+  to use policy pages as trust signals for Shopping. Then append explicit bot rules.
+{% endcomment %}
+{% for group in robots.default_groups %}
+User-agent: {{ group.user_agent }}
+{% for rule in group.rules %}
+  {%- unless rule.value contains '/policies/' %}
+{{ rule.directive }}: {{ rule.value }}
+  {%- endunless %}
+{%- endfor %}
+{% if group.sitemap != blank %}
+Sitemap: {{ group.sitemap }}
+{% endif %}
+
+{% endfor %}
+
+# Block RSS/Atom feeds - machine-readable only, no SEO value
+Disallow: /*.atom
+
+# Block auto-generated vendor/type listing pages - thin content with no unique value
+Disallow: /collections/vendors*
+Disallow: /collections/types*
+
+# === Google Crawlers (explicit) ===
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-image
+Allow: /
+
+# === AI Search & Answer Crawlers (explicitly allowed) ===
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
