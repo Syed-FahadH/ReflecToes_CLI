@@ -1,0 +1,144 @@
+<style>
+  .about-wrap { max-width: 860px; margin: 0 auto; padding: 48px 20px 72px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #141515; line-height: 1.65; }
+  .about-wrap *, .about-wrap *::before, .about-wrap *::after { box-sizing: border-box; }
+  .about-wrap h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.1; font-weight: 700; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .about-wrap h2 { font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; margin: 56px 0 14px; letter-spacing: -0.01em; }
+  .about-wrap h2::after { content: ""; display: block; width: 40px; height: 3px; background: #00e0a9; margin-top: 10px; border-radius: 2px; }
+  .about-wrap h3 { font-size: 1.05rem; font-weight: 600; margin: 0 0 6px; }
+  .about-wrap p { margin: 0 0 16px; }
+  .about-wrap a { color: #0a3a30; text-decoration: underline; text-decoration-color: #00e0a9; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .about-wrap a:hover { background: #d8fff2; }
+  .about-intro { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+  .about-intro img { height: 56px; width: auto; }
+  .about-intro p { margin: 0; color: #3a3f3d; font-size: 1.05rem; max-width: 680px; }
+  .about-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin: 20px 0 32px; }
+  .about-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  .about-founder { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start; margin: 24px 0; }
+  @media(min-width: 640px) { .about-founder { grid-template-columns: 200px 1fr; } }
+  .about-founder img { width: 100%; max-width: 200px; border-radius: 10px; }
+  .about-edu-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 20px 0; }
+  @media(min-width: 600px) { .about-edu-grid { grid-template-columns: repeat(2, 1fr); } }
+  .about-edu-card { display: block; background: #f7faf9; border: 1px solid #e6ece9; border-radius: 10px; padding: 16px 18px; text-decoration: none; color: inherit; transition: box-shadow .2s, border-color .2s; }
+  .about-edu-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.07); border-color: #00e0a9; background: #ecfff8; }
+  .about-edu-card h3 { font-size: 0.95rem; margin: 0 0 4px; color: #0a3a30; }
+  .about-edu-card p { font-size: 0.85rem; color: #555; margin: 0; }
+  .about-press-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin: 20px 0; }
+  .about-press-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 18px; }
+  .about-press-card .outlet { font-size: 0.7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #00a07a; margin-bottom: 6px; }
+  .about-press-card p { font-size: 0.88rem; color: #444; margin: 0 0 12px; line-height: 1.45; }
+  .about-press-card a { font-size: 0.82rem; font-weight: 600; color: #0a3a30; text-decoration: underline; text-underline-offset: 2px; }
+  .about-tech-img { display: block; max-width: 400px; margin: 20px auto; border-radius: 8px; }
+  .about-cta { background: #0a3a30; color: #fff; border-radius: 12px; padding: 36px; text-align: left; margin-top: 56px; }
+  .about-cta h2 { color: #fff; margin: 0 0 10px; }
+  .about-cta h2::after { background: #00e0a9; margin-left: 0; }
+  .about-cta p { color: #a8d5c4; margin: 0 0 24px; }
+  .about-btn { display: inline-block; padding: 11px 24px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; text-decoration: none !important; margin: 4px; transition: background .15s; }
+  .about-btn-primary { background: #00e0a9; color: #0a3a30 !important; }
+  .about-btn-primary:hover { background: #00c49a; color: #0a3a30 !important; }
+  .about-btn-secondary { background: transparent; color: #fff !important; border: 1.5px solid rgba(255,255,255,0.5); }
+  .about-btn-secondary:hover { background: rgba(255,255,255,.1); color: #fff !important; }
+</style>
+
+<div class="about-wrap">
+
+  <div class="about-intro">
+    <img src="https://cdn.shopify.com/s/files/1/0056/6847/0855/files/png_logo_480x480.png?v=1683975048" alt="ReflecToes logo">
+    <p>Reflective safety gear designed around the science of how drivers actually see people at night.</p>
+  </div>
+
+  <h1>About ReflecToes</h1>
+  <p>Three in four pedestrian deaths in the U.S. happen after dark. Most of the people involved thought they were visible. ReflecToes exists to close that gap, with gear designed from the ground up around published research on how drivers detect and recognize people at night.</p>
+
+  <h2>Meet the Founder</h2>
+
+  <div class="about-video">
+    <iframe title="ReflecToes founder video" src="https://www.youtube.com/embed/kgPT4tsjTOo" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+  </div>
+
+  <div class="about-founder">
+    <img src="https://cdn.shopify.com/s/files/1/0056/6847/0855/files/Ben_480x480.png?v=1683975319" alt="Ben O'Brien, founder of ReflecToes">
+    <div>
+      <p><strong>Ben O'Brien</strong> founded ReflecToes after noticing firsthand how inadequate most reflective running gear was after dark. His background was specific: from 2010 to 2015 he worked at Avery Dennison in product development, creating retroreflective materials for Nike and Under Armour. He knew exactly how the technology worked, and exactly where it was missing.</p>
+      <p>The spark came in 2016 while cycling with his family in Montreal. Watching the reflectors on bike pedals and wheels light up in traffic, the question formed: why doesn't running gear put reflective material where the body moves? In 2017, after extensive sampling and manufacturing development, ReflecToes launched.</p>
+    </div>
+  </div>
+
+  <h2>The Science Behind the Design</h2>
+
+  <p>Every ReflecToes product is designed around one core principle from road-safety research: biological motion, or biomotion. When small reflective points move in the pattern of human joints (ankles, knees, wrists), drivers don't just detect you. They recognize you, and recognition triggers a slowdown response far faster than detection alone.</p>
+
+  <p>Published research confirms that biomotion retroreflective placement at the ankles and knees produces driver recognition from up to 7 times farther away than dark clothing. That's the number that drives every design decision we make.</p>
+
+  <div class="about-edu-grid">
+    <a href="/pages/biomotion-science" class="about-edu-card">
+      <h3>Biomotion Science</h3>
+      <p>Why ankle and knee placement outperforms a vest for night visibility.</p>
+    </a>
+    <a href="/pages/retroreflective-vs-fluorescent" class="about-edu-card">
+      <h3>Retroreflective vs. Fluorescent</h3>
+      <p>Why your hi-vis jacket provides almost zero protection after dark.</p>
+    </a>
+    <a href="/pages/visibility-illusion" class="about-edu-card">
+      <h3>The Visibility Illusion</h3>
+      <p>Research on why pedestrians consistently misjudge their own night visibility.</p>
+    </a>
+    <a href="/pages/night-safety-workshop" class="about-edu-card">
+      <h3>Night-Safety Workshop</h3>
+      <p>A free guide for coaches and clubs to run a 30-minute visibility event.</p>
+    </a>
+  </div>
+
+  <h2>The Technology</h2>
+
+  <p>ReflecToes uses proprietary retroreflective materials with a bonding technology engineered for washability. Unlike iron-on reflective patches that crack and peel, the reflective elements are integrated into the fabric construction to maintain performance through repeated washing.</p>
+
+  <p>The material uses a glass microsphere system: tiny beads that refract incoming headlight beams back toward their source. Because a driver's eyes are on roughly the same axis as their headlights, the returned light lands precisely where they're looking.</p>
+
+  <img src="https://cdn.shopify.com/s/files/1/0056/6847/0855/files/3_keys_to_high_reflective_e1913ede-f217-4c3b-8804-70024ebb9544_480x480.png?v=1683977015" alt="Three keys to high reflectivity diagram" class="about-tech-img">
+
+  <h2>As Seen On</h2>
+
+  <div class="about-press-grid">
+    <div class="about-press-card">
+      <div class="outlet">Runner's World</div>
+      <p>ReflecToes High Reflective Running Socks named <strong>Best Socks</strong>. "Make you all but impossible to miss", diamond-shaped reflective panels rated to last through 50 washes.</p>
+      <a href="https://www.runnersworld.com/gear/a38254827/reflective-gear-to-run-safely-in-the-dark/" target="_blank" rel="noopener">Read the article</a>
+    </div>
+    <div class="about-press-card">
+      <div class="outlet">iRunFar</div>
+      <p>Named <strong>Best Reflective Gloves</strong> in Best Reflective Running Gear of 2026. Praised for brightness, price, grip, and touchscreen capability.</p>
+      <a href="https://www.irunfar.com/best-reflective-running-gear" target="_blank" rel="noopener">Read the article</a>
+    </div>
+    <div class="about-press-card">
+      <div class="outlet">FueledByLolz</div>
+      <p>In-depth review of ReflecToes socks and gloves. "Does exactly what it's supposed to do", reflective, comfortable, no blisters.</p>
+      <a href="https://fueledbylolz.com/2020/10/28/reflectoes-review/" target="_blank" rel="noopener">Read the review</a>
+    </div>
+    <div class="about-press-card">
+      <div class="outlet">road.cc</div>
+      <p>Gave the Highly Reflective Night Safety Socks <strong>8/10 overall</strong>, 9/10 for comfort and fit. "Very comfortable and well-made socks with highly effective reflective elements", good value for dark rides.</p>
+      <a href="https://road.cc/content/review/reflectoes-highly-reflective-night-safety-socks-282827" target="_blank" rel="noopener">Read the review</a>
+    </div>
+    <div class="about-press-card">
+      <div class="outlet">Bicycling</div>
+      <p>Named <strong>Best Socks</strong> in Best Reflective Gear. "Superb ankle reflection", uses reflective beads for increased visibility as you pedal, plus moisture-wicking fabric and arch support.</p>
+      <a href="https://www.bicycling.com/bikes-gear/g41029852/best-reflective-gear/" target="_blank" rel="noopener">Read the article</a>
+    </div>
+  </div>
+
+  <div class="about-cta">
+    <h2>Be Seen Sooner.</h2>
+    <p>Retroreflective gear built around the science of how drivers see you at night.</p>
+    <a href="/collections/all" class="about-btn about-btn-primary">Shop All Gear</a>
+    <a href="/pages/education" class="about-btn about-btn-secondary">Explore the Science</a>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "About Us",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

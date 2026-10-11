@@ -30,7 +30,7 @@
           "settings": {
             "menu": "main-menu",
             "background_color": "#ffffff",
-            "text_color": "#000000",
+            "text_color": "#0a0d10",
             "type_font_primary_size": "1rem",
             "menu_font_style": "regular",
             "type_font_primary_link": "heading",
@@ -50,8 +50,8 @@
         }
       },
       "custom_css": [
-        ".header-logo__image {width: 140px !important; height: auto !important; /* Keeps aspect ratio */}",
-        ".header__row.header__row--top {background-color: white !important; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important; font-family: \"Manrope\" !important;}"
+        ".header-logo__image {width: 128px !important; height: auto !important;}",
+        ".header__row.header__row--top {background-color: #fff !important; box-shadow: 0 1px 0 rgba(10, 13, 16, 0.08) !important;}"
       ],
       "settings": {
         "logo_position": "center",
@@ -80,8 +80,8 @@
         "actions_font_size": "0.875rem",
         "actions_font": "body",
         "actions_text_case": "none",
-        "background_color_top": "{{ settings.color_palette.color1 }}",
-        "text_color_top": "",
+        "background_color_top": "#ffffff",
+        "text_color_top": "#0a0d10",
         "background_color_bottom": "",
         "text_color_bottom": "",
         "bubble_style": "default",
@@ -104,14 +104,14 @@
         "announcement_NeyDnH": {
           "type": "_announcement",
           "settings": {
-            "text": "🚚 <strong>FREE U.S. shipping on all orders over $50!</strong>",
+            "text": "<strong>FREE U.S. shipping on all orders over $50</strong>",
             "link": "",
             "font": "var(--font-body--family)",
-            "font_size": "1rem",
+            "font_size": "0.875rem",
             "weight": "",
-            "letter_spacing": "normal",
-            "case": "none",
-            "text_color": ""
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "text_color": "#ffffff"
           },
           "blocks": {}
         }
@@ -123,11 +123,11 @@
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "background_color": "{{ settings.color_palette.color5 }}",
+        "background_color": "#0a0d10",
         "divider_width": 0,
         "divider_color": "",
-        "padding-block-start": 15,
-        "padding-block-end": 15
+        "padding-block-start": 10,
+        "padding-block-end": 10
       }
     }
   },

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daylight Kit Signal Test</title>
+<link rel="stylesheet" href="shared/rt-demo.css">
+<style>
+  #dk canvas { transition: filter .5s ease; }
+  #dk.glance canvas { filter: blur(3px) saturate(.85); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Review index</a> › /pages/daylight-kit · replaces "The Turn Signal Test" · v2</div>
+  <h1>The Turn Signal Test</h1>
+  <p class="lede">You're the driver, following a cyclist down a tree-lined street. The rider moves in and out of shade. Left: navy jersey, black gloves and socks. Right: the Daylight Kit.</p>
+
+  <section class="rt-demo day" id="dk">
+    <p class="kicker">The Turn Signal Test</p>
+    <h2 class="big">About half of cyclist deaths happen when it's light out.</h2>
+    <div class="stats">
+      <div class="st"><b>51%</b><span>of U.S. bicyclist deaths happen when it isn't dark (daylight, dawn or dusk)</span><small>NHTSA FARS 2018–2022: 48.9% in dark conditions, via PBIC</small></div>
+      <div class="st"><b>3 zones</b><span>hands, torso and feet: the parts a driver needs to see when you signal and pedal</span><small>Jersey + gloves + socks in one kit</small></div>
+      <div class="st"><b>Earlier</b><span>Fluorescent yellow, orange and red improve daytime detection and recognition</span><small>Cochrane systematic review (Kwan &amp; Mapstone 2006)</small></div>
+    </div>
+    <div class="panes">
+      <div class="pane"><canvas aria-label="Driver's view of a cyclist in a navy jersey on a shaded street"></canvas><span class="tag">Regular kit</span><span class="verdict bad off">Easy to miss</span></div>
+      <div class="pane"><canvas aria-label="Driver's view of a cyclist in a fluorescent jersey, gloves and socks on a shaded street"></canvas><span class="tag">The Daylight Kit</span><span class="verdict good off">Hard to miss</span></div>
+    </div>
+    <div class="controls">
+      <button class="rt-btn primary" id="dk-sig" aria-pressed="false">Signal a turn</button>
+      <button class="rt-btn" id="dk-glance" aria-pressed="false">Glance test: blur the view</button>
+    </div>
+    <p class="cite">Fluorescent fabric converts UV in sunlight into extra visible light, so it stands out against asphalt, shade and parked cars. Illustration, not to scale.</p>
+  </section>
+
+  <div class="note">
+    <b>v2 changes from your notes</b>
+    <ul>
+      <li>Fluorescent is brighter and gets a stronger daylight glow, on the jersey, gloves and socks.</li>
+      <li>Driver's eye raised to SUV height and the horizon moved up, so the rider's hands and head sit against the street, parked cars and shade, not the sky.</li>
+      <li>New 3D cyclist seen from behind: legs pump with the crank, the signal arm swings straight out to the side.</li>
+      <li>Headline: about half (51%) of cyclist deaths happen when it isn't dark. That's the line that makes a daytime kit feel necessary, and it sets up the Night Kit for the other 49%.</li>
+      <li>Signals on its own a moment after it scrolls into view.</li>
+    </ul>
+    <b>New sources to add to the page:</b> PBIC/NHTSA FARS (48.9% of cyclist deaths in dark conditions, so 51% are not) and the Cochrane review (fluorescent in daytime).
+  </div>
+</div>
+
+<script src="shared/rt-figures.js"></script>
+<script>
+(function () {
+  const root = document.getElementById('dk');
+  const canvases = root.querySelectorAll('canvas'), verdicts = root.querySelectorAll('.verdict');
+  const sigBtn = root.querySelector('#dk-sig'), glBtn = root.querySelector('#dk-glance');
+  const S = { sig: 0, sigT: 0 };
+  function setSig(on) {
+    S.sigT = on ? 1 : 0;
+    sigBtn.setAttribute('aria-pressed', on); sigBtn.textContent = on ? 'Hands back on the bars' : 'Signal a turn';
+    verdicts.forEach((v) => v.classList.toggle('off', !on));
+  }
+  sigBtn.onclick = () => setSig(!S.sigT);
+  glBtn.onclick = () => { const on = !root.classList.contains('glance'); root.classList.toggle('glance', on); glBtn.setAttribute('aria-pressed', on); };
+
+  const CARS = [[28, 38, 66], [24, 24, 26], [150, 156, 162], [40, 62, 52], [120, 30, 34], [70, 74, 80]];
+  const BLD = [[176, 160, 136], [150, 92, 76], [128, 132, 138], [190, 182, 166]];
+  const rgb = (c, k = 1) => `rgb(${c.map((v) => Math.round(v * k)).join(',')})`;
+  const fogc = (c, f) => c.map((v) => v + (205 - v) * f);
+  const rr = (ctx, x, y, w, h, r) => { ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, r) : ctx.rect(x, y, w, h); ctx.fill(); };
+
+  function scene(ctx, w, h, t, kit, sigK) {
+    const hz = h * 0.3, f = h * 1.0, camH = 1.6, cx = w * 0.42, z = t * 5;
+    const Y = (d) => hz + (f * camH) / d, X = (x, d) => cx + (f * x) / d;
+    const dn = (f * camH) / (h - hz);
+    const sky = ctx.createLinearGradient(0, 0, 0, hz);
+    sky.addColorStop(0, '#7db6e2'); sky.addColorStop(1, '#d8ecf6');
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, w, hz + 1);
+    ctx.fillStyle = '#6f8a58'; ctx.fillRect(0, hz, w, h - hz);
+    const strip = (a, b, c) => { ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(X(a, dn), h); ctx.lineTo(X(b, dn), h); ctx.lineTo(cx, hz); ctx.fill(); };
+    strip(-9, -5.4, '#b9b8ae'); strip(4.4, 7.5, '#b9b8ae'); strip(-5.4, 4.4, '#5a5f66');
+    strip(-1.88, -1.8, '#e2bf45'); strip(-1.72, -1.64, '#e2bf45'); strip(1.8, 1.88, '#e9e9e2');
+    const objs = [];
+    for (let k = 0; k < 9; k++) { const n = k + Math.floor(z / 14), d = 14 * k - (z % 14) + 4; objs.push({ d, type: 'bld', x: 10, id: n }, { d: d + 6, type: 'bld', x: -11.5, id: n + 2 }); }
+    for (let k = 0; k < 11; k++) { const n = k + Math.floor(z / 8), d = 8 * k - (z % 8) + 2; objs.push({ d, type: 'tree', x: 5.6, id: n }, { d: d + 4, type: 'tree', x: -6.8, id: n + 5 }); }
+    for (let k = 0; k < 8; k++) { const n = k + Math.floor(z / 9), d = 9 * k - (z % 9) + 3; if (n % 5 !== 4) objs.push({ d, type: 'car', x: 3.1, id: n }); }
+    for (let k = 0; k < 5; k++) { const n = k + Math.floor(z / 17), d = 17 * k - (z % 17) + 9; objs.push({ d, type: 'oncar', x: -3.6, id: n + 3 }); }
+    // tree shade across the road (sun from the right)
+    const cycD = 3.9, cycX = 0.9;
+    let shade = 0;
+    objs.filter((o) => o.type === 'tree' && o.x > 0).forEach((o) => {
+      const d0 = o.d - 1.3, d1 = o.d + 3.0;
+      if (d1 > dn) {
+        const a = Math.max(d0, dn * 0.98);
+        ctx.fillStyle = 'rgba(14,22,18,0.48)';
+        ctx.beginPath(); ctx.moveTo(X(o.x + 1, a), Y(a)); ctx.lineTo(X(o.x + 1, d1), Y(d1)); ctx.lineTo(X(o.x - 8, d1), Y(d1)); ctx.lineTo(X(o.x - 8, a), Y(a)); ctx.fill();
+      }
+      const e = Math.min(cycD - d0, d1 - cycD);
+      if (e > -0.3) shade = Math.max(shade, RT.clamp((e + 0.3) / 0.6, 0, 1));
+    });
+    objs.sort((a, b) => b.d - a.d);
+    let drawn = false;
+    const drawCyc = () => { drawn = true; cyclist(ctx, { x: X(cycX, cycD), y: Y(cycD), s: f / cycD }, t, kit, sigK, shade); };
+    for (const o of objs) {
+      if (o.d < dn * 0.55 || o.d > 90) continue;
+      if (!drawn && o.d < cycD) drawCyc();
+      const sc = f / o.d, bx = X(o.x, o.d), by = Y(o.d), fog = RT.clamp((o.d - 20) / 70, 0, 0.55);
+      if (o.type === 'bld') {
+        const c = BLD[o.id % 4], H = 8 + (o.id % 3) * 3, W = 10, x0 = o.x > 0 ? bx : bx - W * sc;
+        ctx.fillStyle = rgb(fogc(c, fog)); ctx.fillRect(x0, by - H * sc, W * sc, H * sc);
+        ctx.fillStyle = `rgba(40,60,80,${0.35 * (1 - fog)})`;
+        for (let r = 0; r < H / 3 - 1; r++) for (let q = 0; q < 3; q++) ctx.fillRect(x0 + (1 + q * 3.2) * sc, by - (H - 1 - r * 3) * sc, 1.6 * sc, 1.4 * sc);
+      } else if (o.type === 'tree') {
+        ctx.fillStyle = '#4a3a2c'; ctx.fillRect(bx - 0.15 * sc, by - 3 * sc, 0.3 * sc, 3 * sc);
+        ctx.fillStyle = rgb(fogc([52, 92, 50], fog)); ctx.beginPath(); ctx.ellipse(bx, by - 4.8 * sc, 2.4 * sc, 2.2 * sc, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = rgb(fogc([70, 115, 62], fog)); ctx.beginPath(); ctx.ellipse(bx + 0.6 * sc, by - 5.4 * sc, 1.4 * sc, 1.2 * sc, 0, 0, Math.PI * 2); ctx.fill();
+      } else {
+        const c = fogc(CARS[o.id % CARS.length], fog * 0.6), on = o.type === 'oncar';
+        ctx.fillStyle = rgb(c); rr(ctx, bx - 0.9 * sc, by - 1.05 * sc, 1.8 * sc, 0.75 * sc, 0.15 * sc);
+        ctx.fillStyle = rgb(c, 0.85); rr(ctx, bx - 0.72 * sc, by - 1.45 * sc, 1.44 * sc, 0.48 * sc, 0.18 * sc);
+        ctx.fillStyle = 'rgba(30,40,50,.75)'; rr(ctx, bx - 0.62 * sc, by - 1.4 * sc, 1.24 * sc, 0.34 * sc, 0.1 * sc);
+        ctx.fillStyle = on ? '#f3efe0' : '#b3262b'; ctx.fillRect(bx - 0.86 * sc, by - 0.92 * sc, 0.26 * sc, 0.12 * sc); ctx.fillRect(bx + 0.6 * sc, by - 0.92 * sc, 0.26 * sc, 0.12 * sc);
+        ctx.fillStyle = '#111'; ctx.fillRect(bx - 0.82 * sc, by - 0.32 * sc, 0.3 * sc, 0.32 * sc); ctx.fillRect(bx + 0.52 * sc, by - 0.32 * sc, 0.3 * sc, 0.32 * sc);
+      }
+    }
+    if (!drawn) drawCyc();
+  }
+
+  const KITS = [
+    { top: [31, 43, 74], sleeve: [31, 43, 74], bottom: [20, 20, 23], shoe: [20, 20, 22], helmet: [36, 40, 46], gear: { socks: null, gloves: null }, sock: [18, 18, 20], glove: [20, 20, 22] },
+    { top: [214, 255, 30], sleeve: [214, 255, 30], bottom: [20, 20, 23], shoe: [20, 20, 22], helmet: [36, 40, 46], gear: { jersey: 'fluor', socks: 'fluor', gloves: 'fluor' } }
+  ];
+  function cyclist(ctx, o, t, kit, sigK, shade) {
+    const pose = RT.cyclePose(t, sigK);
+    const sway = Math.sin(t * 1.4 * Math.PI * 2) * 0.01;
+    const cam = RT.camera({ x: o.x + sway * o.s, y: o.y, s: o.s }, 90, 0.12);
+    RT.pool(ctx, o.x, o.y, o.s * 0.35, o.s * 0.06, '0,0,0', 0.3);
+    RT.drawBike(ctx, cam, pose, { tire: '#141414', spoke: '#666', frame: '#2b2f35' });
+    const light = 1 - 0.42 * shade;
+    const st = Object.assign({}, kit, { light: kit.gear.jersey ? 1.12 - 0.18 * shade : light, fluorGlow: kit.gear.jersey ? 1.2 - 0.35 * shade : 0, skin: [196, 150, 115] });
+    if (!kit.gear.jersey) { st.shin = null; st.hand = kit.glove; }
+    RT.drawFigure(ctx, cam, pose, st);
+    if (!kit.gear.jersey) { // black socks over the lower shank
+      ['R', 'L'].forEach((sd) => {
+        const l = pose.legs[sd], a = cam.p(l.ankle), b = cam.p({ x: RT.lerp(l.ankle.x, l.knee.x, 0.27), y: RT.lerp(l.ankle.y, l.knee.y, 0.27), z: l.ankle.z });
+        ctx.strokeStyle = rgb(kit.sock, light); ctx.lineWidth = 0.118 * o.s; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(a.X, a.Y); ctx.lineTo(b.X, b.Y); ctx.stroke();
+      });
+    }
+  }
+
+  canvases.forEach((cv, idx) => {
+    RT.stage(cv, (ctx, w, h, t, dt, rdt) => {
+      if (idx === 0) S.sig = RT.approach(S.sig, S.sigT, rdt, 5);
+      scene(ctx, w, h, t, KITS[idx], RT.ease(RT.clamp(S.sig, 0, 1)));
+    }, { onFirstView: () => { if (idx === 0) setTimeout(() => setSig(true), 1500); } });
+  });
+})();
+</script>
+</body>
+</html>

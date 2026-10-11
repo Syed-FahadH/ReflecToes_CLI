@@ -1,0 +1,11 @@
+{%- doc -%}
+  Rating chip shown on a product card image. It reuses the Opinew star markup but removes its link.
+  The stored Opinew markup can carry an old product address that redirects, and the whole card
+  is already a link to the product.
+
+  @param {object} product - The product to show stars for
+{%- enddoc -%}
+{%- capture rt_stars -%}{% render 'opinew_review_stars_lists', product: product %}{%- endcapture -%}
+<div class="rt-rating opinew-stars-plugin-product-list">
+  {{- rt_stars | replace: '<a ', '<span ' | replace: '</a>', '</span>' | replace: ' href=', ' data-href=' -}}
+</div>

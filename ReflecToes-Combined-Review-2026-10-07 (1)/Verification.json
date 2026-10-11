@@ -1,0 +1,25 @@
+{
+  "revision": "RTSEO-2026-10-07-R3",
+  "confidence_percent": 95,
+  "verified": [
+    "27 task cards and unique HTML IDs",
+    "All non-superseded local HTML href/src references resolve",
+    "Ten unchanged original demos and shared assets bundled",
+    "R3 browser category filters: visual 10 of 27, marketing 2 of 27",
+    "R2 search, sort and JSON comment export browser checks passed; R3 static revision/export identity checked",
+    "All ten original prototype source files and browser previews inspected; selected mobile interactions reproduced defects",
+    "Relevant Drive PDF source passages inspected",
+    "Separate independent visual review and final R3 static review approved",
+    "Saved GSC exact cycling jacket query rows checked"
+  ],
+  "not_verified": [
+    "Full current Shopify Admin state",
+    "Every raw Ahrefs CSV row",
+    "Remaining exact per-URL title/menu changes",
+    "Unresolved scientific mappings and chart provenance",
+    "Claude artifact access, permissions and all ten demos loading",
+    "Real-device performance and full accessibility audit",
+    "Ranking or sales benefit"
+  ],
+  "main_risk": "Implementers may mistake dated evidence for current state; current reads and owner review remain required."
+}

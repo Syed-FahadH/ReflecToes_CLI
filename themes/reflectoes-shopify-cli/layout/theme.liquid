@@ -31,13 +31,27 @@
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-palette' -%}
 
-    <!-- Consolidated Google Fonts — replaces individual <link> tags in all custom sections -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Poppins:wght@400;500;600&family=Manrope:wght@200..800&family=Aboreto&display=swap" rel="stylesheet">
+    <link rel="preload" href="{{ 'barlow-condensed-700.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+    {{ 'rt-header.css' | asset_url | stylesheet_tag }}
+    {{ 'rt-cards.css' | asset_url | stylesheet_tag }}
 
-    <!-- Preload LCP image -->
-    <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0056/6847/0855/files/Jacket_4_1.webp?width=400" fetchpriority="high">
+    {%- if template.name == 'index' -%}
+      <script>document.documentElement.classList.add('rth-js')</script>
+      {{ 'rt-home.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'rt-home.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    {%- unless request.design_mode -%}
+      <style>
+        /* Skip layout and paint for below-the-fold sections until they near the viewport */
+        [data-template='index'] > .shopify-section:nth-child(n + 3),
+        [data-template^='product'] > .shopify-section:nth-child(n + 3),
+        footer .shopify-section {
+          content-visibility: auto;
+          contain-intrinsic-size: auto 700px;
+        }
+      </style>
+    {%- endunless -%}
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
@@ -144,6 +158,10 @@
     {% render 'theme-drawer' %}
 
     {% render 'search-modal' %}
+
+    {% if localization.available_countries.size > 1 %}
+      {% render 'country-list-template' %}
+    {% endif %}
 
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}

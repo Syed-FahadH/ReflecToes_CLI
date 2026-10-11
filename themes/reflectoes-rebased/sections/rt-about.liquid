@@ -1,0 +1,23 @@
+<section class="rth rth-about">
+  <div class="rth-wrap">
+    <details>
+      <summary>{{ section.settings.summary }}</summary>
+      <div class="rth-about__body">
+        <h2>{{ section.settings.heading }}</h2>
+        {{ section.settings.body }}
+      </div>
+    </details>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RT About text",
+  "settings": [
+    { "type": "text", "id": "summary", "label": "Closed title", "default": "About ReflecToes" },
+    { "type": "text", "id": "heading", "label": "Heading inside", "default": "Visibility in Motion" },
+    { "type": "richtext", "id": "body", "label": "Text" }
+  ],
+  "presets": [{ "name": "RT About text" }]
+}
+{% endschema %}

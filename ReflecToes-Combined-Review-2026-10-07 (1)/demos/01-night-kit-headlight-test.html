@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Night Kit Headlight Test</title>
+<link rel="stylesheet" href="shared/rt-demo.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Review index</a> › /pages/night-kit · replaces "The Headlight Test" · v2</div>
+  <h1>The Headlight Test</h1>
+  <p class="lede">Same walker, same road, same headlights. Left: a strap vest. Right: the Night Kit, reflective socks and gloves on the parts of the body that move.</p>
+
+  <section class="rt-demo" id="nk">
+    <p class="kicker">The Headlight Test</p>
+    <h2 class="big">A vest says "something's there." Moving ankles say "person."</h2>
+    <div class="stats">
+      <div class="st"><b>3×</b><span>farther away than a reflective vest</span><small>148 m vs 43 m, closed-road night study (Wood 2023 review)</small></div>
+      <div class="st"><b>1.9×</b><span>the distance, just by moving 13% of a vest's reflective to the ankles</span><small>Clemson University on-road study (Balk 2007)</small></div>
+      <div class="st"><b>100%</b><span>of drivers spotted moving-joint reflective. Vest: 60%. Black: 40%.</span><small>Drivers knew they were looking for pedestrians (Wood 2023 review)</small></div>
+    </div>
+    <div class="panes">
+      <div class="pane"><canvas aria-label="Pedestrian in a strap reflective vest crossing a dark road in headlights"></canvas><span class="tag">Strap vest only</span><span class="verdict bad off">Reads as: something is there</span></div>
+      <div class="pane"><canvas aria-label="Pedestrian wearing reflective socks and gloves crossing a dark road in headlights"></canvas><span class="tag">The Night Kit</span><span class="verdict good off">Reads as: a person, walking</span></div>
+    </div>
+    <div class="controls">
+      <button class="rt-btn primary" id="nk-hl" aria-pressed="false">Turn on headlights</button>
+      <button class="rt-btn" id="nk-body" aria-pressed="false">Driver's view: hide the body</button>
+    </div>
+    <p class="cite">Sources: Wood JM (2023) Clin Exp Optom 106:227; Balk SA (2007) Clemson University thesis; Wood et al. 2012; Tyrrell et al. 2009. Illustration, not to scale.</p>
+  </section>
+
+  <div class="note">
+    <b>v2 changes from your notes</b>
+    <ul>
+      <li>New walking engine built from real gait curves (hip, knee and ankle angles over a stride), smoothed so there are no jerks. Feet stay planted while the body moves.</li>
+      <li>Strap vest is now a real 3D vest: X straps front and back, straps over the shoulders and a waist belt. From the side you see what you'd actually see: the shoulder straps and belt, not a front-facing X.</li>
+      <li>Headlights light up the pavement: beam cones plus light pooling on the road.</li>
+      <li>Starts by itself. Headlights come on automatically about a second after it scrolls into view.</li>
+      <li>Headline stats strip on top, all from the research folder.</li>
+    </ul>
+  </div>
+</div>
+
+<script src="shared/rt-figures.js"></script>
+<script>
+(function () {
+  const root = document.getElementById('nk');
+  const canvases = root.querySelectorAll('canvas'), verdicts = root.querySelectorAll('.verdict');
+  const hlBtn = root.querySelector('#nk-hl'), bodyBtn = root.querySelector('#nk-body');
+  const S = { hl: 0, hlT: 0, body: 1, bodyT: 1 };
+  function setHL(on) {
+    S.hlT = on ? 1 : 0;
+    hlBtn.setAttribute('aria-pressed', on); hlBtn.textContent = on ? 'Turn off headlights' : 'Turn on headlights';
+    verdicts.forEach((v) => v.classList.toggle('off', !on));
+  }
+  hlBtn.onclick = () => setHL(!S.hlT);
+  bodyBtn.onclick = () => { S.bodyT = S.bodyT ? 0 : 1; bodyBtn.setAttribute('aria-pressed', !S.bodyT); bodyBtn.textContent = S.bodyT ? "Driver's view: hide the body" : 'Show the body'; };
+  const clothes = { top: [34, 38, 46], sleeve: [34, 38, 46], bottom: [28, 30, 36], shoe: [22, 22, 26], skin: [120, 95, 80], hair: [30, 24, 20] };
+  canvases.forEach((cv, idx) => {
+    RT.stage(cv, (ctx, w, h, t, dt, rdt) => {
+      if (idx === 0) { S.hl = RT.approach(S.hl, S.hlT, rdt, 3); S.body = RT.approach(S.body, S.bodyT, rdt, 5); }
+      const k = RT.ease(RT.clamp(S.hl, 0, 1));
+      const hz = RT.nightRoad(ctx, w, h, k);
+      const s = h * 0.25, pose = RT.pose(t, 'walk');
+      const span = w + s * 2;
+      const x = ((t * pose.speed * s + span * 0.45) % span) - s;
+      const gy = hz + (h - hz) * 0.52;
+      const center = Math.exp(-Math.pow((x - w / 2) / (w * 0.38), 2));
+      const beam = k * (0.55 + 0.45 * center);
+      RT.pool(ctx, x, gy + 2, s * 0.5, s * 0.07, '0,0,0', 0.45 * k);
+      RT.pool(ctx, x, gy + 2, s * 0.9, s * 0.12, '255,236,196', 0.12 * beam);
+      const cam = RT.camera({ x, y: gy, s }, 0, 0.05);
+      RT.drawFigure(ctx, cam, pose, Object.assign({}, clothes, {
+        light: 0.25 + 0.55 * beam, retro: 0.05 + 0.95 * beam, bodyAlpha: 0.15 + 0.85 * S.body,
+        gear: idx ? { socks: 'retro', gloves: 'retro' } : { vest: 'strap' }
+      }));
+    }, { onFirstView: () => { if (idx === 0) setTimeout(() => setHL(true), 1000); } });
+  });
+})();
+</script>
+</body>
+</html>

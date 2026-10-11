@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where the Light Goes</title>
+<link rel="stylesheet" href="shared/rt-demo.css">
+<style>
+  #lb .stagewrap { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--night-line); touch-action: none; }
+  #lb canvas { display: block; width: 100%; aspect-ratio: 16 / 9; }
+  #lb .hint { position: absolute; right: 12px; top: 10px; font: 600 12.5px Inter, sans-serif; color: var(--night-muted); background: rgba(0,0,0,.45); padding: 5px 9px; border-radius: 6px; pointer-events: none; }
+  #lb .pv { margin-top: 16px; background: #10161c; border: 1px solid var(--night-line); border-radius: 12px; padding: 16px; }
+  #lb .pv h3 { margin: 0 0 4px; font: 700 16px Manrope, sans-serif; color: #fff; }
+  #lb .pv > p { margin: 0 0 12px; font-size: 13.5px; color: var(--night-muted); }
+  #lb .row { display: grid; grid-template-columns: 150px 1fr 70px; gap: 12px; align-items: center; margin: 12px 0; font-size: 14px; color: var(--night-ink); }
+  #lb .bars { position: relative; height: 34px; }
+  #lb .bars i { position: absolute; left: 0; height: 14px; border-radius: 7px; transform-origin: left; transform: scaleX(0); transition: transform 1.1s cubic-bezier(.2,.8,.2,1); }
+  #lb .bars i.pred { top: 0; background: transparent; border: 2px dashed #6c7782; height: 12px; }
+  #lb .bars i.act { top: 18px; }
+  #lb .row b { font: 800 15px Manrope, sans-serif; text-align: right; font-variant-numeric: tabular-nums; }
+  #lb .legend { display: flex; gap: 16px; font-size: 12.5px; color: var(--night-muted); }
+  #lb .legend span::before { content: ""; display: inline-block; width: 18px; height: 8px; border-radius: 4px; margin-right: 6px; vertical-align: 1px; }
+  #lb .legend .l1::before { border: 2px dashed #6c7782; height: 6px; }
+  #lb .legend .l2::before { background: #c9d2ce; }
+  @media (max-width: 640px) { #lb canvas { aspect-ratio: 4 / 3.3; } #lb .row { grid-template-columns: 100px 1fr 54px; font-size: 13px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Review index</a> › /pages/retroreflective-vs-fluorescent · new · v2</div>
+  <h1>Where does the light go?</h1>
+  <p class="lede">One headlight, three fabric samples, one at a time. Plain and fluorescent fabric scatter the light. Retroreflective sends it straight back to the driver's eyes.</p>
+
+  <section class="rt-demo" id="lb">
+    <p class="kicker">Clemson University study</p>
+    <h2 class="big">People bet on fluorescent yellow. In headlights, reflective looked 2.8× brighter.</h2>
+    <div class="stats">
+      <div class="st"><b>2.8×</b><span>brighter: retroreflective vs. fluorescent yellow, judged in a headlight-style beam</span><small>12.5 vs 4.5 (King, Szubski &amp; Tyrrell 2023)</small></div>
+      <div class="st"><b>2.5×</b><span>dimmer than people predicted: fluorescent yellow at night</span><small>Predicted 11.0, judged 4.5</small></div>
+      <div class="st"><b>2×</b><span>brighter than people predicted: retroreflective</span><small>Predicted 6.0, judged 12.5</small></div>
+    </div>
+    <div class="stagewrap"><canvas aria-label="Light from a car headlight hitting dark fabric, fluorescent fabric and retroreflective material in turn; only the retroreflective sends light back to the driver's eyes"></canvas></div>
+    <p class="sub" id="lb-cap" aria-live="polite" style="text-align:center;margin:10px 0 0;color:var(--night-ink)"></p>
+    <div class="controls">
+      <div class="rt-seg" role="group" aria-label="Time of day">
+        <button class="rt-btn" data-tod="night" aria-pressed="true">Night, headlights</button>
+        <button class="rt-btn" data-tod="day" aria-pressed="false">Daytime, sun</button>
+      </div>
+    </div>
+    <div class="pv" id="lb-pv">
+      <h3>What people expected vs. what they saw</h3>
+      <p>84 drivers predicted how bright each swatch would look lit by a lamp beside their eyes, 20 ft away. Then the lights went off.</p>
+      <div class="row"><span>Plain fabric</span><div class="bars"><i class="pred" data-w="4.0"></i><i class="act" data-w="2.0" style="background:#6b7680"></i></div><b>2.0</b></div>
+      <div class="row"><span>Fluorescent yellow</span><div class="bars"><i class="pred" data-w="11.0"></i><i class="act" data-w="4.5" style="background:#c8e62a"></i></div><b>4.5</b></div>
+      <div class="row"><span>Retroreflective</span><div class="bars"><i class="pred" data-w="6.0"></i><i class="act" data-w="12.5" style="background:#fffae1"></i></div><b style="color:var(--accent)">12.5</b></div>
+      <div class="legend"><span class="l1">Predicted</span><span class="l2">Actually judged</span></div>
+    </div>
+    <p class="cite">Source: King SL, Szubski EC, Tyrrell RA (2023) Road Users Fail to Appreciate the Special Optical Properties of Retroreflective Materials. Human Factors. Clemson University, Experiment 1, magnitude estimates averaged across groups.</p>
+  </section>
+
+  <div class="note">
+    <b>v2 changes from your notes</b>
+    <ul>
+      <li>Redesigned: a clean car, three flat samples at different heights, nothing angled or moving.</li>
+      <li>v4: a normal-looking sedan. Light shows as steady lines with moving chevrons, no flying dots. Line thickness = how much light reaches the driver's eyes.</li>
+      <li>Daytime: everything goes to the driver's eyes. Fluorescent sends back two lines (double), reflective looks about the same as plain fabric.</li>
+      <li>Clemson numbers (King, Szubski &amp; Tyrrell 2023) as the headline plus a predicted-vs-actual chart. This is the same data as the "day vs night" draft in your Drive folder.</li>
+    </ul>
+  </div>
+</div>
+
+<script src="shared/rt-figures.js"></script>
+<script>
+(function () {
+  const root = document.getElementById('lb'), cv = root.querySelector('canvas'), cap = root.querySelector('#lb-cap');
+  let tod = 'night', todK = 1;
+  root.querySelectorAll('[data-tod]').forEach((b) => (b.onclick = () => { tod = b.dataset.tod; root.querySelectorAll('[data-tod]').forEach((x) => x.setAttribute('aria-pressed', x === b)); }));
+  // what reaches the driver's eyes: number of lines, width, color, opacity
+  const SAMP = [
+    { name: 'Dark fabric', kind: 'dark', y: 0.24,
+      night: { txt: 'Almost nothing gets back to the driver.', n: 1, w: 1.5, c: '120,128,138', a: 0.35 },
+      day: { txt: 'Some light bounces back. Dull.', n: 1, w: 4, c: '90,98,108', a: 0.75 } },
+    { name: 'Fluorescent yellow', kind: 'fluor', y: 0.5,
+      night: { txt: 'No UV in headlights, so no boost. Barely more than dark fabric.', n: 1, w: 2, c: '150,160,70', a: 0.45 },
+      day: { txt: 'Sunlight in, twice the light back out. That is the daytime glow.', n: 2, w: 5, c: '160,215,0', a: 1 } },
+    { name: 'Retroreflective', kind: 'retro', y: 0.76,
+      night: { txt: "Headlight in, almost all of it straight back to the driver's eyes.", n: 1, w: 10, c: '255,252,236', a: 1 },
+      day: { txt: 'In daylight it looks like ordinary grey fabric.', n: 1, w: 4, c: '110,118,126', a: 0.8 } }
+  ];
+  const P = 3.6;
+  const mix = (a, b, k) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * k)).join(',')})`;
+  let lastKey = '';
+  RT.stage(cv, (ctx, w, h, t, dt, rdt) => {
+    todK = RT.approach(todK, tod === 'night' ? 1 : 0, rdt, 4);
+    const night = todK > 0.5, nk = todK, sc = Math.min(w / 900, h / 506);
+    const idx = Math.floor(t / P) % 3, u = (t % P) / P, S = SAMP[idx], R = night ? S.night : S.day;
+    const key = idx + tod;
+    if (key !== lastKey) { lastKey = key; cap.innerHTML = `<b>${S.name}:</b> ${R.txt}`; }
+    const gy = h * 0.88;
+    const g = ctx.createLinearGradient(0, 0, 0, gy);
+    g.addColorStop(0, mix([125, 182, 226], [4, 6, 10], nk)); g.addColorStop(1, mix([214, 235, 246], [10, 14, 20], nk));
+    ctx.fillStyle = g; ctx.fillRect(0, 0, w, gy);
+    ctx.fillStyle = mix([110, 114, 120], [12, 14, 18], nk); ctx.fillRect(0, gy, w, h - gy);
+    const car = drawCar(ctx, w * 0.05, gy, w * 0.34, sc, nk);
+    const E = car.eye, Lh = car.lamp;
+    ctx.font = `600 ${Math.max(11, 13 * sc)}px Inter, sans-serif`; ctx.textAlign = 'center'; ctx.fillStyle = mix([20, 30, 40], [220, 228, 224], nk);
+    ctx.fillText("driver's eyes", E.x, E.y - 22 * sc);
+    const SUN = { x: w * 0.62, y: h * 0.1 };
+    if (nk < 0.98) { RT.glow(ctx, SUN.x, SUN.y, 80 * sc, '255,236,160', 1 - nk); ctx.fillStyle = `rgba(255,229,138,${1 - nk})`; ctx.beginPath(); ctx.arc(SUN.x, SUN.y, 18 * sc, 0, Math.PI * 2); ctx.fill(); }
+    // samples: flat, fixed
+    const sx = w * 0.84, half = h * 0.085, thick = 16 * sc;
+    SAMP.forEach((s, i) => {
+      const y = s.y * h, on = i === idx;
+      const col = s.kind === 'dark' ? mix([30, 38, 56], [16, 17, 20], nk) : s.kind === 'fluor' ? mix([226, 255, 40], [72, 78, 32], nk) : mix([168, 172, 176], [150, 154, 158], nk);
+      ctx.globalAlpha = on ? 1 : 0.4;
+      ctx.fillStyle = col; ctx.fillRect(sx - thick / 2, y - half, thick, half * 2);
+      if (on && s.kind === 'retro' && night) { RT.glow(ctx, sx, y, 70 * sc * fadeIn(u), '255,250,225', 0.9); ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.fillRect(sx - thick / 2, y - half, thick, half * 2); }
+      if (on && s.kind === 'fluor' && !night) RT.glow(ctx, sx, y, 70 * sc * fadeIn(u), '214,255,30', 0.7);
+      ctx.fillStyle = mix([20, 30, 40], [205, 214, 210], nk); ctx.textAlign = 'left';
+      ctx.font = `${on ? 700 : 600} ${Math.max(11, 14 * sc)}px Inter, sans-serif`; ctx.fillText(s.name, sx + 16 * sc, y + 5);
+      ctx.globalAlpha = 1;
+    });
+    // light paths with moving chevrons: source to sample, sample to the driver's eyes
+    const T = { x: sx - thick / 2 - 2, y: S.y * h }, src = night ? Lh : SUN;
+    const a = fadeIn(u);
+    ctx.save(); ctx.globalAlpha = a;
+    flow(ctx, src, T, night ? '255,244,214' : '235,170,40', 5, 0.85, t, sc);
+    for (let j = 0; j < R.n; j++) {
+      const off = (j - (R.n - 1) / 2) * 14 * sc;
+      flow(ctx, { x: T.x, y: T.y + off }, { x: E.x + 6 * sc, y: E.y + off }, R.c, R.w, R.a, t, sc);
+    }
+    if (night && S.kind === 'retro') RT.glow(ctx, E.x, E.y, 34 * sc, '0,224,169', a);
+    ctx.restore();
+  });
+  function fadeIn(u) { return u < 0.12 ? u / 0.12 : u > 0.9 ? (1 - u) / 0.1 : 1; }
+  function flow(ctx, A, B, rgb, wd, alpha, t, sc) {
+    const dx = B.x - A.x, dy = B.y - A.y, L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L;
+    const W = Math.max(1.5, wd * sc);
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = `rgba(${rgb},${0.45 * alpha})`; ctx.lineWidth = W;
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+    const gap = 34 * sc, size = Math.max(5, (5 + wd * 0.9) * sc), off = (t * 70 * sc) % gap;
+    ctx.strokeStyle = `rgba(${rgb},${alpha})`; ctx.lineWidth = Math.max(2, W * 0.55 + 1.5 * sc); ctx.lineJoin = 'round';
+    for (let d = off + size; d < L - 4; d += gap) {
+      const cx = A.x + ux * d, cy = A.y + uy * d;
+      ctx.beginPath();
+      ctx.moveTo(cx - ux * size - uy * size * 0.75, cy - uy * size + ux * size * 0.75);
+      ctx.lineTo(cx, cy);
+      ctx.lineTo(cx - ux * size + uy * size * 0.75, cy - uy * size - ux * size * 0.75);
+      ctx.stroke();
+    }
+  }
+  // a plain modern sedan, side view, facing right. Returns eye and headlight positions.
+  function drawCar(ctx, x0, gy, len, sc, nk) {
+    const H = len * 0.3, X = (f) => x0 + len * f, Y = (f) => gy - H * f;
+    const r = len * 0.085, wy = gy - r * 0.95;
+    ctx.fillStyle = mix([150, 156, 164], [44, 50, 58], nk);
+    ctx.beginPath();
+    ctx.moveTo(X(0.02), Y(0.22));
+    ctx.quadraticCurveTo(X(0.0), Y(0.42), X(0.04), Y(0.5));            // rear bumper
+    ctx.lineTo(X(0.2), Y(0.56));                                       // trunk
+    ctx.quadraticCurveTo(X(0.27), Y(0.6), X(0.32), Y(0.84));           // rear window
+    ctx.quadraticCurveTo(X(0.36), Y(0.95), X(0.46), Y(0.96));          // roof
+    ctx.lineTo(X(0.6), Y(0.95));
+    ctx.quadraticCurveTo(X(0.66), Y(0.93), X(0.74), Y(0.6));           // windshield
+    ctx.quadraticCurveTo(X(0.92), Y(0.56), X(0.98), Y(0.46));          // hood
+    ctx.quadraticCurveTo(X(1.0), Y(0.36), X(0.99), Y(0.22));           // front bumper
+    ctx.lineTo(X(0.02), Y(0.22));
+    ctx.closePath(); ctx.fill();
+    // lower body and wheel arches
+    ctx.fillRect(X(0.02), Y(0.22), len * 0.97, H * 0.12);
+    ctx.fillStyle = mix([214, 235, 246], [6, 8, 12], nk);
+    [0.2, 0.79].forEach((f) => { ctx.beginPath(); ctx.arc(X(f), wy, r * 1.22, Math.PI, 0); ctx.fill(); });
+    // windows
+    ctx.fillStyle = mix([70, 96, 120], [14, 20, 28], nk);
+    ctx.beginPath(); ctx.moveTo(X(0.34), Y(0.62)); ctx.quadraticCurveTo(X(0.38), Y(0.88), X(0.46), Y(0.89)); ctx.lineTo(X(0.52), Y(0.89)); ctx.lineTo(X(0.52), Y(0.62)); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(X(0.545), Y(0.62)); ctx.lineTo(X(0.545), Y(0.89)); ctx.lineTo(X(0.6), Y(0.88)); ctx.quadraticCurveTo(X(0.645), Y(0.86), X(0.71), Y(0.62)); ctx.closePath(); ctx.fill();
+    // door line, handle
+    ctx.strokeStyle = mix([110, 116, 124], [28, 32, 38], nk); ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0.535), Y(0.6)); ctx.lineTo(X(0.535), Y(0.26)); ctx.stroke();
+    ctx.fillStyle = mix([90, 96, 104], [24, 28, 34], nk); ctx.fillRect(X(0.44), Y(0.5), len * 0.04, 3); ctx.fillRect(X(0.6), Y(0.5), len * 0.04, 3);
+    // wheels
+    [0.2, 0.79].forEach((f) => {
+      ctx.fillStyle = '#111'; ctx.beginPath(); ctx.arc(X(f), wy, r, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = mix([170, 176, 182], [70, 76, 82], nk); ctx.beginPath(); ctx.arc(X(f), wy, r * 0.55, 0, Math.PI * 2); ctx.fill();
+    });
+    // lamps
+    const lamp = { x: X(0.975), y: Y(0.4) };
+    ctx.fillStyle = nk > 0.5 ? '#fff6d8' : '#dfe3e6'; ctx.beginPath(); ctx.ellipse(lamp.x - 4, lamp.y, 7 * sc, 4.5 * sc, -0.25, 0, Math.PI * 2); ctx.fill();
+    if (nk > 0.02) RT.glow(ctx, lamp.x, lamp.y, 36 * sc, '255,243,214', nk);
+    ctx.fillStyle = '#b3262b'; ctx.fillRect(X(0.025), Y(0.44), 5 * sc, 7 * sc);
+    // driver: head behind the windshield
+    const eye = { x: X(0.6), y: Y(0.78) };
+    ctx.fillStyle = mix([60, 50, 44], [26, 22, 20], nk); ctx.beginPath(); ctx.arc(eye.x - 3 * sc, eye.y, 9 * sc, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#e9eeec'; ctx.beginPath(); ctx.arc(eye.x + 4 * sc, eye.y - 1, 2.2 * sc, 0, Math.PI * 2); ctx.fill();
+    return { eye, lamp };
+  }
+  const pv = root.querySelector('#lb-pv');
+  new IntersectionObserver((es, ob) => { if (es[0].isIntersecting) { ob.disconnect(); pv.querySelectorAll('.bars i').forEach((i) => { i.style.width = (+i.dataset.w / 13) * 100 + '%'; requestAnimationFrame(() => (i.style.transform = 'scaleX(1)')); }); } }, { threshold: 0.3 }).observe(pv);
+})();
+</script>
+</body>
+</html>

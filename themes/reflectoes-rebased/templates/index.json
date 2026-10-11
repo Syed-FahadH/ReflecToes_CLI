@@ -1,0 +1,290 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "rt-hero",
+      "settings": {
+        "night_image": "shopify://shop_images/Jacket_Night_V2.jpg",
+        "day_image": "shopify://shop_images/Jacket_Day_1.png",
+        "night_cta_link": "/pages/night-kit",
+        "day_cta_link": "/pages/daylight-kit",
+        "secondary_link": "/collections/all",
+        "stage_link": "/products/reflective-jacket-for-men-women-waterproof-and-windbreaker-jacket-with-hood-back-pocket-vents"
+      }
+    },
+    "trust": {
+      "type": "rt-trust",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "text": "Free U.S. shipping over $50"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "text": "30-day warranty"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "text": "Fluorescent by day. Reflective by night."
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "text": "Research-backed placement",
+            "link": "/pages/science-sources"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    "kits": {
+      "type": "rt-kits",
+      "blocks": {
+        "night": {
+          "type": "kit",
+          "settings": {
+            "style": "night",
+            "title": "The Night Kit",
+            "text": "Reflective socks + gloves.",
+            "cta": "Build your kit",
+            "link": "/pages/night-kit",
+            "image": "shopify://shop_images/Socks_night.png",
+            "image_alt": "ReflecToes reflective socks with the reflective diamonds lit up"
+          }
+        },
+        "day": {
+          "type": "kit",
+          "settings": {
+            "style": "day",
+            "title": "The Daylight Kit",
+            "text": "Hi-vis jersey, gloves + socks.",
+            "cta": "Build your kit",
+            "link": "/pages/daylight-kit",
+            "image": "shopify://shop_images/Jersey_HZ_FS_Day_1.png",
+            "image_alt": "ReflecToes fluorescent cycling jersey"
+          }
+        }
+      },
+      "block_order": [
+        "night",
+        "day"
+      ]
+    },
+    "cats": {
+      "type": "rt-categories",
+      "blocks": {
+        "c1": {
+          "type": "tile",
+          "settings": {
+            "label": "Jackets",
+            "link": "/products/reflective-jacket-for-men-women-waterproof-and-windbreaker-jacket-with-hood-back-pocket-vents",
+            "image": "shopify://shop_images/Jacket_new.webp"
+          }
+        },
+        "c2": {
+          "type": "tile",
+          "settings": {
+            "label": "Vests",
+            "link": "/collections/reflective-vest",
+            "image": "shopify://shop_images/VestR.webp"
+          }
+        },
+        "c3": {
+          "type": "tile",
+          "settings": {
+            "label": "Jerseys",
+            "link": "/collections/cycling-jersey",
+            "image": "shopify://shop_images/Jersey_Half_Zipper_Half_Sleeves_2_R.jpg"
+          }
+        },
+        "c4": {
+          "type": "tile",
+          "settings": {
+            "label": "Gloves",
+            "link": "/collections/reflective-gloves",
+            "image": "shopify://shop_images/Summer_Gloves.webp"
+          }
+        },
+        "c5": {
+          "type": "tile",
+          "settings": {
+            "label": "Socks",
+            "link": "/collections/socks",
+            "image": "shopify://shop_images/Socks.webp"
+          }
+        },
+        "c6": {
+          "type": "tile",
+          "settings": {
+            "label": "Bands",
+            "link": "/collections/reflective-band",
+            "image": "shopify://shop_images/Band1.webp"
+          }
+        },
+        "c7": {
+          "type": "tile",
+          "settings": {
+            "label": "LED Clip Light",
+            "link": "/products/reflectoes-led-clip-lights-for-runners",
+            "image": "shopify://shop_images/Clip_Lights.webp"
+          }
+        },
+        "c8": {
+          "type": "tile",
+          "settings": {
+            "label": "Stickers",
+            "link": "/collections/reflective-stickers",
+            "image": "shopify://shop_images/Sticker_D4.webp"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8"
+      ]
+    },
+    "best": {
+      "type": "rt-bestsellers",
+      "settings": {
+        "collection": "frontpage",
+        "count": 6,
+        "all_link": "/collections/all"
+      }
+    },
+    "science": {
+      "type": "rt-science",
+      "settings": {
+        "primary_link": "/pages/science-sources",
+        "secondary_link": "/pages/biomotion-science"
+      },
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "number": "6x",
+            "label": "Farther at night",
+            "text": "Night cyclists with reflective strips on their moving joints were recognized from about 386 ft. In black clothing: about 65 ft.",
+            "source": "2",
+            "prefix": "Nearly"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "number": "7x",
+            "label": "Farther walking",
+            "text": "Pedestrians with reflective strips on moving joints were recognized from about 117 m. Reflective on the torso only: about 17 m.",
+            "source": "1",
+            "prefix": "Up to"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "number": "3.3x",
+            "label": "Farther in daylight",
+            "text": "A fluorescent jersey plus fluorescent leg covers was recognized 3.3x farther than the same jersey alone.",
+            "source": "4"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    "reviews": {
+      "type": "rt-reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "These socks are awesome! I am a distance runner that often runs before or after daylight, and these have proved very useful. They fit perfectly, have great compression technology and breathable fabric, and are VERY reflective. I would 100% recommend these to runners, bikers, hikers, etc.",
+            "name": "Thomas M."
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "text": "Great gloves. I got them in the color pink and size small, and they were great. Not only did they keep my hands warm but the reflective part is nice and big and makes me more visible on early morning or late evening runs.",
+            "name": "Amanda L."
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "It is hard to find a jersey that is both bright during the day and bright at night. Most neon jerseys don't have reflectors and are therefore invisible at night. This has both and will keep you bright all the time! Definitely would recommend.",
+            "name": "Amazon C."
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "text": "Amazing socks! They make me super visible at night, safety first!",
+            "name": "Robert"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4"
+      ]
+    },
+    "about": {
+      "type": "rt-about",
+      "settings": {
+        "body": "<p>ReflecToes specializes in innovative reflective running gear and cycling gear designed to enhance safety and visibility. Our unique range, including reflective jacket, waterproof jacket, reflective vest, running gloves and reflective socks leverages the natural motion of your legs to capture drivers' attention.</p><p>Our Reflective Gear offer 360° reflective coverage, ensuring visibility from every angle. Whether you're jogging in the early morning mist or cycling at dusk, ReflecToes' reflective gear provides an extra layer of safety by highlighting your presence on the road. This innovative approach to enhancing safety through reflective and high-visibility gear is a testament to our commitment to the wellbeing of outdoor enthusiasts.</p>"
+      }
+    },
+    "blog": {
+      "type": "rt-blog",
+      "settings": {
+        "blog": "news",
+        "count": 3
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "kits",
+    "cats",
+    "best",
+    "science",
+    "reviews",
+    "blog",
+    "about"
+  ]
+}

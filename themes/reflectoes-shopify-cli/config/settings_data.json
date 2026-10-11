@@ -48,10 +48,10 @@
     "page_transition_enabled": false,
     "transition_to_main_product": false,
     "add_to_cart_animation": true,
-    "badge_position": "top-right",
-    "badge_corner_radius": 100,
-    "badge_sale_background_color": "{{ settings.color_palette.background }}",
-    "badge_sale_text_color": "#000000cf",
+    "badge_position": "top-left",
+    "badge_corner_radius": 2,
+    "badge_sale_background_color": "#d6ff3d",
+    "badge_sale_text_color": "#0a0d10",
     "badge_sold_out_background_color": "#eef1ea",
     "badge_sold_out_text_color": "#000000cf",
     "badge_text_transform": "none",
@@ -138,7 +138,8 @@
       "color1": "#333333",
       "color2": "#f5f5f5",
       "color5": "#e1edf5"
-    }
+    },
+    "product_card_carousel": false
   },
   "presets": {
     "Horizon": {
@@ -179,9 +180,6 @@
   },
   "platform_customizations": {
     "custom_css": [
-      ".header__row.header__row--top * {background-color: white !important; color: black !important; font-family: \"Manrope\" !important;}",
-      ".resource-list__item .card-gallery img {width: 100%; /* scale image to fit width of container */ height: auto; /* keep aspect ratio */ object-fit: contain; /* ensure full image is shown */ display: block; /* remove extra spacing under image */ max-width: 100%;}",
-      ".product-grid__item .card-gallery img {width: 100%; /* scale image to fit width of container */ height: auto; /* keep aspect ratio */ object-fit: contain; /* ensure full image is shown */ display: block; /* remove extra spacing under image */ max-width: 100%;}",
       ".product-media {--ratio: auto !important; /* stop forcing a square aspect ratio */ height: auto !important;}",
       ".product-media__image {width: 100%; height: auto; /* let height scale naturally */ object-fit: contain !important; /* show the full image without cropping */ object-position: center; /* center it if aspect ratios don’t match */ display: block;}",
       ".text-block--ASkl5UFFRWkNsdTVFZ__text_3L9Fjq h2 {color: #fff !important;}",

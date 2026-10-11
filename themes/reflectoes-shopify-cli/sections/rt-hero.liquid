@@ -1,0 +1,142 @@
+{%- liquid
+  assign night = section.settings.night_image
+  assign day = section.settings.day_image
+-%}
+
+<section
+  class="rth rth-hero"
+  data-mode="night"
+  aria-label="{{ section.settings.aria_label }}"
+>
+  <div class="rth-hero__inner">
+    <div class="rth-hero__copy">
+      <h1 class="rth-h1">
+        <span class="rth-h1__tag">
+          {%- assign tag_parts = section.settings.tagline | split: '. ' -%}
+          {%- for part in tag_parts -%}
+            <span class="rth-h1__line">{{ part }}{% unless forloop.last %}.{% endunless %}</span>{% unless forloop.last %} {% endunless %}
+          {%- endfor -%}
+        </span>
+        <span class="rth-h1__sub">{{ section.settings.keyword_line }}</span>
+      </h1>
+      <p class="rth-hero__lead">{{ section.settings.lead }}</p>
+
+      <div class="rth-toggle" role="group" aria-label="{{ section.settings.toggle_label }}">
+        <button type="button" data-mode="night" aria-pressed="true">{{ section.settings.night_label }}</button>
+        <button type="button" data-mode="day" aria-pressed="false">{{ section.settings.day_label }}</button>
+      </div>
+
+      <div class="rth-hero__ctas">
+        <a
+          class="rth-btn rth-btn--lime"
+          href="{{ section.settings.night_cta_link }}"
+          data-rth-cta
+          data-night-href="{{ section.settings.night_cta_link }}"
+          data-night-label="{{ section.settings.night_cta_label }}"
+          data-day-href="{{ section.settings.day_cta_link }}"
+          data-day-label="{{ section.settings.day_cta_label }}"
+        >
+          <span data-rth-cta-label>{{ section.settings.night_cta_label }}</span>
+        </a>
+        <a class="rth-btn rth-btn--ghost" href="{{ section.settings.secondary_link }}">
+          {{- section.settings.secondary_label -}}
+        </a>
+      </div>
+    </div>
+
+    <div class="rth-hero__stage" data-stage>
+      <div class="rth-hero__tilt" data-tilt>
+      {%- if night != blank -%}
+        <img
+          class="rth-hero__img rth-hero__img--night"
+          src="{{ night | image_url: width: 720 }}"
+          srcset="{{ night | image_url: width: 480 }} 480w, {{ night | image_url: width: 720 }} 720w, {{ night | image_url: width: 960 }} 960w"
+          sizes="(min-width: 900px) 40vw, 80vw"
+          width="{{ night.width }}"
+          height="{{ night.height }}"
+          alt="{{ section.settings.night_alt }}"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+        >
+      {%- endif -%}
+      {%- if day != blank -%}
+        <img
+          class="rth-hero__img rth-hero__img--day"
+          data-src="{{ day | image_url: width: 720 }}"
+          data-srcset="{{ day | image_url: width: 480 }} 480w, {{ day | image_url: width: 720 }} 720w, {{ day | image_url: width: 960 }} 960w"
+          sizes="(min-width: 900px) 40vw, 80vw"
+          width="{{ day.width }}"
+          height="{{ day.height }}"
+          alt="{{ section.settings.day_alt }}"
+          decoding="async"
+        >
+      {%- endif -%}
+        <span class="rth-beam" aria-hidden="true"></span>
+      </div>
+      {%- if section.settings.chip_night != blank -%}
+        <a class="rth-chip rth-chip--night" href="{{ routes.root_url }}pages/science-sources#source-{{ section.settings.chip_night_source }}">
+          <strong>{{ section.settings.chip_night }}</strong> {{ section.settings.chip_night_text }}<sup>{{ section.settings.chip_night_source }}</sup>
+        </a>
+      {%- endif -%}
+      {%- if section.settings.chip_day != blank -%}
+        <a class="rth-chip rth-chip--day" href="{{ routes.root_url }}pages/science-sources#source-{{ section.settings.chip_day_source }}">
+          <strong>{{ section.settings.chip_day }}</strong> {{ section.settings.chip_day_text }}<sup>{{ section.settings.chip_day_source }}</sup>
+        </a>
+      {%- endif -%}
+      {%- if section.settings.stage_link != blank -%}
+        <a class="rth-hero__shop" href="{{ section.settings.stage_link }}">{{ section.settings.stage_link_label }} &rarr;</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.ticker != blank -%}
+    {%- assign ticker_items = section.settings.ticker | split: '|' -%}
+    <div class="rth-ticker" aria-hidden="true">
+      <div class="rth-ticker__track">
+        {%- for i in (1..2) -%}
+          <div class="rth-ticker__group">
+            {%- for item in ticker_items -%}
+              <span class="rth-ticker__item{% if forloop.index0 == 0 %} rth-ticker__item--solid{% endif %}">{{ item | strip }}</span>
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "RT Hero",
+  "settings": [
+    { "type": "text", "id": "aria_label", "label": "Section label", "default": "ReflecToes reflective running and cycling gear" },
+    { "type": "text", "id": "tagline", "label": "Headline", "default": "Be Safe. Be Seen." },
+    { "type": "text", "id": "keyword_line", "label": "Keyword line (inside the H1)", "default": "Reflective Running & Cycling Gear" },
+    { "type": "text", "id": "lead", "label": "Lead text", "default": "Fluorescent by day. Retroreflective by night." },
+    { "type": "text", "id": "toggle_label", "label": "Toggle label", "default": "Preview in night or day light" },
+    { "type": "text", "id": "night_label", "label": "Night button", "default": "Night" },
+    { "type": "text", "id": "day_label", "label": "Day button", "default": "Day" },
+    { "type": "image_picker", "id": "night_image", "label": "Night image (loads first)" },
+    { "type": "text", "id": "night_alt", "label": "Night image description", "default": "ReflecToes reflective jacket at night with the reflective strips lit up" },
+    { "type": "image_picker", "id": "day_image", "label": "Day image (loads when idle)" },
+    { "type": "text", "id": "day_alt", "label": "Day image description", "default": "ReflecToes fluorescent yellow jacket in daylight" },
+    { "type": "text", "id": "night_cta_label", "label": "Night button text", "default": "Build Your Night Kit" },
+    { "type": "url", "id": "night_cta_link", "label": "Night button link" },
+    { "type": "text", "id": "day_cta_label", "label": "Day button text", "default": "Build Your Daylight Kit" },
+    { "type": "url", "id": "day_cta_link", "label": "Day button link" },
+    { "type": "text", "id": "secondary_label", "label": "Second button text", "default": "Shop All Gear" },
+    { "type": "url", "id": "secondary_link", "label": "Second button link" },
+    { "type": "text", "id": "chip_night", "label": "Night chip number", "default": "Nearly 6x" },
+    { "type": "text", "id": "chip_night_text", "label": "Night chip text", "default": "farther at night" },
+    { "type": "text", "id": "chip_night_source", "label": "Night chip source number", "default": "2" },
+    { "type": "text", "id": "chip_day", "label": "Day chip number", "default": "3.3x" },
+    { "type": "text", "id": "chip_day_text", "label": "Day chip text", "default": "farther in daylight" },
+    { "type": "text", "id": "chip_day_source", "label": "Day chip source number", "default": "4" },
+    { "type": "text", "id": "ticker", "label": "Scrolling strip (separate with |)", "default": "Be Safe. Be Seen.|Reflective by night|Fluorescent by day|Seen farther" },
+    { "type": "text", "id": "stage_link_label", "label": "Image link text", "default": "Shop the Rain Jacket" },
+    { "type": "url", "id": "stage_link", "label": "Image link" }
+  ],
+  "presets": [{ "name": "RT Hero" }]
+}
+{% endschema %}

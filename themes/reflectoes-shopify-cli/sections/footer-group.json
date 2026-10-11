@@ -11,124 +11,44 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
-    "custom_liquid_e78XHH": {
-      "type": "custom-liquid",
-      "custom_css": [],
-      "name": "t:names.custom_liquid",
-      "settings": {
-        "custom_liquid": "<div>\n  <style>\n    .reflec-footer {\n      width: 100%;\n      background-color: #111;\n      color: #eee;\n      font-family: 'Manrope', sans-serif;\n      padding: 2rem;\n      display: flex;\n      flex-wrap: wrap;\n      justify-content: center;\n      gap: 6rem;\n      box-sizing: border-box;\n    }\n\n    .shopify-section-group-footer-group {\n      background-color: #111111;\n    }\n\n    .reflec-footer-column {\n      display: flex;\n      flex-direction: column;\n      min-width: 240px;\n      max-width: 320px;\n      text-align: left;\n    }\n\n    .reflec-footer h4 {\n      font-size: 1.3rem;\n      font-weight: 600;\n      margin-bottom: 1rem;\n      text-transform: uppercase;\n      color: #ccc;\n    }\n\n    .reflec-footer p,\n    .reflec-footer a {\n      font-size: 0.95rem;\n      line-height: 1.4;\n      color: #ccc;\n      text-decoration: none;\n      margin: 0.3rem 0;\n      transition: color 0.3s ease;\n    }\n\n    .reflec-footer a:hover {\n      color: #888;\n      text-decoration: underline;\n    }\n\n    .reflec-footer-column.info-links a:hover {\n      color: #888 !important;\n    }\n\n    .footer-spaced {\n      margin-top: 0.8rem;\n    }\n\n    .footer-address {\n      margin-top: 0.8rem;\n      line-height: 1.5;\n    }\n\n    .reflec-footer form {\n      margin-top: 1rem;\n      display: flex;\n      flex-direction: row;\n      gap: 0.5rem;\n      align-items: center;\n      flex-wrap: wrap;\n    }\n\n    .reflec-footer input[type=\"email\"] {\n      padding: 1rem;\n      width: 100%;\n      max-width: 260px;\n      border-radius: 6px;\n      border: none;\n      font-size: 1.05rem;\n      background-color: #222;\n      color: #eee;\n      caret-color: #eee;\n    }\n\n    .reflec-footer input[type=\"email\"]::placeholder {\n      color: #aaa;\n    }\n\n    .reflec-footer input[type=\"email\"]:focus {\n      outline: 2px solid #4CAF50;\n    }\n\n    .reflec-footer button {\n      padding: 1rem 1.6rem;\n      background: #4CAF50;\n      color: white;\n      border: none;\n      border-radius: 6px;\n      font-weight: 600;\n      font-size: 1.1rem;\n      cursor: pointer;\n      transition: background 0.3s ease, color 0.3s ease;\n    }\n\n    .reflec-footer button:hover {\n      background: white;\n      color: #888;\n    }\n\n    .social-icons {\n      margin-top: 1.2rem;\n      display: flex;\n      gap: 1rem;\n    }\n\n    .social-icons a {\n      color: #ccc;\n      font-size: 1.5rem;\n      transition: color 0.3s ease;\n    }\n\n    .social-icons a:hover {\n      color: #888;\n    }\n\n    .payment-icons {\n      margin-top: 1.2rem;\n      display: flex;\n      flex-wrap: wrap;\n      gap: 0.5rem;\n    }\n\n    .payment-icon {\n      width: 40px;\n      height: 24px;\n      background-color: #fff;\n      border-radius: 4px;\n      overflow: hidden;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n    }\n\n    .payment-icon img {\n      width: 100%;\n      height: 100%;\n      object-fit: contain;\n      display: block;\n    }\n\n    @media (max-width: 768px) {\n      .reflec-footer {\n        flex-direction: column;\n        align-items: center;\n        text-align: center;\n        gap: 3rem;\n      }\n\n      .reflec-footer-column {\n        align-items: center;\n        text-align: center;\n      }\n\n      .reflec-footer form {\n        flex-direction: column;\n        align-items: center;\n      }\n\n      .social-icons,\n      .payment-icons {\n        justify-content: center;\n      }\n    }\n  </style>\n\n  <footer class=\"reflec-footer\">\n    <div class=\"reflec-footer-column\">\n      <h4>ReflecToes Store</h4>\n      <p>© REFLECTOES</p>\n      <p>ReflecToes is a brand of OH SUSANNAH LLC</p>\n      <p class=\"footer-spaced\"><a href=\"tel:+12314894891\">231-489-4891</a></p>\n      <p><a href=\"mailto:info@reflectoes.com\">info@reflectoes.com</a></p>\n      <p class=\"footer-address\">5565 S Bronze Plateau Cir<br>Saint George, UT 84790</p>\n      <p>Powered by Shopify</p>\n\n      <div class=\"payment-icons\">\n        <div class=\"payment-icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/MasterCard.jpg?width=80&format=webp\"\n               alt=\"MasterCard\" width=\"40\" height=\"24\" loading=\"lazy\" decoding=\"async\">\n        </div>\n        <div class=\"payment-icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/Shop-Pay.jpg?width=80&format=webp\"\n               alt=\"Shop Pay\" width=\"40\" height=\"24\" loading=\"lazy\" decoding=\"async\">\n        </div>\n        <div class=\"payment-icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/AmericanEpress.jpg?width=80&format=webp\"\n               alt=\"American Express\" width=\"40\" height=\"24\" loading=\"lazy\" decoding=\"async\">\n        </div>\n        <div class=\"payment-icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/Diners-Club.jpg?width=80&format=webp\"\n               alt=\"Diners Club\" width=\"40\" height=\"24\" loading=\"lazy\" decoding=\"async\">\n        </div>\n        <div class=\"payment-icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/Applepay.jpg?width=80&format=webp\"\n               alt=\"Apple Pay\" width=\"40\" height=\"24\" loading=\"lazy\" decoding=\"async\">\n        </div>\n        <div class=\"payment-icon\">\n          <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/GooglePay.jpg?width=80&format=webp\"\n               alt=\"Google Pay\" width=\"40\" height=\"24\" loading=\"lazy\" decoding=\"async\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"reflec-footer-column info-links\">\n      <h4>Info</h4>\n      <p><a href=\"/search\">Search</a></p>\n      <p><a href=\"/pages/contact-us\">Contact Us</a></p>\n      <p><a href=\"/pages/about-us\">About Us</a></p>\n      <p><a href=\"/policies/terms-of-service\">Terms of Service</a></p>\n      <p><a href=\"/policies/privacy-policy\">Privacy Policy</a></p>\n      <p><a href=\"/policies/refund-policy\">Refund Policy</a></p>\n      <p><a href=\"/policies/shipping-policy\">Shipping Policy</a></p>\n      <p><a href=\"/pages/faqs\">FAQs</a></p>\n    </div>\n\n    <div class=\"reflec-footer-column\">\n      <h4>Subscribe</h4>\n      <p>Sign up to our mailing list</p>\n      <form method=\"post\" action=\"/contact#reflec-footer-sub\" accept-charset=\"UTF-8\" id=\"reflec-footer-sub\">\n        <input type=\"hidden\" name=\"form_type\" value=\"customer\">\n        <input type=\"hidden\" name=\"utf8\" value=\"✓\">\n        <input type=\"hidden\" name=\"contact[tags]\" value=\"footer-newsletter\">\n        <input type=\"email\" name=\"contact[email]\" placeholder=\"Your Email\" required>\n        <button type=\"submit\">Subscribe</button>\n      </form>\n      <p id=\"reflec-footer-thanks\" style=\"display:none;color:#4CAF50;margin-top:0.5rem;\">Thanks! You're subscribed.</p>\n      <script>if(window.location.search.indexOf('customer_posted=true')!==-1){var rfT=document.getElementById('reflec-footer-thanks');if(rfT){rfT.style.display='block';}var rfF=document.getElementById('reflec-footer-sub');if(rfF){rfF.style.display='none';}}</script>\n\n      <div class=\"social-icons\">\n        <a href=\"https://www.facebook.com/reflectoes/\" target=\"_blank\" aria-label=\"Facebook\"><i class=\"fab fa-facebook-f\"></i></a>\n        <a href=\"https://www.instagram.com/reflectoes/\" target=\"_blank\" aria-label=\"Instagram\"><i class=\"fab fa-instagram\"></i></a>\n      </div>\n    </div>\n  </footer>\n\n  <link\n    rel=\"stylesheet\"\n    href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css\"\n    media=\"print\"\n    onload=\"this.media='all'\">\n</div>",
-        "background_color": "{{ settings.color_palette.background }}",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
-    "migrated_footer_content": {
-      "type": "section",
+    "rt_footer": {
+      "type": "rt-footer",
       "blocks": {
-        "divider_hFm3am": {
-          "type": "_divider",
-          "name": "t:names.divider",
+        "shop": {
+          "type": "column",
           "settings": {
-            "thickness": 1,
-            "corner_radius": "square",
-            "width_percent": 100,
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          },
-          "blocks": {}
+            "title": "Shop",
+            "links": "Jackets | /products/reflective-jacket-for-men-women-waterproof-and-windbreaker-jacket-with-hood-back-pocket-vents\nVests | /collections/reflective-vest\nJerseys | /collections/cycling-jersey\nGloves | /collections/reflective-gloves\nSocks | /collections/socks\nReflective Bands | /collections/reflective-band\nLED Clip Light | /products/reflectoes-led-clip-lights-for-runners\nStickers & Decals | /collections/stickers-decal\nNight Kit | /pages/night-kit\nDaylight Kit | /pages/daylight-kit"
+          }
+        },
+        "learn": {
+          "type": "column",
+          "settings": {
+            "title": "Learn",
+            "links": "Biomotion Science | /pages/biomotion-science\nRetroreflective vs. Fluorescent | /pages/retroreflective-vs-fluorescent\nThe Visibility Illusion | /pages/visibility-illusion\nNight-Safety Workshop | /pages/night-safety-workshop\nScience & Sources | /pages/science-sources\nBlog | /blogs/news"
+          }
+        },
+        "help": {
+          "type": "column",
+          "settings": {
+            "title": "Help",
+            "links": "Contact Us | /pages/contact-us\nFAQs | /pages/faqs\nAbout Us | /pages/about-us\nSearch | /search"
+          }
         }
       },
       "block_order": [
-        "divider_hFm3am"
-      ],
-      "name": "Footer",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 48,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 48
-      }
-    },
-    "footer_utilities": {
-      "type": "footer-utilities",
-      "blocks": {
-        "block_d4653c2e0624": {
-          "type": "footer-copyright",
-          "settings": {
-            "show_powered_by": false,
-            "font_size": "0.75rem",
-            "case": "none"
-          },
-          "blocks": {}
-        },
-        "block_3365636c6c1e": {
-          "type": "footer-policy-list",
-          "settings": {
-            "font_size": "0.75rem",
-            "case": "none"
-          },
-          "blocks": {}
-        },
-        "block_3bc78a7642e4": {
-          "type": "social-links",
-          "settings": {
-            "facebook_url": "https://www.facebook.com/reflectoes/",
-            "instagram_url": "https://www.instagram.com/reflectoes/",
-            "youtube_url": "",
-            "tiktok_url": "",
-            "twitter_url": "",
-            "threads_url": "",
-            "linkedin_url": "",
-            "bluesky_url": "",
-            "snapchat_url": "",
-            "pinterest_url": "",
-            "tumblr_url": "",
-            "vimeo_url": "",
-            "custom_url": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "block_d4653c2e0624",
-        "block_3365636c6c1e",
-        "block_3bc78a7642e4"
+        "shop",
+        "learn",
+        "help"
       ],
       "settings": {
-        "section_width": "page-width",
-        "gap": 24,
-        "background_color": "{{ settings.color_palette.background }}",
-        "divider_thickness": 1,
-        "padding-block-start": 20,
-        "padding-block-end": 20
+        "facebook": "https://www.facebook.com/reflectoes/",
+        "instagram": "https://www.instagram.com/reflectoes/",
+        "legal": "Terms of Service | /policies/terms-of-service\nPrivacy Policy | /policies/privacy-policy\nRefund Policy | /policies/refund-policy\nShipping Policy | /policies/shipping-policy"
       }
     }
   },
   "order": [
-    "custom_liquid_e78XHH",
-    "migrated_footer_content",
-    "footer_utilities"
+    "rt_footer"
   ]
 }

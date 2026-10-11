@@ -10,7 +10,15 @@
   "
 >
   <rte-formatter>
-    {{ page.content }}
+    {%- comment -%}
+      The page template already prints the title as the H1. A second H1 in the page body
+      (science-sources) is shown as an H2 so each page keeps one H1.
+    {%- endcomment -%}
+    {%- if page.handle == 'science-sources' -%}
+      {{ page.content | replace: '<h1', '<h2' | replace: '</h1>', '</h2>' }}
+    {%- else -%}
+      {{ page.content }}
+    {%- endif -%}
   </rte-formatter>
 </div>
 

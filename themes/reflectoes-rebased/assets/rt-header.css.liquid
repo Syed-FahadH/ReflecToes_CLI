@@ -1,0 +1,511 @@
+/* ReflecToes header, navigation and mega menu. Loaded on every page (see layout/theme.liquid). */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('{{ 'barlow-condensed-700.woff2' | asset_url }}') format('woff2');
+}
+
+:root {
+  --rt-ink: #0a0d10;
+  --rt-lime: #d6ff3d;
+  --rt-display: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --rt-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ---------- Top bar ---------- */
+.header__row--top {
+  transition: box-shadow 0.3s ease;
+}
+
+header-component[data-sticky-state='active'] .header__row--top {
+  box-shadow: 0 12px 30px -20px rgb(10 13 16 / 0.4) !important;
+}
+
+.header-logo__image,
+.header-logo img {
+  transition: opacity 0.25s ease;
+}
+
+.header-logo:hover .header-logo__image,
+.header-logo:hover img {
+  opacity: 0.78;
+}
+
+/* ---------- Main navigation ---------- */
+.menu-list__link {
+  font-family: var(--rt-display) !important;
+  font-weight: 700 !important;
+  font-size: 1.1875rem !important;
+  letter-spacing: 0.07em;
+  text-transform: uppercase !important;
+  color: var(--rt-ink);
+  transition: color 0.2s ease;
+}
+
+.menu-list__link-title {
+  position: relative;
+  display: inline-block;
+  padding-block: 6px;
+  line-height: 1.2;
+}
+
+.menu-list__link-title::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: var(--rt-ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.32s var(--rt-ease);
+}
+
+.menu-list__link:hover .menu-list__link-title::after,
+.menu-list__link:focus-visible .menu-list__link-title::after,
+.menu-list__link[aria-expanded='true'] .menu-list__link-title::after,
+.menu-list__link--active .menu-list__link-title::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Header actions (search, account, cart) ---------- */
+.header-actions__action,
+.header__icon {
+  border-radius: 50%;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.header-actions__action:hover,
+.header__icon:hover {
+  background-color: rgb(10 13 16 / 0.06);
+}
+
+.header-actions__action:active,
+.header__icon:active {
+  transform: scale(0.94);
+}
+
+.cart-bubble__background {
+  background: var(--rt-lime) !important;
+}
+
+.cart-bubble__text,
+.cart-bubble__text-count {
+  color: var(--rt-ink) !important;
+  font-weight: 700;
+}
+
+/* ---------- Mega menu ---------- */
+/* Hover safety is handled by the theme (.menu-list__link::after safety box in blocks/_header-menu.liquid). Do not override that pseudo-element. */
+.menu-list__submenu {
+  border-top: 1px solid rgb(10 13 16 / 0.08);
+  box-shadow: 0 28px 50px -30px rgb(10 13 16 / 0.35);
+}
+
+.mega-menu__grid {
+  padding-block: 8px 44px;
+}
+
+/* Leave room for the featured product cards so the panel is never shorter than its content */
+.mega-menu__grid:has(.mega-menu__content-list-item) {
+  min-height: 27rem;
+}
+
+.mega-menu__column > div {
+  padding-top: 14px;
+}
+
+.mega-menu__link--parent {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: var(--rt-display) !important;
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 0.07em;
+  text-transform: uppercase !important;
+  color: var(--rt-ink) !important;
+}
+
+.mega-menu__link--parent::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 38px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rt-ink) 0 50%, var(--rt-lime) 50% 100%);
+}
+
+.mega-menu__link:not(.mega-menu__link--parent) {
+  display: inline-block;
+  padding-block: 5px;
+  font-size: 0.96rem !important;
+  font-weight: 500 !important;
+  color: #3b444d !important;
+  background: linear-gradient(var(--rt-ink), var(--rt-ink)) 0 100% / 0 1px no-repeat;
+  transition: color 0.2s ease, background-size 0.3s var(--rt-ease), transform 0.3s var(--rt-ease);
+}
+
+.mega-menu__link:not(.mega-menu__link--parent):hover,
+.mega-menu__link:not(.mega-menu__link--parent):focus-visible {
+  color: var(--rt-ink) !important;
+  background-size: 100% 1px;
+  transform: translateX(4px);
+}
+
+.mega-menu__link--parent:hover {
+  opacity: 0.7;
+}
+
+@keyframes rt-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.menu-list__list-item:has(.menu-list__link[aria-expanded='true']) .mega-menu__list {
+  animation: rt-menu-in 0.3s var(--rt-ease) both;
+}
+
+/* ---------- Mobile and tablet drawer ---------- */
+.menu-drawer__menu-item--mainlist {
+  font-family: var(--rt-display) !important;
+  font-weight: 700 !important;
+  font-size: 2.1rem !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase !important;
+  transition: padding-inline-start 0.25s var(--rt-ease), color 0.2s ease;
+}
+
+.menu-drawer__menu-item--mainlist:active,
+.menu-drawer__menu-item--mainlist:hover {
+  padding-inline-start: 6px;
+}
+
+.menu-drawer__menu-item--parent {
+  font-family: var(--rt-display) !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase !important;
+}
+
+.menu-drawer__menu-item--child {
+  font-size: 1.02rem !important;
+  font-weight: 500 !important;
+  color: #3b444d;
+}
+
+.menu-drawer__menu-container--divider,
+.menu-drawer__list-item--divider {
+  border-color: rgb(10 13 16 / 0.1) !important;
+}
+
+.menu-drawer__back-button .menu-drawer__menu-item-text {
+  font-family: var(--rt-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.drawer-localization__button {
+  font-family: var(--rt-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---------- Focus and motion ---------- */
+.menu-list__link:focus-visible,
+.mega-menu__link:focus-visible {
+  outline: 2px solid var(--rt-ink);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-list__list-item:has(.menu-list__link[aria-expanded='true']) .mega-menu__list {
+    animation: none;
+  }
+
+  .menu-list__link-title::after,
+  .mega-menu__link,
+  .header-actions__action {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* ---------- Cookie consent (Shopify customer privacy banner) ----------
+   The banner and its text come from Shopify. This only restyles it to match the site. */
+#shopify-pc__banner.shopify-pc__banner__dialog {
+  inset: auto 0 16px;
+  width: min(880px, calc(100% - 24px));
+  min-width: 0;
+  max-height: none;
+  margin-inline: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 12px;
+  background: var(--rt-ink);
+  box-shadow: 0 28px 60px -24px rgb(0 0 0 / 0.65);
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif);
+  animation: rt-consent-in 0.7s var(--rt-ease) 0.3s both;
+}
+
+@keyframes rt-consent-in {
+  from { transform: translateY(28px); }
+  to { transform: none; }
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog::before {
+  content: '';
+  display: block;
+  height: 6px;
+  background: repeating-linear-gradient(-45deg, var(--rt-ink) 0 10px, var(--rt-lime) 10px 20px);
+}
+
+#shopify-pc__banner .shopify-pc__banner__wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px 32px;
+  align-items: center;
+  padding: 22px 26px 24px;
+}
+
+#shopify-pc__banner .shopify-pc__banner__body {
+  width: auto;
+  margin: 0;
+}
+
+#shopify-pc__banner .shopify-pc__banner__body h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-family: var(--rt-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#shopify-pc__banner .shopify-pc__banner__body p {
+  color: #b9c2c9;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+#shopify-pc__banner .shopify-pc__banner__body a {
+  color: var(--rt-lime);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#shopify-pc__banner .shopify-pc__banner__btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: min(300px, 100%);
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button {
+  min-height: 48px;
+  margin: 0;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-family: var(--rt-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept {
+  order: 1;
+  border-color: var(--rt-lime);
+  background: var(--rt-lime);
+  color: var(--rt-ink);
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button.shopify-pc__banner__btn-accept:hover {
+  background: #e6ff7a;
+  border-color: #e6ff7a;
+  transform: translateY(-2px);
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline {
+  order: 2;
+  border-color: rgb(255 255 255 / 0.35);
+  background: transparent;
+  color: #fff;
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button.shopify-pc__banner__btn-decline:hover {
+  border-color: #fff;
+  background: rgb(255 255 255 / 0.08);
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs {
+  order: 3;
+  grid-column: 1 / -1;
+  min-height: 0;
+  padding: 6px 0 0;
+  background: transparent;
+  color: #b9c2c9;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+  text-transform: none;
+  text-underline-offset: 3px;
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button.shopify-pc__banner__btn-manage-prefs:hover {
+  color: #fff;
+}
+
+#shopify-pc__banner.shopify-pc__banner__dialog button:focus-visible,
+#shopify-pc__banner.shopify-pc__banner__dialog a:focus-visible {
+  outline: 3px solid var(--rt-lime);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+@media (max-width: 720px) {
+  #shopify-pc__banner.shopify-pc__banner__dialog {
+    inset: auto 0 8px;
+    width: calc(100% - 16px);
+  }
+
+  #shopify-pc__banner .shopify-pc__banner__wrapper {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px 18px 20px;
+  }
+
+  #shopify-pc__banner .shopify-pc__banner__btns {
+    width: 100%;
+  }
+}
+
+/* Preferences dialog */
+#shopify-pc__prefs__overlay.shopify-pc__prefs__overlay {
+  background: rgb(10 13 16 / 0.72);
+}
+
+#shopify-pc__prefs__dialog.shopify-pc__prefs__dialog {
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 14px;
+  background: var(--rt-ink);
+  color: #fff;
+  box-shadow: 0 32px 80px -24px rgb(0 0 0 / 0.7);
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif);
+}
+
+#shopify-pc__prefs__dialog header {
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+}
+
+#shopify-pc__prefs__dialog h2,
+#shopify-pc__prefs__dialog h3 {
+  color: #fff;
+  font-family: var(--rt-display);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+#shopify-pc__prefs__dialog h2 {
+  font-size: 1.9rem;
+}
+
+#shopify-pc__prefs__dialog h3 {
+  font-size: 1.5rem;
+}
+
+#shopify-pc__prefs__dialog p,
+#shopify-pc__prefs__dialog .shopify-pc__prefs__option p {
+  color: #b9c2c9;
+}
+
+#shopify-pc__prefs__dialog label {
+  color: #fff;
+  font-weight: 600;
+}
+
+#shopify-pc__prefs__dialog svg path {
+  fill: var(--rt-lime);
+}
+
+#shopify-pc__prefs__header-close svg path {
+  fill: #fff;
+}
+
+#shopify-pc__prefs__dialog header button:not(#shopify-pc__prefs__header-close) {
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1px solid rgb(255 255 255 / 0.35);
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  font-family: var(--rt-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+}
+
+#shopify-pc__prefs__dialog header button:not(#shopify-pc__prefs__header-close):hover {
+  border-color: #fff;
+  background: rgb(255 255 255 / 0.08);
+}
+
+#shopify-pc__prefs__header-accept {
+  border-color: var(--rt-lime) !important;
+  background: var(--rt-lime) !important;
+  color: var(--rt-ink) !important;
+}
+
+#shopify-pc__prefs__header-accept:hover {
+  background: #e6ff7a !important;
+  transform: translateY(-2px);
+}
+
+#shopify-pc__prefs__header-close {
+  border: 1px solid rgb(255 255 255 / 0.35);
+  background: transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+#shopify-pc__prefs__header-close:hover {
+  border-color: #fff;
+  background: rgb(255 255 255 / 0.1);
+}
+
+#shopify-pc__prefs__header-close:focus,
+#shopify-pc__prefs__dialog button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--rt-lime);
+}
+
+#shopify-pc__prefs__essential svg {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #shopify-pc__banner.shopify-pc__banner__dialog {
+    animation: none;
+  }
+}

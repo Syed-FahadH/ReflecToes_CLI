@@ -1,0 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "custom_liquid_UjKDzN": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": ".image-grid {\n  width: 100vw;\n  margin-left: calc(50% - 50vw);\n  margin-right: calc(50% - 50vw);\n  padding-left: 16px;\n  padding-right: 16px;\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 16px;\n}\n\n{{ original_content }}"
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "custom_liquid_UjKDzN",
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_liquid_pViCYg": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<style>\n  .vis-wrap{max-width:1120px;margin:0 auto;padding:24px 16px;font-family:inherit;color:#141515}\n  .vis-hero{background:#0a0a0a;border-radius:16px;padding:28px;color:#fff;display:grid;gap:16px;align-items:center}\n  .vis-hero h1{font-size:clamp(28px,4vw,40px);margin:0}\n  .vis-hero p{margin:0;opacity:.9}\n  .vis-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}\n  .btn{display:inline-block;padding:12px 16px;border-radius:10px;font-weight:600;text-decoration:none;text-align:center}\n  .btn-primary{background:#00e0a9;color:#0a0a0a}\n  .btn-secondary{background:#1b1b1b;color:#fff;border:1px solid #2a2a2a}\n  .vis-grid{display:grid;gap:18px;margin-top:28px}\n  @media (min-width:740px){.vis-grid{grid-template-columns:repeat(2,1fr)}}\n  @media (min-width:1000px){.vis-grid-3{grid-template-columns:repeat(3,1fr)}}\n  .card{border:1px solid #e6e6e6;border-radius:14px;overflow:hidden;background:#fff;display:flex;flex-direction:column}\n  .card img{width:100%;height:auto;display:block;object-fit:cover}\n  .card .pad{padding:16px;display:flex;flex-direction:column;flex-grow:1}\n  .card .pad .btn{margin-top:auto}\n  .card h3{margin:.25rem 0 .5rem;font-size:1.1rem}\n  .card p{margin:0 0 16px}\n  .pill{display:inline-block;font-size:.8rem;padding:4px 8px;border-radius:999px;background:#f1f5f9;color:#0b1220;margin-right:6px;margin-bottom:8px;font-weight:600}\n  .section{margin-top:42px}\n  .section h2{font-size:clamp(22px,3vw,28px);margin:0 0 12px}\n  .kicker{text-transform:uppercase;letter-spacing:.08em;color:#6b7280;font-weight:700;font-size:.8rem;margin-bottom:6px}\n  .resource-list{display:grid;gap:14px}\n  @media (min-width:740px){.resource-list{grid-template-columns:repeat(3,1fr)}}\n  .resource{border:1px dashed #d8dee6;border-radius:12px;padding:16px;background:#fafafa;display:flex;flex-direction:column}\n  .resource .btn{margin-top:auto}\n  .muted{color:#6b7280}\n  details{border:1px solid #e5e7eb;border-radius:10px;padding:12px;background:#fff}\n  details+details{margin-top:10px}\n  summary{cursor:pointer;font-weight:700}\n  .small{font-size:.9rem;line-height:1.5}\n  .note{background:#f8fffb;border:1px solid #c8fde9;border-radius:10px;padding:16px;margin-top:12px}\n  .vis-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:16px;-ms-overflow-style:none;scrollbar-width:none;border-radius:14px}\n  .vis-carousel::-webkit-scrollbar{display:none}\n  .vis-carousel-slide{scroll-snap-align:start;flex:0 0 100%;position:relative}\n  .vis-carousel-slide img{width:100%;border-radius:14px;display:block}\n  .carousel-caption{position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.8);color:#fff;padding:6px 12px;border-radius:6px;font-size:0.85rem;font-weight:600}\n</style>\n\n<div style=\"text-align: start;\" class=\"vis-wrap\">\n\n<section class=\"vis-hero\">\n  <div>\n    <div class=\"kicker\">ReflecToes</div>\n    <h1>Visibility Science &amp; Safety</h1>\n    <p>Clear, evidence-based guidance on night visibility, biomotion, and how our technology helps runners and cyclists get seen sooner.</p>\n    <div class=\"vis-btns\">\n      <a class=\"btn btn-primary\" href=\"#biomotion-deep-dive\">Read the Biomotion Guide</a>\n      <a class=\"btn btn-secondary\" href=\"#workshops\">Download Workshop Toolkit</a>\n    </div>\n  </div>\n</section>\n\n<section class=\"section vis-grid vis-grid-3\" aria-label=\"Key topics\">\n  \n  <article class=\"card\">\n    <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/optical-illusion-day-night.gif\" alt=\"Comparison: retroreflective vs fluorescent fabric at night\">\n    <div class=\"pad\">\n      <span class=\"pill\">Start here</span>\n      <h3>Basics: Reflective vs. Fluorescent</h3>\n      <p class=\"small\">Fluorescent converts UV light for daytime visibility. Retroreflective bounces headlight beams at night. Learn the optical differences.</p>\n      <a class=\"btn btn-secondary small\" href=\"/pages/retroreflective-vs-fluorescent\">Read the Visibility Guide</a>\n    </div>\n  </article>\n\n  <article class=\"card\">\n    <video style=\"width: 100%; height: auto; display: block; border: 0; outline: 0; border-radius: 0;\" preload=\"metadata\" playsinline loop muted autoplay poster=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/vis-biomotion-ankle-knee.jpg\">\n      <source src=\"https://cdn.shopify.com/videos/c/o/v/64a6c44a3c1a4efcb6aaf81c2ba087ce.mp4\" type=\"video/mp4\">\n    </video>\n    <div class=\"pad\">\n      <span class=\"pill\">Why Wrists and Ankles?</span>\n      <h3>Biomotion: Put Light Where You Move</h3>\n      <p class=\"small\">Reflective markers on ankles and wrists create a human motion signature that drivers detect far faster at night.</p>\n      <a class=\"btn btn-secondary small\" href=\"/pages/biomotion-science\">Watch the Biomotion Demo</a>\n    </div>\n  </article>\n\n  <article class=\"card\">\n    <figure style=\"margin: 0;\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/Screenshot_2025-09-24_213836.png\" alt=\"Chart: People misjudge night-time brightness.\">\n    </figure>\n    <div class=\"pad\">\n      <span class=\"pill\">The Evidence</span>\n      <h3>The Visibility Illusion</h3>\n      <p class=\"small\">Drivers and pedestrians consistently overestimate how visible non-reflective clothing is at night. See the data behind the illusion.</p>\n      <a class=\"btn btn-secondary small\" href=\"/pages/the-visibility-illusion\">Read the Full Research Report</a>\n    </div>\n  </article>\n\n</section>\n\n<section class=\"section\" id=\"biomotion-deep-dive\" aria-label=\"Biomotion placement guide\">\n  <h2>The Biomotion Advantage</h2>\n  <p class=\"small muted\" style=\"margin-bottom: 20px;\">Research demonstrates that spreading reflective material across moving joints (ankles and knees) increases driver recognition distance up to 3x more than wearing a reflective vest alone.</p>\n  \n  <div class=\"vis-grid\">\n    <div class=\"vis-carousel\" id=\"biomotion-slider\">\n      <div class=\"vis-carousel-slide\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/vis-slide-1-black.jpg\" alt=\"Cyclist in black clothing\">\n        <div class=\"carousel-caption\">1. Standard Gear (Invisible)</div>\n      </div>\n      <div class=\"vis-carousel-slide\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/vis-slide-2-vest.jpg\" alt=\"Cyclist in a reflective vest\">\n        <div class=\"carousel-caption\">2. Vest Only (Ambiguous Shape)</div>\n      </div>\n      <div class=\"vis-carousel-slide\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0056/6847/0855/files/vis-slide-3-biomotion.jpg\" alt=\"Cyclist with ReflecToes on joints\">\n        <div class=\"carousel-caption\">3. Biomotion (Instantly Human)</div>\n      </div>\n    </div>\n\n    <div class=\"card\">\n      <div class=\"pad\" style=\"justify-content: center;\">\n        <span class=\"pill\">No Bulky Vests</span>\n        <h3>High-Performance, Not High-Vis Vests</h3>\n        <p class=\"small\">We know athletes hate bulky, chafing vests. That's why ReflecToes builds maximum biomotion visibility directly into the sweat-wicking gear you already wear.</p>\n        <ul class=\"small\" style=\"margin-bottom: 24px; padding-left: 18px;\">\n          <li><strong>Ankles & Feet:</strong> The highest motion contrast area.</li>\n          <li><strong>Hands:</strong> Signals movement and direction.</li>\n          <li><strong>No Chafing:</strong> Seamless integration into standard apparel.</li>\n        </ul>\n        <a class=\"btn btn-primary\" href=\"/collections/all\">Shop Reflective Socks & Gloves</a>\n      </div>\n    </div>\n  </div>\n</section>\n\n<section class=\"section\" id=\"glossary\" aria-label=\"Glossary and basics\">\n  <h2>Key Terms</h2>\n  <details>\n    <summary>Retroreflective</summary>\n    <p class=\"small\">Material with microscopic glass beads or prisms that return light directly back toward the source (e.g., a car's headlights to the driver's eyes).</p>\n  </details>\n  <details>\n    <summary>Fluorescent</summary>\n    <p class=\"small\">Excellent for daytime visibility. It absorbs invisible UV light from the sun and emits it as visible light, creating a \"glowing\" effect. It does not glow at night under headlights.</p>\n  </details>\n  <details>\n    <summary>Conspicuity</summary>\n    <p class=\"small\">How much an object stands out from its background. Biomotion heavily increases conspicuity by revealing the human form and natural movement.</p>\n  </details>\n</section>\n\n<section class=\"section\" id=\"studies\" aria-label=\"Studies\">\n  <h2>Scientific Summaries</h2>\n  <div class=\"resource-list\">\n    <div class=\"resource\">\n      <strong>Road users underestimate retro-reflectivity</strong>\n      <p class=\"small muted\" style=\"margin-bottom: 16px;\">Lab tests show people underrate retroreflective brightness and overrate fluorescent gear at night.</p>\n      <a class=\"btn btn-secondary small\" href=\"{{ 'reflec-study-summary.pdf' | asset_url }}\" target=\"_blank\">Download 1-Page Summary</a>\n    </div>\n    <div class=\"resource\">\n      <strong>Biomotion improves recognition</strong>\n      <p class=\"small muted\" style=\"margin-bottom: 16px;\">Reflective markers at the ankles and knees help drivers identify a person significantly sooner.</p>\n      <a class=\"btn btn-secondary small\" href=\"{{ 'biomotion-evidence.pdf' | asset_url }}\" target=\"_blank\">Download Evidence PDF</a>\n    </div>\n    <div class=\"resource\">\n      <strong>Day vs. Night Visibility</strong>\n      <p class=\"small muted\" style=\"margin-bottom: 16px;\">Why fluorescent gear is strictly for daytime, and why retroreflective elements are mandatory at night.</p>\n      <a class=\"btn btn-secondary small\" href=\"{{ 'fluoro-vs-retro.pdf' | asset_url }}\" target=\"_blank\">Download Day vs. Night Guide</a>\n    </div>\n  </div>\n</section>\n\n<section class=\"section\" id=\"faqs\" aria-label=\"FAQs\">\n  <h2>Frequently Asked Questions</h2>\n  <details>\n    <summary>Is fluorescent clothing enough at night?</summary>\n    <p class=\"small\">No. Research shows that road users mistakenly believe fluorescent materials increase nighttime visibility. Fluorescent materials convert UV light from the sun into visible light, making them great for daytime. At night, without UV light, they go completely dark. You must use retroreflective materials to bounce car headlights back to the driver.</p>\n  </details>\n  <details>\n    <summary>What should I prioritize if I’m on a budget?</summary>\n    <p class=\"small\">The lowest-cost entry to be seen is a pair of highly reflective ankle and wrist bands. The next best step is building visibility directly into your normal gear by choosing <a href=\"/collections/reflective-gloves\">reflective gloves</a> and <a href=\"/collections/socks\">high-visibility socks</a>.</p>\n  </details>\n  <details>\n    <summary>How do I photograph a “before vs after” to test my gear?</summary>\n    <p class=\"small\">Use a dark background and stand 10-15 feet away. Take one photo with your smartphone camera flash turned OFF, and one with the flash turned ON. The camera flash perfectly mimics the angle of a car headlight hitting the retroreflective material.</p>\n  </details>\n</section>\n\n<section class=\"section\" style=\"margin-bottom: 40px;\">\n  <div class=\"card note\" style=\"border-color: #00e0a9; text-align: center; padding: 40px 20px;\">\n    <h3 style=\"font-size: 1.5rem; margin-bottom: 12px;\">Be Seen Sooner.</h3>\n    <p class=\"small\" style=\"max-width: 500px; margin: 0 auto 24px;\">Don't rely on ambient light. Equip yourself with reflective socks, bands, and accessories explicitly designed to highlight your biomotion.</p>\n    <a class=\"btn btn-primary\" href=\"/collections/all\">Shop All ReflecToes Gear</a>\n  </div>\n</section>\n\n</div>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function() {\n    var carousel = document.getElementById('biomotion-slider');\n    if(!carousel) return;\n    setInterval(function() {\n      if(carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10) {\n        carousel.scrollTo({ left: 0, behavior: 'smooth' });\n      } else {\n        carousel.scrollBy({ left: carousel.offsetWidth + 16, behavior: 'smooth' });\n      }\n    }, 4000);\n  });\n</script>",
+        "background_color": "{{ settings.color_palette.background }}",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_pViCYg"
+  ]
+}

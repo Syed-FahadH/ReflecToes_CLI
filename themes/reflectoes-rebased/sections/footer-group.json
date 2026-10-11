@@ -1,0 +1,54 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "rt_footer": {
+      "type": "rt-footer",
+      "blocks": {
+        "shop": {
+          "type": "column",
+          "settings": {
+            "title": "Shop",
+            "links": "Jackets | /products/reflective-jacket-for-men-women-waterproof-and-windbreaker-jacket-with-hood-back-pocket-vents\nVests | /collections/reflective-vest\nJerseys | /collections/cycling-jersey\nGloves | /collections/reflective-gloves\nSocks | /collections/socks\nReflective Bands | /collections/reflective-band\nLED Clip Light | /products/reflectoes-led-clip-lights-for-runners\nStickers & Decals | /collections/stickers-decal\nNight Kit | /pages/night-kit\nDaylight Kit | /pages/daylight-kit"
+          }
+        },
+        "learn": {
+          "type": "column",
+          "settings": {
+            "title": "Learn",
+            "links": "Biomotion Science | /pages/biomotion-science\nRetroreflective vs. Fluorescent | /pages/retroreflective-vs-fluorescent\nThe Visibility Illusion | /pages/visibility-illusion\nNight-Safety Workshop | /pages/night-safety-workshop\nScience & Sources | /pages/science-sources\nBlog | /blogs/news"
+          }
+        },
+        "help": {
+          "type": "column",
+          "settings": {
+            "title": "Help",
+            "links": "Contact Us | /pages/contact-us\nFAQs | /pages/faqs\nAbout Us | /pages/about-us\nSearch | /search"
+          }
+        }
+      },
+      "block_order": [
+        "shop",
+        "learn",
+        "help"
+      ],
+      "settings": {
+        "facebook": "https://www.facebook.com/reflectoes/",
+        "instagram": "https://www.instagram.com/reflectoes/",
+        "legal": "Terms of Service | /policies/terms-of-service\nPrivacy Policy | /policies/privacy-policy\nRefund Policy | /policies/refund-policy\nShipping Policy | /policies/shipping-policy"
+      }
+    }
+  },
+  "order": [
+    "rt_footer"
+  ]
+}

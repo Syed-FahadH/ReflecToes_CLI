@@ -26,6 +26,16 @@ class LocalizationFormComponent extends Component {
     this.refs.countryList && this.refs.countryList.addEventListener('keydown', this.#onContainerKeyDown);
     this.refs.countryList && this.refs.countryList.addEventListener('scroll', this.#onCountryListScroll);
 
+    // The full country list is cloned in from #country-list-template the first time the
+    // selector is approached or opened, so closed selectors add no extra DOM nodes.
+    const host = this.closest('dropdown-localization-component, drawer-localization-component');
+    if (host) {
+      const load = () => this.loadCountries();
+      for (const type of ['pointerenter', 'focusin', 'touchstart', 'click']) {
+        host.addEventListener(type, load, { once: true, passive: true, capture: true });
+      }
+    }
+
     // Resizing the language input can be expensive for browsers that don't support field-sizing: content.
     // Spliting it into separate tasks at least helps when there are multiple localization forms on the page.
     setTimeout(() => this.resizeLanguageInput(), 0);
@@ -36,6 +46,33 @@ class LocalizationFormComponent extends Component {
     this.refs.search && this.refs.search.removeEventListener('keydown', this.#onSearchKeyDown);
     this.refs.countryList && this.refs.countryList.removeEventListener('keydown', this.#onContainerKeyDown);
     this.refs.countryList && this.refs.countryList.removeEventListener('scroll', this.#onCountryListScroll);
+  }
+
+  /**
+   * Fills the country list from the shared template. Safe to call more than once.
+   */
+  loadCountries() {
+    const list = this.querySelector('ul.countries[data-lazy-countries]');
+    const template = document.getElementById('country-list-template');
+
+    if (!list || !(template instanceof HTMLTemplateElement)) return;
+
+    list.removeAttribute('data-lazy-countries');
+
+    const placeholder = list.querySelector('li[aria-current="true"]');
+    const iso = placeholder?.dataset.value;
+    const checkmark = placeholder?.querySelector('.svg-wrapper')?.innerHTML ?? '';
+    const fragment = /** @type {DocumentFragment} */ (template.content.cloneNode(true));
+
+    const current = iso ? fragment.querySelector(`li[data-value="${iso}"]`) : null;
+    if (current) {
+      current.setAttribute('aria-current', 'true');
+      const wrapper = current.querySelector('.svg-wrapper');
+      if (wrapper) wrapper.innerHTML = checkmark;
+    }
+
+    placeholder?.remove();
+    list.append(fragment);
   }
 
   /**
@@ -434,6 +471,7 @@ class DropdownLocalizationComponent extends Component {
     this.addEventListener('keyup', this.#handleKeyUp);
     document.addEventListener('click', this.#handleClickOutside);
 
+    this.refs.localizationForm?.loadCountries();
     this.refs.panel.removeAttribute('hidden');
     this.refs.button.setAttribute('aria-expanded', 'true');
 
@@ -515,6 +553,7 @@ class DrawerLocalizationComponent extends Component {
     const countryList = localizationForm.querySelector('.country-selector-form__wrapper');
 
     if (target.open) {
+      localizationForm.loadCountries();
       if (countryList) countryList.addEventListener('scroll', this.#onCountryListScroll);
       onAnimationEnd(target, localizationForm.focusSearchInput);
     } else {

@@ -1,0 +1,431 @@
+{{ 'biomotion-page.css' | asset_url | stylesheet_tag }}
+
+<div class="bm-breakout">
+<article class="bm-wrap" itemscope itemtype="https://schema.org/Article">
+
+  <nav class="sp-breadcrumb" style="font-size:0.82rem;color:#6b7873;margin-bottom:24px;">
+    <a href="/pages/education" style="color:#0a3a30;text-decoration:none;">Education</a>
+    <span>›</span> Biomotion
+  </nav>
+
+  <header>
+    <span class="bm-eyebrow">Night Visibility Science</span>
+    <h1 class="bm-h1" itemprop="headline">Biomotion: Why Where You Wear Reflective Material Matters More Than How Much</h1>
+    <p class="bm-lede">Drivers can spot a cyclist or runner from <strong>up to 7 times farther away</strong> when reflective markings sit on moving joints (ankles, knees, wrists, elbows) rather than wearing dark clothing. That's biological motion, and it's the most powerful tool you have for being seen at night.</p>
+    <p style="font-size:0.78rem;color:#6b7873;border-left:3px solid #00e0a9;padding:4px 10px;margin:-16px 0 32px;line-height:1.5;">Based on peer-reviewed research in <em>Accident Analysis &amp; Prevention</em> (Wood et al., 2012), <em>Clinical and Experimental Optometry</em> (Tyrrell et al., 2016), and <em>Human Factors</em> (King et al., 2023).</p>
+  </header>
+
+  <nav class="bm-toc" aria-label="On this page">
+    <p class="bm-toc-title">On this page</p>
+    <ol>
+      <li><a href="#what-is-biomotion">What is biological motion?</a></li>
+      <li><a href="#why-it-works">Why biomotion works at night</a></li>
+      <li><a href="#distance">How far away can drivers see it?</a></li>
+      <li><a href="#retro-vs-fluor">Retroreflective vs. fluorescent</a></li>
+      <li><a href="#placement">Best placement for cyclists &amp; runners</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#references">References</a></li>
+    </ol>
+  </nav>
+
+  <div class="bm-facts">
+    <div class="bm-fact">
+      <div class="bm-fact-num">3&times;</div>
+      <div class="bm-fact-label">Farther recognition distance with biomotion vs. a reflective vest alone<sup><a href="#ref-1" class="bm-cite">1</a></sup></div>
+    </div>
+    <div class="bm-fact">
+      <div class="bm-fact-num">7&times;</div>
+      <div class="bm-fact-label">Farther than dark clothing: biomotion gives drivers seconds of reaction time, not feet<sup><a href="#ref-1" class="bm-cite">1</a></sup></div>
+    </div>
+    <div class="bm-fact">
+      <div class="bm-fact-num">0</div>
+      <div class="bm-fact-label">UV in car headlights. That's why fluorescent yellow goes dark after sunset<sup><a href="#ref-2" class="bm-cite">2</a></sup></div>
+    </div>
+  </div>
+
+  <h2 class="bm-h2" id="what-is-biomotion">What is biological motion?</h2>
+
+  <p><strong>Biological motion</strong>, often called <em>biomotion</em>, is the distinct pattern of movement created by a living body in motion. The swing of an ankle, the bend of a knee, the rotation of a wrist: these movements are unmistakably <em>human</em>, even when the rest of the body is invisible.</p>
+
+  <p>The phenomenon was first demonstrated in the 1970s using point-light displays: a handful of dots attached to a person's joints, filmed in the dark. Viewers shown only the moving dots could instantly tell whether the figure was walking, running, or carrying something. The brain reads biomotion the way it reads a face: automatically and in a single glance.</p>
+
+  <p>For night-time road safety, this matters enormously. <strong>A driver who sees a torso-mounted vest sees "a thing."</strong> A driver who sees joints in motion sees <em>a person</em>. The human visual system responds to people far faster than it responds to objects.<sup><a href="#ref-3" class="bm-cite">3</a></sup></p>
+
+  <figure class="bm-figure" id="bm-joint-figure">
+    <h3 class="bm-h3" style="margin-top: 0;">See it: torso vest vs. biomotion configuration</h3>
+    <p style="margin-bottom: 20px; font-size: 0.95rem; color: #4a524f;">Toggle the modes below to see what a driver's headlights actually pick up at night.</p>
+
+    <div class="bm-joint-stage">
+      <div class="bm-joint-canvas bm-mode-bio" id="bm-joint-canvas" role="img" aria-label="Pedestrian silhouette with reflective markers in different configurations">
+        <div class="bm-headlight"></div>
+        <svg viewBox="0 0 200 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g class="bm-figure-body bm-figure-body--silhouette">
+            <circle cx="100" cy="38" r="14"/>
+            <path d="M 86,55 L 114,55 L 120,130 L 80,130 Z"/>
+            <path d="M 86,58 L 78,90 L 70,130 L 64,135 L 70,140 L 76,128 L 84,90 L 92,62 Z"/>
+            <path d="M 114,58 L 122,90 L 130,130 L 136,135 L 130,140 L 124,128 L 116,90 L 108,62 Z"/>
+            <path d="M 84,130 L 80,180 L 76,230 L 72,260 L 84,260 L 86,232 L 90,184 L 96,134 Z"/>
+            <path d="M 116,130 L 120,180 L 124,230 L 128,260 L 116,260 L 114,232 L 110,184 L 104,134 Z"/>
+          </g>
+          <g class="bm-vest">
+            <path d="M 83,68 L 117,68 L 120,118 L 80,118 Z"/>
+          </g>
+          <g class="bm-joint-group">
+            <circle class="bm-joint" cx="68" cy="92" r="5.5"/>
+            <circle class="bm-joint" cx="132" cy="92" r="5.5"/>
+            <circle class="bm-joint" cx="67" cy="137" r="5.5"/>
+            <circle class="bm-joint" cx="133" cy="137" r="5.5"/>
+            <circle class="bm-joint" cx="82" cy="178" r="6"/>
+            <circle class="bm-joint" cx="118" cy="178" r="6"/>
+            <circle class="bm-joint" cx="76" cy="245" r="6.5"/>
+            <circle class="bm-joint" cx="124" cy="245" r="6.5"/>
+          </g>
+        </svg>
+        <div class="bm-distance" id="bm-distance-label">Driver detects: <b>~410 ft</b></div>
+      </div>
+
+      <div class="bm-mode-controls" role="group" aria-label="Reflective configuration">
+        <button class="bm-mode-btn" data-mode="none" aria-pressed="false" type="button">
+          <b>Black clothing</b>
+          <span>No reflective material. Pedestrian appears as a low-contrast shape against the road.</span>
+        </button>
+        <button class="bm-mode-btn" data-mode="vest" aria-pressed="false" type="button">
+          <b>Reflective vest only</b>
+          <span>Bright torso patch. Drivers see a glowing object. Not necessarily a person.</span>
+        </button>
+        <button class="bm-mode-btn" data-mode="bio" aria-pressed="true" type="button">
+          <b>Biomotion configuration</b>
+          <span>Markers on ankles, knees, wrists, elbows. Brain reads it as a person, instantly.</span>
+        </button>
+      </div>
+    </div>
+
+    <figcaption class="bm-figure-cap">Detection distances are approximate, based on Wood et al. (2012) and Tyrrell et al. (2016) low-beam recognition data on a closed test track.<sup><a href="#ref-1" class="bm-cite">1</a><a href="#ref-3" class="bm-cite">3</a></sup></figcaption>
+  </figure>
+
+  <h2 class="bm-h2" id="why-it-works">Why biomotion works at night</h2>
+
+  <p>Three factors work against pedestrians and cyclists after dark:</p>
+
+  <ol>
+    <li><strong>Drivers underestimate how badly their night vision drops.</strong> Most drivers feel just as confident at 10 PM as at 10 AM, but the eye loses contrast sensitivity sharply in low light. A cyclist visible at 500 feet during the day may not register until 80 feet at night.<sup><a href="#ref-3" class="bm-cite">3</a></sup></li>
+    <li><strong>The pedestrian's silhouette has low contrast.</strong> A walker in dark clothing reflects only a few percent of incoming headlight energy, blending into the road and roadside.</li>
+    <li><strong>Even with reflective gear, drivers may not <em>recognize</em> what they're seeing.</strong> A glowing rectangle on a vest is detected, but the brain has to do extra work to identify it as a human.</li>
+  </ol>
+
+  <p>Biomotion solves the third problem. When small reflective points move in a coordinated pattern (the way arms and legs swing during walking or pedaling), drivers don't just <em>detect</em> the road user. They <em>recognize</em> them. And recognition triggers a slowdown response far faster than detection alone.<sup><a href="#ref-3" class="bm-cite">3</a></sup></p>
+
+  <div class="bm-callout">
+    <div class="bm-callout-label">Key insight</div>
+    <p>A reflective vest tells a driver "<em>something is there.</em>" Biomotion markers tell a driver "<em>a person is there. Slow down.</em>" The difference is measured in seconds of reaction time.</p>
+  </div>
+
+  <h2 class="bm-h2" id="distance">How far away can drivers actually see reflective gear?</h2>
+
+  <p>This is one of the most studied questions in road-user conspicuity research. The numbers below come from controlled, closed-track studies where drivers approach a pedestrian at night with low-beam headlights. The "recognition distance" is the point at which the driver can confirm they are looking at a person.<sup><a href="#ref-1" class="bm-cite">1</a><a href="#ref-3" class="bm-cite">3</a></sup></p>
+
+  <h3 class="bm-h3">Pedestrian recognition distance, low-beam headlights</h3>
+
+  <div class="bm-chart" id="bm-chart">
+    <div class="bm-chart-label">Black clothing</div>
+    <div class="bm-chart-bar-wrap"><div class="bm-chart-bar bm-chart-bar-black" style="--bar-w: 13%;"></div></div>
+    <div class="bm-chart-num">~55 ft</div>
+
+    <div class="bm-chart-label">Reflective vest</div>
+    <div class="bm-chart-bar-wrap"><div class="bm-chart-bar bm-chart-bar-vest" style="--bar-w: 28%;"></div></div>
+    <div class="bm-chart-num">~120 ft</div>
+
+    <div class="bm-chart-label">Biomotion</div>
+    <div class="bm-chart-bar-wrap"><div class="bm-chart-bar bm-chart-bar-bio" style="--bar-w: 96%;"></div></div>
+    <div class="bm-chart-num">~410 ft</div>
+  </div>
+
+  <p style="font-size: 0.85rem; color: #6b7873;">A car traveling 45 mph covers 66 feet per second. The difference between 120 ft and 410 ft is roughly <strong>4.4 seconds</strong> of additional reaction time.</p>
+
+  <div class="bm-distance-scene" aria-label="Visualization of driver detection range">
+    <div class="bm-scene-row">
+      <div class="bm-scene-label">Black clothing<small>~55 ft</small></div>
+      <div class="bm-scene-track"><div class="bm-scene-marker" data-pos="black"></div></div>
+    </div>
+    <div class="bm-scene-row">
+      <div class="bm-scene-label">Reflective vest<small>~120 ft</small></div>
+      <div class="bm-scene-track"><div class="bm-scene-marker" data-pos="vest"></div></div>
+    </div>
+    <div class="bm-scene-row">
+      <div class="bm-scene-label">Biomotion<small>~410 ft</small></div>
+      <div class="bm-scene-track"><div class="bm-scene-marker" data-pos="bio"></div></div>
+    </div>
+    <div class="bm-scene-axis">
+      <span class="bm-scene-car">🚗 Driver</span>
+      <span>200 ft</span>
+      <span>400 ft</span>
+      <span>500 ft</span>
+    </div>
+  </div>
+
+  <p style="font-size: 0.85rem; color: #6b7873; margin-top: 4px;"><em>Distances vary with headlight aim, road glare, weather, and driver age. The pattern holds across studies: biomotion consistently outperforms torso-only reflective.</em></p>
+
+  <h2 class="bm-h2" id="retro-vs-fluor">Retroreflective vs. fluorescent: a critical distinction</h2>
+
+  <p>One of the most dangerous misconceptions in road-user safety is that "high-visibility yellow" (the bright neon used on construction vests and running gear) keeps you visible after dark. <strong>It does not.</strong> Most road users get this wrong.<sup><a href="#ref-2" class="bm-cite">2</a></sup></p>
+
+  <div class="bm-physics">
+    <div class="bm-physics-card">
+      <h4>Diffuse</h4>
+      <div class="bm-physics-sub">e.g. dark or plain-colored fabric</div>
+      <div class="bm-physics-canvas">
+        <svg viewBox="0 0 140 100" aria-hidden="true">
+          <circle cx="20" cy="50" r="6" fill="#fff5b8" opacity="0.9"/>
+          <text x="14" y="76" fill="#8a9591" font-size="8" font-family="monospace">light</text>
+          <rect x="80" y="20" width="40" height="60" rx="3" fill="#2a302e" stroke="#4a524f" stroke-width="1"/>
+          <line class="bm-ray bm-ray-in bm-ray-anim-in" x1="26" y1="50" x2="80" y2="50"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="40" y2="20"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="40" y2="80"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="20" y2="50"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="50" y2="35"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="50" y2="65"/>
+        </svg>
+      </div>
+      <p class="bm-physics-desc">Light scatters in every direction. <b>Very little</b> returns to the driver. Practically invisible at night.</p>
+    </div>
+
+    <div class="bm-physics-card">
+      <h4>Fluorescent</h4>
+      <div class="bm-physics-sub">e.g. neon yellow / "high-vis"</div>
+      <div class="bm-physics-canvas">
+        <svg viewBox="0 0 140 100" aria-hidden="true">
+          <circle cx="20" cy="50" r="6" fill="#fff5b8" opacity="0.9"/>
+          <text x="14" y="76" fill="#8a9591" font-size="8" font-family="monospace">light</text>
+          <rect x="80" y="20" width="40" height="60" rx="3" fill="#d4f018" opacity="0.45"/>
+          <text x="86" y="53" fill="#0a3a30" font-size="7" font-family="monospace" font-weight="700">no UV</text>
+          <line class="bm-ray bm-ray-in bm-ray-anim-in" x1="26" y1="50" x2="80" y2="50"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="40" y2="22"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="40" y2="78"/>
+          <line class="bm-ray bm-ray-out-diffuse bm-ray-anim-out" x1="80" y1="50" x2="22" y2="50"/>
+        </svg>
+      </div>
+      <p class="bm-physics-desc">Needs UV light to glow. Headlights emit none, so fluorescent fabric just <b>scatters like any color</b> after dark.</p>
+    </div>
+
+    <div class="bm-physics-card" style="border: 2px solid #00e0a9;">
+      <h4>Retroreflective</h4>
+      <div class="bm-physics-sub">microscopic glass beads / prisms</div>
+      <div class="bm-physics-canvas">
+        <svg viewBox="0 0 140 100" aria-hidden="true">
+          <circle cx="20" cy="50" r="6" fill="#fff5b8" opacity="0.9"/>
+          <text x="14" y="76" fill="#8a9591" font-size="8" font-family="monospace">light</text>
+          <rect x="80" y="20" width="40" height="60" rx="3" fill="url(#bm-retro-grad)" stroke="#00e0a9" stroke-width="1"/>
+          <defs>
+            <linearGradient id="bm-retro-grad" x1="0" x2="1">
+              <stop offset="0" stop-color="#d8fff2"/>
+              <stop offset="1" stop-color="#a8efd0"/>
+            </linearGradient>
+          </defs>
+          <line class="bm-ray bm-ray-in bm-ray-anim-in" x1="26" y1="50" x2="80" y2="50"/>
+          <line class="bm-ray bm-ray-out-retro bm-ray-anim-out" x1="80" y1="48" x2="26" y2="48"/>
+          <line class="bm-ray bm-ray-out-retro bm-ray-anim-out" x1="80" y1="52" x2="26" y2="52"/>
+          <line class="bm-ray bm-ray-out-retro bm-ray-anim-out" x1="80" y1="46" x2="26" y2="46"/>
+        </svg>
+      </div>
+      <p class="bm-physics-desc">Bounces light <b>directly back to its source</b>: the driver's eyes. Bright contrast at hundreds of feet.</p>
+    </div>
+  </div>
+
+  <h3 class="bm-h3">Day vs. night: the same gear, completely different behavior</h3>
+
+  <div class="bm-daynight">
+    <div class="bm-dn-card bm-dn-day">
+      <div>
+        <h4>Daytime ☀️</h4>
+        <p>Sun emits abundant UV. Fluorescent yellow glows brilliantly. Retroreflective looks like ordinary silver-grey fabric.</p>
+      </div>
+      <div class="bm-dn-swatch-row">
+        <div class="bm-dn-swatch bm-dn-swatch-yellow-day">Fluorescent yellow</div>
+        <div class="bm-dn-swatch bm-dn-swatch-silver-day">Retroreflective silver</div>
+      </div>
+    </div>
+    <div class="bm-dn-card bm-dn-night">
+      <div>
+        <h4>Nighttime 🌙</h4>
+        <p>Headlights have no UV. Fluorescent yellow goes dark. Retroreflective silver lights up like a beacon.</p>
+      </div>
+      <div class="bm-dn-swatch-row">
+        <div class="bm-dn-swatch bm-dn-swatch-yellow-night">Fluorescent yellow</div>
+        <div class="bm-dn-swatch bm-dn-swatch-silver-night">Retroreflective silver</div>
+      </div>
+    </div>
+  </div>
+
+  <p>King, Szubski, and Tyrrell (2023) asked road users to predict how bright different materials would look in a headlight beam. Participants dramatically <em>over</em>estimated fluorescent yellow and <em>under</em>estimated retroreflective silver, by a factor of two or more. The materials people <em>think</em> work at night and the materials that <em>actually</em> work at night are not the same.<sup><a href="#ref-2" class="bm-cite">2</a></sup> Learn more about the physics behind this in our in-depth guide on <a href="/pages/how-fluorescent-fabric-works">How Fluorescent Fabric Works: The Science of Daytime Visibility</a>.</p>
+
+  <h2 class="bm-h2" id="placement">Best placement for cyclists and runners</h2>
+
+  <p>The biomotion configuration is simple: put retroreflective material on the parts of your body that move the most, and that move differently from each other. The goal is to give a driver enough articulated motion data to recognize "human."</p>
+
+  <div class="bm-placement">
+    <div class="bm-place-card is-best">
+      <h4>Ankles &amp; knees</h4>
+      <p>The single highest-impact placement for runners and cyclists. Pedaling and walking strides produce the strongest biomotion signal at the lower limbs.</p>
+      <ul>
+        <li><a href="/products/reflective-cycling-and-running-socks">Reflective socks</a> or ankle bands</li>
+        <li>Reflective leg warmers / knee straps</li>
+        <li>Heel patches on running shoes</li>
+      </ul>
+    </div>
+    <div class="bm-place-card">
+      <h4>Wrists &amp; elbows</h4>
+      <p>Strong secondary signal, especially for runners (arm swing) and cyclists when standing or signaling turns.</p>
+      <ul>
+        <li>Reflective wristbands / cuffs</li>
+        <li><a href="/products/reflective-running-gloves">Reflective gloves</a> with reflective panels</li>
+      </ul>
+    </div>
+    <div class="bm-place-card">
+      <h4>Torso (vest)</h4>
+      <p>Useful as a baseline, especially in daytime fluorescent form. <strong>Not a substitute</strong> for moving-joint reflective.</p>
+      <ul>
+        <li>Pair a vest with biomotion accessories</li>
+        <li>Don't rely on a vest alone after dark</li>
+      </ul>
+    </div>
+    <div class="bm-place-card">
+      <h4>Head &amp; helmet</h4>
+      <p>Helps with detection but does not produce biomotion. Useful for visibility from above or to the side (e.g., at intersections).</p>
+      <ul>
+        <li>Reflective helmet stickers</li>
+        <li>Front and rear lights</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bm-callout">
+    <div class="bm-callout-label">Quick rule</div>
+    <p>If you wear only one piece of reflective gear after sunset, make it <strong>ankle-level</strong>. Reflective socks or ankle bands beat a reflective vest, every time.</p>
+  </div>
+
+  <h2 class="bm-h2" id="faq">Frequently asked questions</h2>
+
+  <div class="bm-faq" itemscope itemtype="https://schema.org/FAQPage">
+
+    <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">What is biological motion in road safety?</summary>
+      <div class="bm-faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">
+        <p>Biological motion is the distinctive movement pattern of a living body: the swing of arms, legs, and joints in motion. In a night-driving context, placing small reflective markers on a pedestrian's or cyclist's joints (ankles, knees, wrists, elbows) lets a driver's brain recognize the figure as <em>a person</em> at much greater distances than a torso-mounted vest allows.</p>
+      </div></div>
+    </details>
+
+    <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">How far away can drivers see reflective gear at night?</summary>
+      <div class="bm-faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">
+        <p>It depends entirely on placement. In closed-track studies with low-beam headlights, drivers recognize a pedestrian wearing only black clothing at roughly <strong>55 feet</strong>, a reflective vest at roughly <strong>120 feet</strong>, and a biomotion configuration at roughly <strong>410 feet</strong>: about three times the vest distance and seven times the black-clothing distance.</p>
+      </div></div>
+    </details>
+
+    <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">What's the difference between retroreflective and fluorescent?</summary>
+      <div class="bm-faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">
+        <p><strong>Fluorescent</strong> materials absorb invisible UV light and re-emit it as visible light, which is why they "glow" in daylight. They depend on UV to work. Headlights emit almost none, so fluorescent fabric stops glowing at night.</p>
+        <p><strong>Retroreflective</strong> materials use tiny glass beads or prisms to bounce incoming light back toward its source. When a driver's headlights hit a retroreflective sock, the light returns straight to the driver's eyes, producing a bright, high-contrast signal at hundreds of feet.</p>
+      </div></div>
+    </details>
+
+    <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">Where should cyclists put reflective material for maximum visibility?</summary>
+      <div class="bm-faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">
+        <p>Ankles and knees first. The pedaling motion at the lower legs produces the strongest biomotion signal. Wrists and elbows add a secondary cue. A torso vest alone is the <em>least</em> effective configuration relative to its surface area; it should be paired with moving-joint reflective, not used as a substitute.</p>
+      </div></div>
+    </details>
+
+    <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">Does fluorescent yellow work at night?</summary>
+      <div class="bm-faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">
+        <p>No. This is one of the most consistently misunderstood facts about night visibility. Fluorescent fabrics need UV light to glow, and car headlights produce essentially none. After dark, fluorescent yellow behaves like any other colored fabric: it scatters light diffusely and offers no visibility advantage. Use fluorescent for daytime and twilight; use retroreflective for night.</p>
+      </div></div>
+    </details>
+
+    <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">Why is a reflective vest not enough?</summary>
+      <div class="bm-faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">
+        <p>A vest gives drivers a bright torso patch. They detect "something" but the brain has to do extra work to interpret it as a person. Biomotion markers move with the rhythm of human gait, which the brain recognizes automatically and from much farther away. Vests are useful, but should be combined with ankle and knee reflective to unlock the full conspicuity benefit.</p>
+      </div></div>
+    </details>
+
+    <details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <summary itemprop="name">Is biomotion only useful for runners and pedestrians, or also cyclists?</summary>
+      <div class="bm-faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">
+        <p>Both. Wood et al. (2012) specifically tested cyclists at night and found that adding ankle and knee reflective on top of a reflective vest produced significant additional recognition-distance gains. The pedaling motion is, in fact, an especially clean biomotion signal because the legs move through a regular rhythmic arc.</p>
+      </div></div>
+    </details>
+
+  </div>
+
+  <div class="bm-cta">
+    <h3>Gear up for the joints that matter</h3>
+    <p>Reflective socks, ankle bands, wrist cuffs: the biomotion essentials for runners and cyclists.</p>
+    <a class="bm-btn" href="/collections/all">Shop biomotion gear</a>
+  </div>
+
+  <h2 class="bm-h2" id="references">References</h2>
+  <div class="bm-refs">
+    <ol>
+      <li id="ref-1">Wood, J., Tyrrell, R., Marszalek, R., Lacherez, P., Carberry, T., &amp; Chu, B. (2012). Using reflective clothing to enhance the conspicuity of bicyclists at night. <em>Accident Analysis and Prevention, 45,</em> 726-730.</li>
+      <li id="ref-2">King, S. L., Szubski, E. C., &amp; Tyrrell, R. A. (2023). Road users fail to appreciate the special optical properties of retroreflective materials. <em>Human Factors.</em> Advance online publication.</li>
+      <li id="ref-3">Tyrrell, R., Wood, J., Owens, D. A., Whetsel Borzendowski, S., &amp; Stafford Sewall, A. (2016). The conspicuity of pedestrians at night: A review. <em>Clinical and Experimental Optometry, 99</em>(5), 425-434.</li>
+      <li>Wood, J. (2023). Improving the conspicuity and safety of pedestrians and cyclists on night-time roads. <em>Clinical and Experimental Optometry, 106</em>(3), 227-237.</li>
+      <li>Fylan, F., King, M., Brough, D., Black, A. A., King, N., Bentley, L. A., &amp; Wood, J. M. (2020). Increasing conspicuity on night-time roads: Perspectives from cyclists and runners. <em>Transportation Research Part F, 68,</em> 161-170.</li>
+      <li>Balk, S. (2007). <em>Nighttime Pedestrian Conspicuity: The Effects of Pedestrian Movement, Orientation and the Configuration of Retroreflective Material</em> [Master's thesis, Clemson University].</li>
+    </ol>
+  </div>
+
+</article>
+</div>
+
+<script>
+  (function () {
+    var canvas = document.getElementById('bm-joint-canvas');
+    var distLabel = document.getElementById('bm-distance-label');
+    var btns = document.querySelectorAll('#bm-joint-figure .bm-mode-btn');
+    var modeData = {
+      none: { ft: '~55 ft', cls: 'bm-mode-none' },
+      vest: { ft: '~120 ft', cls: 'bm-mode-vest' },
+      bio:  { ft: '~410 ft', cls: 'bm-mode-bio' }
+    };
+    function setMode(mode) {
+      if (!canvas) return;
+      canvas.classList.remove('bm-mode-none', 'bm-mode-vest', 'bm-mode-bio');
+      canvas.classList.add(modeData[mode].cls);
+      if (distLabel) distLabel.innerHTML = 'Driver detects: <b>' + modeData[mode].ft + '</b>';
+      btns.forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-mode') === mode ? 'true' : 'false');
+      });
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); });
+    });
+
+    var chart = document.getElementById('bm-chart');
+    var bars = chart ? chart.querySelectorAll('.bm-chart-bar') : [];
+    var markers = document.querySelectorAll('.bm-scene-marker');
+    var animated = false;
+    function maybeAnimate() {
+      if (animated || !chart) return;
+      var rect = chart.getBoundingClientRect();
+      if (rect.top < (window.innerHeight || document.documentElement.clientHeight) * 0.85) {
+        animated = true;
+        bars.forEach(function (b) { b.classList.add('is-loaded'); });
+        markers.forEach(function (m) { m.classList.add('is-loaded'); });
+      }
+    }
+    window.addEventListener('scroll', maybeAnimate, { passive: true });
+    window.addEventListener('load', maybeAnimate);
+    maybeAnimate();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Biomotion Science",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

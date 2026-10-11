@@ -1,0 +1,66 @@
+{
+  "request": {
+    "startDate": "2026-07-05",
+    "endDate": "2026-10-02",
+    "dimensions": [
+      "page",
+      "query"
+    ],
+    "rowLimit": 25000,
+    "dataState": "final",
+    "type": "web"
+  },
+  "rows": [
+    {
+      "keys": [
+        "https://reflectoes.com/products/reflective-jacket-for-men-women-waterproof-and-windbreaker-jacket-with-hood-back-pocket-vents",
+        "reflective cycling jacket"
+      ],
+      "clicks": 1,
+      "impressions": 337,
+      "ctr": 0.002967359050445104,
+      "position": 17.741839762611274
+    },
+    {
+      "keys": [
+        "https://reflectoes.com/blogs/news/why-most-high-visibility-cycling-jackets-are-failing-you-at-night",
+        "reflective cycling jacket"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "keys": [
+        "https://reflectoes.com/collections/cycling",
+        "reflective cycling jacket"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 31.666666666666668
+    },
+    {
+      "keys": [
+        "https://reflectoes.com/products/reflective-jacket-for-men-women-waterproof-and-windbreaker-jacket-with-hood-back-pocket-vents?variant=42015227674695&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic",
+        "reflective cycling jacket"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "keys": [
+        "https://reflectoes.com/products/reflective-jacket-for-men-women-waterproof-and-windbreaker-jacket-with-hood-back-pocket-vents?variant=42015227740231&country=US&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic",
+        "reflective cycling jacket"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    }
+  ],
+  "note": "Saved October 6 extract, not fresh GSC request"
+}

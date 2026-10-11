@@ -1,0 +1,457 @@
+<div class="rtf" id="rtf-{{ section.id }}">
+  <div class="rtf-wrap rtf__top">
+    <div class="rtf__pitch">
+      <p class="rtf__tag">
+        {%- assign tag_parts = section.settings.tagline | split: '. ' -%}
+        {%- for part in tag_parts -%}
+          <span>{{ part }}{% unless forloop.last %}.{% endunless %}</span>
+        {%- endfor -%}
+      </p>
+      <p class="rtf__lede">{{ section.settings.lede }}</p>
+    </div>
+
+    <div class="rtf__sub" id="rtf-sub">
+      <p class="rtf__sub-title">{{ section.settings.sub_title }}</p>
+      <p class="rtf__sub-text">{{ section.settings.sub_text }}</p>
+      {%- form 'customer', class: 'rtf__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label class="rtf-vh" for="rtf-email-{{ section.id }}">Email</label>
+        <input
+          id="rtf-email-{{ section.id }}"
+          type="email"
+          name="contact[email]"
+          autocomplete="email"
+          placeholder="{{ section.settings.sub_placeholder }}"
+          required
+        >
+        <button type="submit">{{ section.settings.sub_button }}</button>
+        {%- if form.posted_successfully? -%}
+          <p class="rtf__msg" role="status">{{ section.settings.sub_success }}</p>
+        {%- elsif form.errors -%}
+          <p class="rtf__msg" role="alert">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+
+  <div class="rtf__hazard" aria-hidden="true"></div>
+
+  <div class="rtf-wrap rtf__cols">
+    <div class="rtf__brand">
+      <p class="rtf__name">{{ section.settings.brand_name }}</p>
+      <p class="rtf__small">{{ section.settings.brand_note }}</p>
+      <ul class="rtf__contact">
+        {%- if section.settings.phone != blank -%}
+          <li><a href="tel:{{ section.settings.phone | replace: '-', '' | replace: ' ', '' }}">{{ section.settings.phone }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.email != blank -%}
+          <li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>
+        {%- endif -%}
+        {%- if section.settings.address != blank -%}
+          <li class="rtf__addr">{{ section.settings.address | newline_to_br }}</li>
+        {%- endif -%}
+      </ul>
+      <div class="rtf__social">
+        {%- if section.settings.facebook != blank -%}
+          <a href="{{ section.settings.facebook }}" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 320 512" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.instagram != blank -%}
+          <a href="{{ section.settings.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- for block in section.blocks -%}
+      <nav class="rtf__col" aria-label="{{ block.settings.title | escape }}" {{ block.shopify_attributes }}>
+        <p class="rtf__col-title">{{ block.settings.title }}</p>
+        <ul>
+          {%- assign lines = block.settings.links | newline_to_br | split: '<br />' -%}
+          {%- for line in lines -%}
+            {%- assign pair = line | strip | split: '|' -%}
+            {%- if pair.size > 1 -%}
+              <li><a href="{{ pair[1] | strip }}">{{ pair[0] | strip }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endfor -%}
+  </div>
+
+  <div class="rtf__bottom">
+    <div class="rtf-wrap rtf__bottom-inner">
+      <p class="rtf__copy">&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright }}</p>
+      <ul class="rtf__legal">
+        {%- assign legal = section.settings.legal | newline_to_br | split: '<br />' -%}
+        {%- for line in legal -%}
+          {%- assign pair = line | strip | split: '|' -%}
+          {%- if pair.size > 1 -%}
+            <li><a href="{{ pair[1] | strip }}">{{ pair[0] | strip }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <ul class="rtf__pay" aria-label="Payment methods">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'rtf__pay-icon' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  if (location.search.indexOf('customer_posted=true') !== -1) {
+    var rtfSub = document.getElementById('rtf-sub');
+    if (rtfSub) rtfSub.scrollIntoView({ block: 'center' });
+  }
+</script>
+
+{% stylesheet %}
+  .rtf {
+    --rtf-ink: #0a0d10;
+    --rtf-lime: #d6ff3d;
+    --rtf-muted: #a3adb5;
+    --rtf-line: rgb(255 255 255 / 0.14);
+    --rtf-display: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--rtf-ink);
+    color: #fff;
+    font-family: var(--font-body--family, Inter, system-ui, sans-serif);
+  }
+
+  .rtf *,
+  .rtf *::before,
+  .rtf *::after {
+    box-sizing: border-box;
+  }
+
+  .rtf a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .rtf a:focus-visible,
+  .rtf button:focus-visible,
+  .rtf input:focus-visible {
+    outline: 3px solid var(--rtf-lime);
+    outline-offset: 3px;
+  }
+
+  .rtf-wrap {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: clamp(16px, 4vw, 48px);
+  }
+
+  .rtf-vh {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .rtf__top {
+    display: grid;
+    gap: 36px;
+    padding-block: clamp(48px, 7vw, 96px);
+  }
+
+  .rtf__tag {
+    margin: 0;
+    font-family: var(--rtf-display);
+    font-weight: 700;
+    font-size: clamp(64px, 12vw, 148px);
+    line-height: 0.86;
+    text-transform: uppercase;
+    color: var(--rtf-lime);
+  }
+
+  .rtf__tag span {
+    display: block;
+  }
+
+  .rtf__lede {
+    margin: 18px 0 0;
+    max-width: 36ch;
+    color: var(--rtf-muted);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .rtf__sub {
+    align-self: end;
+  }
+
+  .rtf__sub-title {
+    margin: 0 0 6px;
+    font-family: var(--rtf-display);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .rtf__sub-text {
+    margin: 0 0 16px;
+    color: var(--rtf-muted);
+    font-size: 15px;
+  }
+
+  .rtf__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .rtf__form input[type='email'] {
+    flex: 1 1 220px;
+    min-height: 54px;
+    padding: 0 16px;
+    border: 1px solid var(--rtf-line);
+    border-radius: 6px;
+    background: rgb(255 255 255 / 0.06);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .rtf__form input[type='email']::placeholder {
+    color: var(--rtf-muted);
+  }
+
+  .rtf__form button {
+    min-height: 54px;
+    padding: 0 28px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--rtf-lime);
+    color: var(--rtf-ink);
+    font-family: var(--rtf-display);
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.18s ease, background-color 0.18s ease;
+  }
+
+  .rtf__form button:hover {
+    background: #e6ff7a;
+    transform: translateY(-2px);
+  }
+
+  .rtf__msg {
+    flex-basis: 100%;
+    margin: 0;
+    color: var(--rtf-lime);
+    font-weight: 600;
+  }
+
+  .rtf__hazard {
+    height: 8px;
+    background: repeating-linear-gradient(-45deg, var(--rtf-ink) 0 10px, var(--rtf-lime) 10px 20px);
+  }
+
+  .rtf__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 20px;
+    padding-block: clamp(40px, 6vw, 72px);
+  }
+
+  .rtf__brand {
+    grid-column: 1 / -1;
+  }
+
+  .rtf__name {
+    margin: 0 0 4px;
+    font-family: var(--rtf-display);
+    font-weight: 700;
+    font-size: 34px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .rtf__small {
+    margin: 0 0 16px;
+    color: var(--rtf-muted);
+    font-size: 14px;
+  }
+
+  .rtf__contact,
+  .rtf__col ul,
+  .rtf__legal,
+  .rtf__pay {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .rtf__contact li {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  .rtf__addr {
+    color: var(--rtf-muted);
+    line-height: 1.5;
+  }
+
+  .rtf__social {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .rtf__social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--rtf-line);
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .rtf__social a:hover {
+    border-color: var(--rtf-lime);
+    background: var(--rtf-lime);
+    color: var(--rtf-ink);
+  }
+
+  .rtf__col-title {
+    margin: 0 0 14px;
+    color: var(--rtf-lime);
+    font-family: var(--rtf-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .rtf__col li {
+    margin-bottom: 10px;
+  }
+
+  .rtf__col a,
+  .rtf__contact a,
+  .rtf__legal a {
+    background: linear-gradient(currentcolor, currentcolor) 0 100% / 0 1px no-repeat;
+    transition: background-size 0.25s ease, color 0.2s ease;
+  }
+
+  .rtf__col a:hover,
+  .rtf__contact a:hover,
+  .rtf__legal a:hover {
+    background-size: 100% 1px;
+    color: var(--rtf-lime);
+  }
+
+  .rtf__col a {
+    font-size: 15px;
+  }
+
+  .rtf__bottom {
+    border-top: 1px solid var(--rtf-line);
+  }
+
+  .rtf__bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 28px;
+    padding-block: 22px;
+  }
+
+  .rtf__copy {
+    margin: 0;
+    color: var(--rtf-muted);
+    font-size: 13px;
+  }
+
+  .rtf__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 13px;
+  }
+
+  .rtf__pay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .rtf__pay-icon {
+    display: block;
+    width: 38px;
+    height: 24px;
+  }
+
+  @media (min-width: 900px) {
+    .rtf__top {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: end;
+      gap: 64px;
+    }
+
+    .rtf__cols {
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .rtf__brand {
+      grid-column: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rtf * {
+      transition-duration: 0.01ms !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "RT Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Big line", "default": "Be Safe. Be Seen." },
+    { "type": "text", "id": "lede", "label": "Text under the big line", "default": "Reflective running and cycling gear. Fluorescent by day. Retroreflective by night." },
+    { "type": "text", "id": "sub_title", "label": "Signup title", "default": "Subscribe" },
+    { "type": "text", "id": "sub_text", "label": "Signup text", "default": "Sign up to our mailing list" },
+    { "type": "text", "id": "sub_placeholder", "label": "Signup placeholder", "default": "Your email" },
+    { "type": "text", "id": "sub_button", "label": "Signup button", "default": "Subscribe" },
+    { "type": "text", "id": "sub_success", "label": "Signup success", "default": "Thanks! You're subscribed." },
+    { "type": "header", "content": "Brand and contact" },
+    { "type": "text", "id": "brand_name", "label": "Name", "default": "ReflecToes" },
+    { "type": "text", "id": "brand_note", "label": "Note", "default": "ReflecToes is a brand of OH SUSANNAH LLC" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "231-489-4891" },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@reflectoes.com" },
+    { "type": "textarea", "id": "address", "label": "Address", "default": "5565 S Bronze Plateau Cir\nSaint George, UT 84790" },
+    { "type": "url", "id": "facebook", "label": "Facebook" },
+    { "type": "url", "id": "instagram", "label": "Instagram" },
+    { "type": "header", "content": "Bottom bar" },
+    { "type": "text", "id": "copyright", "label": "Copyright name", "default": "REFLECTOES" },
+    { "type": "textarea", "id": "legal", "label": "Legal links (one per line: Label | /url)" }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Shop" },
+        { "type": "textarea", "id": "links", "label": "Links (one per line: Label | /url)" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "RT Footer" }]
+}
+{% endschema %}

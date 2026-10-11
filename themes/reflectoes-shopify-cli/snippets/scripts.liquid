@@ -123,11 +123,9 @@
   href="{{ 'events.js' | asset_url }}"
   fetchpriority="low"
 >
-<script
-  src="{{ 'popover-polyfill.js' | asset_url }}"
-  type="module"
-  fetchpriority="low"
-></script>
+<script type="module">
+  if (!HTMLElement.prototype.hasOwnProperty('popover')) import('@theme/popover-polyfill');
+</script>
 <script
   src="{{ 'overflow-list.js' | asset_url }}"
   type="module"

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Education Hub Hero</title>
+<link rel="stylesheet" href="shared/rt-demo.css">
+<style>
+  .hero { position: relative; border-radius: 18px; overflow: hidden; background: #000; color: #fff; padding: 0 !important; }
+  .hero canvas { display: block; width: 100%; height: clamp(380px, 48vw, 470px); }
+  .hero .copy { position: absolute; left: 0; top: 0; bottom: 0; width: min(520px, 100%); padding: 32px 28px; display: flex; flex-direction: column; justify-content: center; background: linear-gradient(90deg, rgba(0,0,0,.85) 55%, rgba(0,0,0,0)); }
+  .hero h2 { font-size: clamp(26px, 4.2vw, 40px); margin: 0 0 10px; }
+  .hero p { margin: 0 0 18px; color: #cfd8d4; max-width: 42ch; }
+  .hero .ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero .ctas a { text-decoration: none; display: inline-flex; align-items: center; }
+  .hero .proof { display: flex; gap: 18px; margin-top: 18px; font-size: 13px; color: #cfd8d4; flex-wrap: wrap; }
+  .hero .proof b { display: block; font: 800 22px Manrope, sans-serif; color: var(--accent); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-top: 14px; }
+  .cards a { display: block; text-decoration: none; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 13px; }
+  .cards a b { display: block; font: 700 15px Manrope, sans-serif; margin-bottom: 2px; }
+  .cards a span { color: var(--ink-2); }
+  .cards a:hover { border-color: var(--accent); }
+  @media (max-width: 640px) { .hero .copy { width: 100%; justify-content: flex-start; background: linear-gradient(180deg, rgba(0,0,0,.88) 55%, rgba(0,0,0,0)); padding: 22px 18px; } .hero canvas { height: 600px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Review index</a> › /pages/education · new hero above the guide cards · v2</div>
+  <h1>Education hub hero</h1>
+  <p class="lede">A walker, a runner and a cyclist crossing a dark road. A headlight sweeps across, and the reflective on their ankles and wrists answers it.</p>
+
+  <section class="hero rt-demo" id="hh">
+    <canvas aria-hidden="true"></canvas>
+    <div class="copy">
+      <p class="kicker">Night visibility education</p>
+      <h2>Drivers don't see gear. They see people.</h2>
+      <p>The research on how drivers spot runners, walkers and cyclists at night, in plain English. And how to put it to work in 10 seconds.</p>
+      <div class="ctas"><a class="rt-btn primary" href="03-biomotion-point-light.html">See what the driver sees</a><a class="rt-btn" href="07-visibility-illusion-guess.html">Take the 3-question quiz</a></div>
+      <div class="proof"><span><b>3×</b>farther than a vest</span><span><b>2.8×</b>brighter than neon yellow</span><span><b>0</b>missed while moving</span></div>
+    </div>
+  </section>
+
+  <div class="cards">
+    <a href="05-retro-vs-fluorescent-light-bounce.html"><b>Retroreflective vs. Fluorescent</b><span>Where the light goes</span></a>
+    <a href="06-how-fluorescent-works.html"><b>How Fluorescent Works</b><span>Why neon glows in the sun</span></a>
+    <a href="03-biomotion-point-light.html"><b>Biomotion Science</b><span>See what the driver sees</span></a>
+    <a href="07-visibility-illusion-guess.html"><b>The Visibility Illusion</b><span>3-question quiz</span></a>
+    <a href="08-workshop-flashlight-test.html"><b>Test Your Gear</b><span>The phone flash test</span></a>
+  </div>
+
+  <div class="note">
+    <b>v2 changes from your notes</b>
+    <ul>
+      <li>Runner rebuilt on the new gait engine: real running kinematics with a flight phase, knee drive and bent-arm swing, at a proper jogging cadence.</li>
+      <li>Lighting fixed: each person's reflective brightens smoothly as the headlight beam reaches them, and fades as it moves on. Only ankles and wrists (and one vest) light up, no knees or elbows.</li>
+      <li>Three proof numbers in the hero, each from the research folder (Wood 2023, King 2023 / Clemson, Balk 2007 / Clemson).</li>
+    </ul>
+  </div>
+</div>
+
+<script src="shared/rt-figures.js"></script>
+<script>
+(function () {
+  const cv = document.querySelector('#hh canvas');
+  const actors = [
+    { kind: 'walk', depth: 0.68, off: 0.15, gear: { socks: 'retro', gloves: 'retro' } },
+    { kind: 'run', depth: 0.86, off: 0.55, gear: { vest: 'full', socks: 'retro' } },
+    { kind: 'cycle', depth: 0.56, off: 0.9, gear: { socks: 'retro', gloves: 'retro' } }
+  ];
+  const clothes = { top: [30, 33, 40], sleeve: [30, 33, 40], bottom: [26, 28, 33], shoe: [22, 22, 26], skin: [110, 88, 72], hair: [28, 22, 18], helmet: null };
+  RT.stage(cv, (ctx, w, h, t) => {
+    const mobile = w < 640;
+    const gy = h * (mobile ? 0.9 : 0.86);
+    const sky = ctx.createLinearGradient(0, 0, 0, gy);
+    sky.addColorStop(0, '#020305'); sky.addColorStop(1, '#0a0f16');
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, w, gy);
+    ctx.fillStyle = '#07090c'; ctx.fillRect(0, gy, w, h - gy);
+    ctx.fillStyle = 'rgba(255,255,255,.3)';
+    for (let i = 0; i < 40; i++) ctx.fillRect((i * 137.5) % w, (i * 71) % (gy * 0.5), 1.2, 1.2);
+    // headlight from the right edge sweeping left and back
+    const sweep = (Math.sin(t * 0.55) + 1) / 2, edge = w * (0.2 + 0.75 * sweep);
+    const src = { x: w * 1.04, y: gy - h * 0.1 };
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    const g = ctx.createRadialGradient(src.x, src.y, 10, src.x, src.y, w * 0.95);
+    g.addColorStop(0, 'rgba(255,243,214,.26)'); g.addColorStop(1, 'rgba(255,243,214,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(src.x, src.y - 8); ctx.lineTo(edge, gy - h * 0.6); ctx.lineTo(edge - w * 0.1, h); ctx.lineTo(src.x, src.y + 8); ctx.fill();
+    ctx.restore();
+    RT.pool(ctx, (edge + w) / 2, gy + 4, w * 0.4, h * 0.05, '255,236,196', 0.12);
+    RT.glow(ctx, src.x - 10, src.y, 70, '255,243,214', 0.9);
+    actors.slice().sort((a, b) => a.depth - b.depth).forEach((A) => {
+      const s = h * 0.25 * A.depth * (mobile ? 0.85 : 1);
+      const pose = A.kind === 'cycle' ? RT.cyclePose(t) : RT.pose(t + A.off * 2, A.kind);
+      const span = w + s * 4;
+      const x = ((t * (A.kind === 'cycle' ? 2.6 : pose.speed) * s + A.off * span) % span) - s * 2;
+      const y = gy - (1 - A.depth) * h * 0.12;
+      const lit = RT.clamp((x - edge + w * 0.05) / (w * 0.15), 0, 1);
+      const cam = RT.camera({ x, y, s }, 0, 0.04);
+      if (A.kind === 'cycle') RT.drawBike(ctx, cam, pose, { tire: '#1c1f23', spoke: '#14171a', frame: '#1c1f23' }, 0.9);
+      RT.drawFigure(ctx, cam, pose, Object.assign({}, clothes, { light: 0.5 + 0.4 * lit, retro: 0.08 + 0.92 * lit, gear: A.gear, bodyAlpha: 0.9 }));
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -117,11 +117,59 @@
   content="{{ og_description | escape }}"
 >
 
+{%- liquid
+  comment
+    Keep the title tag at about 60 characters and never cut a word in half.
+    Shopify cuts long product and article titles at 70 characters, which leaves
+    fragments such as "Wheel Reflectors St". Trim to whole words, drop a trailing
+    connector or punctuation mark, and only add the shop name when it still fits.
+  endcomment
+  assign seo_title = page_title | strip
+  assign seo_limit = 60
+  assign add_shop_name = true
+  if seo_title contains shop.name
+    assign add_shop_name = false
+  endif
+
+  if request.page_type != "index" and seo_title.size > seo_limit
+    assign trimmed = ""
+    assign before_last = ""
+    assign last_added = ""
+    assign title_words = seo_title | split: " "
+    for word in title_words
+      assign candidate = trimmed | append: " " | append: word | strip
+      if candidate.size > seo_limit
+        break
+      endif
+      assign before_last = trimmed
+      assign trimmed = candidate
+      assign last_added = word | downcase
+    endfor
+
+    assign connector_list = "&,-,|,and,or,for,with,to,of,the,a,in,on,vs" | split: ","
+    if connector_list contains last_added
+      assign trimmed = before_last
+    endif
+
+    assign tail = trimmed | slice: -1
+    if tail == ":" or tail == "," or tail == "-" or tail == "|"
+      assign trimmed = trimmed | remove_last: tail | strip
+    endif
+    assign seo_title = trimmed
+  endif
+
+  if add_shop_name
+    assign total_length = seo_title.size | plus: 13
+    if total_length > seo_limit
+      assign add_shop_name = false
+    endif
+  endif
+-%}
 <title>
-  {{ page_title }}
-  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+  {{ seo_title }}
+  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ", " }}"{% endif -%}
   {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  {%- if add_shop_name %} &ndash; {{ shop.name }}{% endif -%}
 </title>
 
 <link
@@ -129,9 +177,42 @@
   href="{{ canonical_url }}"
 >
 
-{% if page_description %}
+{%- liquid
+  comment
+    Fallback descriptions for pages that have none set in admin: policy pages
+    (first words of the policy) and the all-products collection. Any description
+    over 160 characters is cut at a whole word so search results do not truncate it.
+  endcomment
+  assign meta_description = page_description | strip_html | strip_newlines | strip
+  assign meta_description = meta_description | replace: "&amp;amp;", "&" | replace: "&amp;", "&"
+  if meta_description == blank
+    if request.page_type == "collection" and collection.handle == "all"
+      assign meta_description = "Shop all ReflecToes reflective running and cycling gear: jackets, vests, jerseys, gloves, socks, lights and bands. Free U.S. shipping over $50."
+    elsif request.path contains "/policies/"
+      for policy_item in shop.policies
+        if policy_item.url == request.path
+          assign meta_description = policy_item.title | append: ": " | append: policy_item.body | strip_html | strip_newlines | strip
+        endif
+      endfor
+    endif
+  endif
+
+  if meta_description.size > 160
+    assign desc_words = meta_description | split: " "
+    assign desc_short = ""
+    for word in desc_words
+      assign desc_candidate = desc_short | append: " " | append: word | strip
+      if desc_candidate.size > 155
+        break
+      endif
+      assign desc_short = desc_candidate
+    endfor
+    assign meta_description = desc_short | append: "..."
+  endif
+-%}
+{% if meta_description != blank %}
   <meta
     name="description"
-    content="{{ page_description | escape }}"
+    content="{{ meta_description | escape_once }}"
   >
 {% endif %}

@@ -1,0 +1,166 @@
+<style>
+  .edu-index { max-width: 1200px; margin: 0 auto; padding: 40px 16px 60px; }
+  .edu-intro { max-width: 700px; margin: 0 auto 36px; text-align: center; }
+  .edu-intro h1 { margin: 0 0 10px; font-size: 2rem; line-height: 1.2; }
+  .edu-intro p { margin: 0; color: #5b5b5b; font-size: 1rem; line-height: 1.5; }
+  .edu-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media(min-width: 640px) { .edu-grid { grid-template-columns: repeat(2, 1fr); } }
+  .edu-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--color-border, #e5e7eb);
+    border-radius: 12px;
+    padding: 22px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow .2s, border-color .2s;
+  }
+  .edu-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.08); border-color: #d1d5db; }
+  .edu-card svg { width: 28px; height: 28px; margin-bottom: 12px; color: #111; flex-shrink: 0; }
+  .edu-card .edu-pill {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    background: #f3f4f6;
+    color: #555;
+    border-radius: 20px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+  }
+  .edu-card h2 { margin: 0 0 8px; font-size: 1.1rem; line-height: 1.3; }
+  .edu-card p { margin: 0 0 18px; color: #555; line-height: 1.5; font-size: .95rem; flex-grow: 1; }
+  .edu-card .edu-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: .875rem;
+    font-weight: 600;
+    color: #111;
+    text-decoration: none;
+  }
+  .edu-divider { border: none; border-top: 1px solid #e5e7eb; margin: 40px 0 36px; }
+  .edu-footer { text-align: center; }
+  .edu-footer p { color: #5b5b5b; margin: 0 0 20px; font-size: .95rem; }
+  .edu-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .edu-press { margin: 44px 0 0; text-align: center; }
+  .edu-press-label { font-size: 0.68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #b0b8b4; margin: 0 0 14px; }
+  .edu-press-items { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center; }
+  .edu-press-items a { font-size: 0.88rem; font-weight: 600; color: #888; text-decoration: none; transition: color .15s; }
+  .edu-press-items a:hover { color: #111; }
+  .edu-btn {
+    display: inline-block;
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-size: .9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+  }
+  .edu-btn-primary { background: #111; color: #fff; border: 1.5px solid #111; }
+  .edu-btn-primary:hover { background: #333; border-color: #333; }
+  .edu-btn-secondary { background: transparent; color: #111; border: 1.5px solid #111; }
+  .edu-btn-secondary:hover { background: #f3f4f6; }
+</style>
+
+<section aria-labelledby="edu-title" class="edu-index">
+
+  <div class="edu-intro">
+    <h1 id="edu-title">Night Visibility Education</h1>
+    <p>Research-backed guides on how reflective gear works, why placement matters, and how to share what you know with your running club or team.</p>
+  </div>
+
+  <div class="edu-grid">
+
+    <a href="/pages/retroreflective-vs-fluorescent" class="edu-card" aria-label="Retroreflective vs. Fluorescent guide">
+      <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+        <circle stroke="currentColor" stroke-width="1.5" cx="12" cy="12" r="4"/>
+        <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <span class="edu-pill">Science</span>
+      <h2>Retroreflective vs. Fluorescent</h2>
+      <p>Fluorescent gear fails completely after dark. Learn the optical difference and why your hi-vis jacket provides almost no protection at night.</p>
+      <span class="edu-cta">Read the guide &rarr;</span>
+    </a>
+
+    <a href="/pages/how-fluorescent-fabric-works" class="edu-card" aria-label="How Fluorescent Fabric Works guide">
+      <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+        <circle stroke="currentColor" stroke-width="1.5" cx="12" cy="12" r="4"/>
+        <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <span class="edu-pill">Science</span>
+      <h2>How Fluorescent Fabric Works</h2>
+      <p>Ever wondered why neon colors look intensely bright during the day? Learn the quantum physics of UV light conversion and their night limitations.</p>
+      <span class="edu-cta">Read the science &rarr;</span>
+    </a>
+
+    <a href="/pages/biomotion-science" class="edu-card" aria-label="Biomotion Science guide">
+      <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M17 8c0-2.76-2.24-5-5-5S7 5.24 7 8c0 1.6.75 3.02 1.92 3.95L12 21l3.08-9.05A4.99 4.99 0 0 0 17 8Z"/>
+        <circle fill="currentColor" cx="12" cy="8" r="1.5"/>
+      </svg>
+      <span class="edu-pill">Science</span>
+      <h2>Biomotion Science</h2>
+      <p>Reflective markers at your ankles and knees help drivers recognize you from 7 times farther away at night than a standard vest. Placement changes everything.</p>
+      <span class="edu-cta">Read the guide &rarr;</span>
+    </a>
+
+    <a href="/pages/visibility-illusion" class="edu-card" aria-label="The Visibility Illusion research">
+      <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-width="1.5" d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/>
+        <circle stroke="currentColor" stroke-width="1.5" cx="12" cy="12" r="3"/>
+        <line stroke="currentColor" stroke-width="1.5" stroke-linecap="round" x1="12" y1="3" x2="12" y2="1"/>
+        <line stroke="currentColor" stroke-width="1.5" stroke-linecap="round" x1="12" y1="21" x2="12" y2="23"/>
+      </svg>
+      <span class="edu-pill">Research</span>
+      <h2>The Visibility Illusion</h2>
+      <p>Pedestrians consistently overestimate how visible they are at night, often by a wide margin. See the data behind the gap between perception and reality.</p>
+      <span class="edu-cta">Read the research &rarr;</span>
+    </a>
+
+    <a href="/pages/night-safety-workshop" class="edu-card" aria-label="Night-Safety Workshop guide">
+      <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+        <rect stroke="currentColor" stroke-width="1.5" x="3" y="4" width="18" height="16" rx="2"/>
+        <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M3 9h18M8 2v4M16 2v4M7 14h4M7 17h6"/>
+      </svg>
+      <span class="edu-pill">Workshop</span>
+      <h2>Night-Safety Workshop</h2>
+      <p>A complete guide for coaches, clubs, and schools. 30-minute agenda, live flashlight demo, and tips for getting people to show up.</p>
+      <span class="edu-cta">Get the workshop guide &rarr;</span>
+    </a>
+
+  </div>
+
+  <hr class="edu-divider">
+
+  <div class="edu-footer">
+    <p>All content is backed by peer-reviewed research published in <em>Human Factors</em>, <em>Accident Analysis &amp; Prevention</em>, and <em>Clinical and Experimental Optometry</em>.</p>
+    <div class="edu-btns">
+      <a href="/pages/night-safety-workshop" class="edu-btn edu-btn-secondary">Run a Workshop</a>
+      <a href="/collections/all" class="edu-btn edu-btn-primary">Shop Reflective Gear</a>
+    </div>
+  </div>
+
+  <div class="edu-press">
+    <p class="edu-press-label">As seen on</p>
+    <div class="edu-press-items">
+      <a href="https://www.runnersworld.com/gear/a38254827/reflective-gear-to-run-safely-in-the-dark/" target="_blank" rel="noopener">Runner's World</a>
+      <a href="https://www.bicycling.com/bikes-gear/g41029852/best-reflective-gear/" target="_blank" rel="noopener">Bicycling</a>
+      <a href="https://www.irunfar.com/best-reflective-running-gear" target="_blank" rel="noopener">iRunFar</a>
+      <a href="https://road.cc/content/review/reflectoes-highly-reflective-night-safety-socks-282827" target="_blank" rel="noopener">road.cc</a>
+      <a href="https://fueledbylolz.com/2020/10/28/reflectoes-review/" target="_blank" rel="noopener">FueledByLolz</a>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Education Hub",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

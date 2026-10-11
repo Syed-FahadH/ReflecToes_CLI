@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Night Walking Gear Builder</title>
+<link rel="stylesheet" href="shared/rt-demo.css">
+<style>
+  #gb .grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 16px; align-items: start; }
+  #gb .stagewrap { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--night-line); }
+  #gb canvas { display: block; width: 100%; aspect-ratio: 4 / 3.4; }
+  #gb .reads { position: absolute; left: 10px; right: 10px; top: 10px; background: rgba(0,0,0,.62); border-radius: 10px; padding: 9px 12px; backdrop-filter: blur(4px); }
+  #gb .reads small { display: block; font: 600 11px Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--night-muted); }
+  #gb .reads b { font: 700 17px Manrope, sans-serif; }
+  #gb .reads b.lvl0 { color: #ff8f7a; } #gb .reads b.lvl1 { color: #ffd36b; } #gb .reads b.lvl2 { color: var(--accent); }
+  #gb .reads p { margin: 3px 0 0; font-size: 12.5px; color: var(--night-ink); }
+  #gb .views { display: flex; justify-content: center; margin-top: 10px; }
+  #gb .items { display: grid; gap: 8px; }
+  #gb label.item { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center; background: #10161c; border: 1px solid var(--night-line); border-radius: 12px; padding: 10px 12px; cursor: pointer; min-height: 54px; }
+  #gb label.item:hover { border-color: #3b4652; }
+  #gb label.item:has(input:checked) { border-color: var(--accent); background: #0f1d1a; }
+  #gb input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--accent); }
+  #gb .item b { display: block; font: 600 14px Inter, sans-serif; color: #fff; }
+  #gb .item span { display: block; font-size: 12.5px; color: var(--night-muted); }
+  #gb .item a { font: 600 12.5px Inter, sans-serif; color: var(--accent); text-decoration: none; white-space: nowrap; }
+  #gb .item .mv { font: 700 11px Inter, sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #002a20; background: var(--accent); border-radius: 4px; padding: 1px 5px; margin-left: 6px; vertical-align: 1px; font-style: normal; }
+  #gb .ledpos { display: none; gap: 6px; margin-top: 6px; }
+  #gb label.item:has(input[data-g=led]:checked) .ledpos { display: flex; }
+  #gb .ledpos button { font: 600 12px Inter, sans-serif; border: 1px solid #39434d; background: #161d24; color: #fff; border-radius: 999px; padding: 4px 10px; cursor: pointer; }
+  #gb .ledpos button[aria-pressed=true] { background: var(--accent); border-color: var(--accent); color: #002a20; }
+  @media (max-width: 760px) { #gb .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Review index</a> › /pages/best-reflective-gear-for-walking-at-night · new (sits above the ranked list) · v2</div>
+  <h1>Build your night walk</h1>
+  <p class="lede">Tick gear on and off and see what a driver sees in their headlights. Switch the view: crossing in front of the car, walking toward it, or walking away.</p>
+
+  <section class="rt-demo" id="gb">
+    <p class="kicker">Build your setup</p>
+    <h2 class="big">Bright gets you noticed. Moving gets you recognized.</h2>
+    <div class="grid">
+      <div>
+        <div class="stagewrap">
+          <canvas aria-label="A walker at night in headlights, showing the selected reflective gear and lights"></canvas>
+          <div class="reads" aria-live="polite"><small>A driver sees</small><b id="gb-read"></b><p id="gb-why"></p></div>
+        </div>
+        <div class="views"><div class="rt-seg" role="group" aria-label="View">
+          <button class="rt-btn" data-view="0" aria-pressed="true">Crossing</button>
+          <button class="rt-btn" data-view="-90" aria-pressed="false">Walking toward car</button>
+          <button class="rt-btn" data-view="90" aria-pressed="false">Walking away</button>
+        </div></div>
+      </div>
+      <div class="items">
+        <label class="item"><input type="checkbox" data-g="vest" checked><div><b>Full reflective vest</b><span>Reflective front, back and sides</span></div><a href="https://reflectoes.com/products/reflective-packable-running-vest">Shop</a></label>
+        <label class="item"><input type="checkbox" data-g="socks"><div><b>Reflective crew socks<em class="mv">moves</em></b><span>Reflective all the way around the ankle</span></div><a href="https://reflectoes.com/products/reflective-cycling-and-running-socks">Shop</a></label>
+        <label class="item"><input type="checkbox" data-g="bands"><div><b>Reflective ankle bands<em class="mv">moves</em></b><span>Over any shoes or pants</span></div><a href="https://reflectoes.com/products/reflective-safety-bands-2-pack-high-visibility-fluorescent-arm-ankle-or-wrist-straps">Shop</a></label>
+        <label class="item"><input type="checkbox" data-g="gloves"><div><b>Reflective gloves<em class="mv">moves</em></b><span>Moves with your arm swing</span></div><a href="https://reflectoes.com/products/reflective-running-gloves">Shop</a></label>
+        <label class="item"><input type="checkbox" data-g="decals"><div><b>Iron-on decals<em class="mv">moves</em></b><span>On sleeves and pant legs you already own</span></div><a href="https://reflectoes.com/products/iron-on-reflective-stickers-for-clothing">Shop</a></label>
+        <label class="item"><input type="checkbox" data-g="led"><div><b>LED clip lights (2-pack)<em class="mv">moves</em></b><span>Velcro straps for wrists or ankles. Their own light, for angles headlights miss.</span>
+          <div class="ledpos" role="group" aria-label="Where to wear the lights"><button type="button" data-led="ankle" aria-pressed="true">On ankles</button><button type="button" data-led="wrist" aria-pressed="false">On wrists</button></div></div><a href="https://reflectoes.com/products/reflectoes-led-clip-lights-for-runners">Shop</a></label>
+      </div>
+    </div>
+    <p class="cite">Research: Balk SA (2007) Clemson University (vest + ankle straps vs vest); King, Szubski &amp; Tyrrell (2023). Status labels describe what drivers tend to recognize, not measured distances.</p>
+  </section>
+
+  <div class="note">
+    <b>v2 changes from your notes</b>
+    <ul>
+      <li>"Full reflective vest": reflective on the front, back and sides, so it stays bright from every view.</li>
+      <li>LED clip lights are a 2-pack on velcro straps: pick ankles or wrists. They blink red and stay visible from every angle.</li>
+      <li>No center road lines; the walker is on an unlit road edge.</li>
+      <li>Three views: crossing (side), walking toward the car (front), walking away (back).</li>
+      <li>The status box now cites the research when it applies (for example, the Clemson "vest + ankles = 1.9×" result).</li>
+    </ul>
+  </div>
+</div>
+
+<script src="shared/rt-figures.js"></script>
+<script>
+(function () {
+  const root = document.getElementById('gb');
+  const cv = root.querySelector('canvas'), read = root.querySelector('#gb-read'), why = root.querySelector('#gb-why');
+  const G = {}, K = {}, S = { view: 0, viewA: 0, led: 'ankle' };
+  const boxes = root.querySelectorAll('[data-g]');
+  function sync() {
+    boxes.forEach((b) => (G[b.dataset.g] = b.checked));
+    const ankles = G.socks || G.bands || (G.led && S.led === 'ankle');
+    const moving = ankles || G.gloves || G.decals || (G.led && S.led === 'wrist');
+    let txt, lvl, w = '';
+    if (moving && G.vest) { txt = 'A person, walking, with a bright torso'; lvl = 2; w = ankles ? 'Clemson study: adding reflective at the ankles to a vest nearly doubled how far away drivers responded (1.9×).' : 'Moving points plus a bright torso: the best of both.'; }
+    else if (moving) { txt = 'A person, walking'; lvl = 2; w = 'A few moving points read as a human. That is the biomotion effect.'; }
+    else if (G.vest) { txt = 'Something bright. But what?'; lvl = 1; w = 'A vest is very bright head-on, but it is one shape that does not move like a person. Add something at the ankles.'; }
+    else { txt = 'Almost nothing'; lvl = 0; w = 'Dark clothing returns almost no headlight to the driver.'; }
+    read.textContent = txt; read.className = 'lvl' + lvl; why.textContent = w;
+  }
+  boxes.forEach((b) => b.addEventListener('change', sync));
+  root.querySelectorAll('[data-led]').forEach((b) => (b.onclick = (e) => { e.preventDefault(); S.led = b.dataset.led; root.querySelectorAll('[data-led]').forEach((x) => x.setAttribute('aria-pressed', x === b)); sync(); }));
+  root.querySelectorAll('[data-view]').forEach((b) => (b.onclick = () => { S.view = +b.dataset.view; root.querySelectorAll('[data-view]').forEach((x) => x.setAttribute('aria-pressed', x === b)); }));
+  sync();
+  RT.stage(cv, (ctx, w, h, t, dt, rdt) => {
+    S.viewA = RT.approach(S.viewA, S.view, rdt, 6);
+    const hz = RT.nightRoad(ctx, w, h, 1, { lines: false, hz: 0.38 });
+    const pose = RT.pose(t, 'walk');
+    const side = Math.abs(S.viewA) < 45;
+    const s = h * (side ? 0.27 : 0.28), gy = hz + (h - hz) * 0.8;
+    // ground texture moving under the walker
+    ctx.fillStyle = 'rgba(255,236,196,0.08)';
+    if (side) for (let i = 0; i < 18; i++) { const x = ((i * 61 - t * pose.speed * s) % (w + 80) + w + 80) % (w + 80) - 40; ctx.fillRect(x, gy + 6 + (i % 3) * 6, 18, 2); }
+    else for (let i = 0; i < 10; i++) { const k = ((i / 10 + t * 0.18 * Math.sign(S.viewA)) % 1 + 1) % 1; const y = hz + 6 + Math.pow(k, 2) * (h - hz - 6); ctx.fillRect(w / 2 - w * 0.03 - k * w * 0.2, y, w * 0.06 + k * w * 0.4, 1.5); }
+    const cam = RT.camera({ x: w * 0.5, y: gy, s }, S.viewA, side ? 0.05 : 0.14);
+    RT.pool(ctx, w * 0.5, gy + 2, s * 0.5, s * 0.08, '0,0,0', 0.4);
+    const gear = { vest: G.vest ? 'full' : null, socks: G.socks ? 'retro' : null, bands: G.bands, gloves: G.gloves ? 'retro' : null, decals: G.decals, ledWrist: G.led && S.led === 'wrist', ledAnkle: G.led && S.led === 'ankle' };
+    RT.drawFigure(ctx, cam, pose, { top: [34, 38, 46], sleeve: [34, 38, 46], bottom: [28, 30, 36], shoe: [22, 22, 26], skin: [120, 95, 80], light: 0.55, retro: 1, gear, t, bodyAlpha: 0.85 });
+  });
+})();
+</script>
+</body>
+</html>

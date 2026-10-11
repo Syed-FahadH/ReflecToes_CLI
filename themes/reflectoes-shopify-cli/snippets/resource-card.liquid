@@ -147,13 +147,20 @@
         </div>
       {%- endif -%}
     {%- endif -%}
-  </div>
+      {%- if resource_type == 'product' -%}
+      {%- if resource.available == false -%}
+        <span class="rt-card-badge rt-card-badge--sold">Sold out</span>
+      {%- elsif resource.compare_at_price > resource.price -%}
+        <span class="rt-card-badge">Save {{ resource.compare_at_price | minus: resource.price | times: 100 | divided_by: resource.compare_at_price }}%</span>
+      {%- endif -%}
+      <div class="rt-rating opinew-stars-plugin-product-list">{% render 'opinew_review_stars_lists' product: resource %}</div>
+    {%- endif -%}
+</div>
 
   <div class="resource-card__content">
     <p class="resource-card__title{% if style == 'overlay' %} h5{%else %} paragraph{% endif %}">
       {{- resource.title -}}
     </p>
-    <div class='opinew-stars-plugin-product-list'>{% render 'opinew_review_stars_lists' product:resource %}</div>
 
     {% if resource_type == 'product' %}
       {% render 'price', product_resource: resource, show_unit_price: true %}

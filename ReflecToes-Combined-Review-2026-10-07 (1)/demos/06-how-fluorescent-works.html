@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why Fluorescent Glows</title>
+<link rel="stylesheet" href="shared/rt-demo.css">
+<style>
+  #fl .pane canvas { aspect-ratio: 4 / 3.1; }
+  #fl .count { display: flex; justify-content: center; gap: 6px; align-items: center; margin-top: 10px; font: 600 14px Inter, sans-serif; color: var(--night-ink); }
+  #fl .count i { width: 14px; height: 22px; border-radius: 4px; background: #e8e2b8; display: inline-block; transition: opacity .4s, background .4s; }
+  #fl .count i.uv { background: #d6ff1e; }
+  #fl .count i.off { opacity: .12; }
+  #fl .msg { text-align: center; font: 600 15px Inter, sans-serif; margin: 14px 0 0; min-height: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs"><a href="index.html">Review index</a> › /pages/how-fluorescent-works · new · v2</div>
+  <h1>Why fluorescent "glows" in daylight</h1>
+  <p class="lede">Two yellow fabrics in the sun. Both bounce back the visible light. Only the fluorescent one also takes the invisible UV and sends it back as more yellow. That extra light is the glow.</p>
+
+  <section class="rt-demo" id="fl">
+    <p class="kicker">How fluorescent works</p>
+    <h2 class="big">Fluorescent turns light you can't see into color you can.</h2>
+    <div class="panes">
+      <div class="pane"><canvas aria-label="Sunlight bouncing off regular yellow fabric; the UV is absorbed"></canvas><span class="tag">Regular yellow</span></div>
+      <div class="pane"><canvas aria-label="Sunlight bouncing off fluorescent yellow fabric; the UV comes back out as extra yellow light"></canvas><span class="tag">Fluorescent yellow</span></div>
+    </div>
+    <div class="panes" style="margin-top:2px">
+      <div class="count" id="c0"><span>Light back:</span><i></i><i class="off"></i></div>
+      <div class="count" id="c1"><span>Light back:</span><i></i><i class="uv"></i></div>
+    </div>
+    <p class="msg" id="fl-msg" aria-live="polite"></p>
+    <div class="controls">
+      <div class="rt-seg" role="group" aria-label="Light source">
+        <button class="rt-btn" data-src="sun" aria-pressed="true">Sunlight</button>
+        <button class="rt-btn" data-src="head" aria-pressed="false">Car headlights</button>
+      </div>
+    </div>
+    <p class="cite">Sunlight carries ultraviolet (UV), which is invisible to the eye. Car headlights (halogen, HID and LED) produce almost no UV in the wavelengths that activate fluorescent dyes. Simplified illustration.</p>
+  </section>
+
+  <div class="note">
+    <b>v2 changes from your notes</b>
+    <ul>
+      <li>Dropped the energy-level diagram and spectrum. Now it's just light hitting fabric and bouncing off at an angle, side by side.</li>
+      <li>One idea only: fluorescent sends back extra light (the UV, converted). The counters under each panel make it countable: 1 vs 2, double the light.</li>
+      <li>Headlight switch: no UV comes in, so both fabrics send back the same amount. That's the setup for the retroreflective page.</li>
+      <li>Slow, smooth pulses on a loop. No jerky motion.</li>
+    </ul>
+  </div>
+</div>
+
+<script src="shared/rt-figures.js"></script>
+<script>
+(function () {
+  const root = document.getElementById('fl');
+  const msg = root.querySelector('#fl-msg');
+  let src = 'sun', srcK = 1;
+  const MSG = { sun: 'In sunlight the fluorescent fabric sends back twice the light of the regular one: it looks brighter than its surroundings.', head: 'Under headlights there is almost no UV to convert. Both fabrics send back the same light.' };
+  function setSrc(v) {
+    src = v; root.querySelectorAll('[data-src]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.src === v)); msg.textContent = MSG[v];
+    root.querySelector('#c1 i.uv').classList.toggle('off', v === 'head');
+  }
+  root.querySelectorAll('[data-src]').forEach((b) => (b.onclick = () => setSrc(b.dataset.src)));
+  setSrc('sun');
+  const P = 3.2;
+  root.querySelectorAll('canvas').forEach((cv, idx) => {
+    const fluor = idx === 1;
+    RT.stage(cv, (ctx, w, h, t, dt, rdt) => {
+      if (idx === 0) srcK = RT.approach(srcK, src === 'sun' ? 1 : 0, rdt, 4);
+      const sun = srcK, sc = Math.min(w / 420, h / 320);
+      // backdrop
+      const g = ctx.createLinearGradient(0, 0, 0, h);
+      g.addColorStop(0, sun > 0.5 ? '#8dc0e8' : '#06080c'); g.addColorStop(1, sun > 0.5 ? '#dcedf7' : '#10151c');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      const fy = h * 0.8, fx0 = w * 0.12, fx1 = w * 0.88;
+      // source
+      const S = sun > 0.5 ? { x: w * 0.2, y: h * 0.24 } : { x: w * 0.04, y: h * 0.52 };
+      if (sun > 0.5) { RT.glow(ctx, S.x, S.y, 60 * sc, '255,230,140', 1); ctx.fillStyle = '#ffe58a'; ctx.beginPath(); ctx.arc(S.x, S.y, 16 * sc, 0, Math.PI * 2); ctx.fill(); }
+      else { ctx.fillStyle = '#fff6d8'; ctx.fillRect(S.x - 4, S.y - 8 * sc, 10 * sc, 16 * sc); RT.glow(ctx, S.x, S.y, 50 * sc, '255,243,214', 1); }
+      // fabric
+      const extra = fluor && sun > 0.5;
+      ctx.fillStyle = sun > 0.5 ? (fluor ? '#e2ff2e' : '#e6c93a') : (fluor ? '#55592a' : '#57502a');
+      ctx.fillRect(fx0, fy, fx1 - fx0, h * 0.08);
+      ctx.fillStyle = 'rgba(0,0,0,.15)'; for (let x = fx0; x < fx1; x += 6 * sc) ctx.fillRect(x, fy, 1, h * 0.08);
+      if (extra) RT.glow(ctx, (fx0 + fx1) / 2, fy + h * 0.04, w * 0.2, '214,255,30', 0.4);
+      ctx.fillStyle = sun > 0.5 ? '#1d2a33' : '#a3aeaa'; ctx.font = `600 ${Math.max(11, 13 * sc)}px Inter, sans-serif`; ctx.textAlign = 'center';
+      // rays: two visible + one UV (sun only)
+      const u = (t % P) / P;
+      // one ray of sunlight in (it carries invisible UV), light back out at an angle
+      const B = { x: w * 0.5, y: fy }, A = S;
+      const k = RT.clamp(u / 0.38, 0, 1), k2 = RT.clamp((u - 0.42) / 0.4, 0, 1);
+      ray(ctx, A, B, k, sun > 0.5 ? '255,236,150' : '255,244,214', false, sc);
+      if (k2 > 0) {
+        const c = sun > 0.5 ? (fluor ? '230,255,90' : '240,215,90') : '200,190,130';
+        const o1 = { x: B.x + (B.x - A.x) * 0.9, y: B.y - (B.y - A.y) * 0.9 };
+        if (extra) {
+          const o2 = { x: B.x + (B.x - A.x) * 0.62, y: B.y - (B.y - A.y) * 1.05 };
+          ray(ctx, B, o1, k2, c, false, sc); ray(ctx, B, o2, k2, '214,255,30', false, sc);
+          if (k2 < 0.3) RT.glow(ctx, B.x, B.y, 34 * sc, '214,255,30', 1 - k2 * 3);
+          if (k2 > 0.35) { ctx.fillStyle = '#4d6b00'; ctx.textAlign = 'center'; ctx.fillText('1 in, 2 out: UV comes back as extra yellow', w * 0.5, h * 0.12); }
+        } else {
+          ray(ctx, B, o1, k2, c, false, sc);
+          if (sun > 0.5) {
+            ctx.strokeStyle = `rgba(255,140,60,${0.8 * (1 - k2)})`; ctx.lineWidth = 2 * sc;
+            for (let j = 0; j < 2; j++) { ctx.beginPath(); for (let q = 0; q < 12; q++) { const xx = B.x - 8 * sc + q * 1.6 * sc, yy = B.y - 6 * sc - j * 8 * sc - k2 * 14 * sc + Math.sin(q + t * 8) * 2; q ? ctx.lineTo(xx, yy) : ctx.moveTo(xx, yy); } ctx.stroke(); }
+            if (k2 > 0.35) { ctx.fillStyle = '#7a3d10'; ctx.textAlign = 'center'; ctx.fillText('1 in, 1 out: the UV is lost as heat', w * 0.5, h * 0.12); }
+          }
+        }
+      }
+      if (sun > 0.5 && u < 0.5) { ctx.fillStyle = '#1d2a33'; ctx.textAlign = 'left'; ctx.fillText('sunlight (includes invisible UV)', w * 0.36, h * 0.46); }
+      if (sun < 0.5) { ctx.fillStyle = '#a3aeaa'; ctx.textAlign = 'left'; ctx.fillText('headlights: almost no UV', w * 0.08, h * 0.38); }
+    });
+  });
+  function ray(ctx, A, B, k, rgb, dashed, sc) {
+    if (k <= 0) return;
+    const x = A.x + (B.x - A.x) * k, y = A.y + (B.y - A.y) * k;
+    ctx.save(); ctx.lineCap = 'round';
+    ctx.strokeStyle = `rgba(${rgb},0.95)`; ctx.lineWidth = 6.5 * sc;
+    if (dashed) ctx.setLineDash([7 * sc, 6 * sc]);
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(x, y); ctx.stroke();
+    ctx.setLineDash([]);
+    { const a = Math.atan2(B.y - A.y, B.x - A.x); ctx.fillStyle = `rgba(${rgb},1)`; ctx.beginPath(); ctx.moveTo(x + Math.cos(a) * 16 * sc, y + Math.sin(a) * 16 * sc); ctx.lineTo(x + Math.cos(a + 2.5) * 14 * sc, y + Math.sin(a + 2.5) * 14 * sc); ctx.lineTo(x + Math.cos(a - 2.5) * 14 * sc, y + Math.sin(a - 2.5) * 14 * sc); ctx.fill(); }
+    ctx.restore();
+  }
+})();
+</script>
+</body>
+</html>

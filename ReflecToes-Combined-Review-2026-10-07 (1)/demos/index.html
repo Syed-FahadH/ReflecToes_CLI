@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ReflecToes Animation Concepts</title>
+<link rel="stylesheet" href="shared/rt-demo.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 18px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--ink); transition: border-color .2s, transform .2s; }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card .num { font: 800 13px Manrope, sans-serif; color: var(--accent-ink); }
+  .card h2 { margin: 0; font-size: 18px; }
+  .card .page { font-size: 12.5px; color: var(--muted); }
+  .card p { margin: 4px 0 0; font-size: 14px; color: var(--ink-2); }
+  .pill { align-self: flex-start; font: 700 11px Inter, sans-serif; letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+  .pill.rep { background: #fff1d6; color: #7a4b00; } .pill.new { background: #d9fbef; color: #0a3a30; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .filters button { font: 600 13px Inter, sans-serif; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 14px; cursor: pointer; min-height: 40px; }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  h2 { margin: 36px 0 8px; font-size: 22px; }
+  .plain { max-width: 78ch; color: var(--ink-2); }
+  .plain li { margin: 8px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e6ebe9; vertical-align: top; }
+  th { background: #eef2f0; font-weight: 600; cursor: pointer; user-select: none; white-space: nowrap; }
+  th::after { content: " ↕"; color: #9aa6a1; font-size: 11px; }
+  td b { font-variant-numeric: tabular-nums; }
+  .tablewrap { overflow-x: auto; margin-top: 10px; }
+  #q { font: 14px Inter, sans-serif; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; width: min(360px, 100%); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ReflecToes animation concepts</h1>
+  <p class="lede">All ten rebuilt from your notes. Nothing is live. Every demo starts on its own as soon as it scrolls into view, the same way the live page animations do. Old versions are kept in <code>_v1/</code>.</p>
+  <div class="filters" role="group" aria-label="Filter demos">
+    <button data-f="all" aria-pressed="true">All 10</button>
+    <button data-f="rep" aria-pressed="false">Replaces something live</button>
+    <button data-f="new" aria-pressed="false">New</button>
+  </div>
+
+  <div class="grid" id="grid">
+    <a class="card" data-k="rep" href="01-night-kit-headlight-test.html"><span class="num">01</span><span class="pill rep">Replaces live</span><h2>Night Kit: Headlight Test</h2><span class="page">/pages/night-kit</span><p>Smooth gait, real 3D strap vest that reads right from the side, headlight light spill on the pavement. Stats: 3×, 1.9× (Clemson), 100% vs 60%.</p></a>
+    <a class="card" data-k="rep" href="02-daylight-kit-turn-signal.html"><span class="num">02</span><span class="pill rep">Replaces live</span><h2>Daylight Kit: Turn Signal Test</h2><span class="page">/pages/daylight-kit</span><p>Brighter fluorescent, SUV-height view so the signal hand sits against the street. Headline: about half of cyclist deaths happen when it's light out.</p></a>
+    <a class="card" data-k="rep" href="03-biomotion-point-light.html"><span class="num">03</span><span class="pill rep">Replaces live</span><h2>Biomotion: What the Driver Sees</h2><span class="page">/pages/biomotion-science</span><p>v3: study vest shown as the strap vest the research used, smoother run with real air time, sock flicker fixed, working Freeze.</p></a>
+    <a class="card" data-k="rep" href="04-approach-45mph.html"><span class="num">04</span><span class="pill rep">Replaces static chart</span><h2>Can the Driver Stop?</h2><span class="page">/pages/biomotion-science, /pages/visibility-illusion</span><p>35 / 55 mph, one pedestrian data set. Cars react after recognizing: move over, brake, or hit at a calculated speed.</p></a>
+    <a class="card" data-k="new" href="05-retro-vs-fluorescent-light-bounce.html"><span class="num">05</span><span class="pill new">New</span><h2>Where the Light Goes</h2><span class="page">/pages/retroreflective-vs-fluorescent</span><p>v4: normal sedan, steady lines with moving chevrons, cycles through three fixed samples. Line thickness = light reaching the driver's eyes. Day: fluorescent doubles, reflective looks ordinary.</p></a>
+    <a class="card" data-k="new" href="06-how-fluorescent-works.html"><span class="num">06</span><span class="pill new">New</span><h2>Why Fluorescent Glows</h2><span class="page">/pages/how-fluorescent-works</span><p>Simple: light bounces off two yellow fabrics at an angle. Fluorescent sends back double: 1 in, 2 out. Headlights: equal.</p></a>
+    <a class="card" data-k="new" href="07-visibility-illusion-guess.html"><span class="num">07</span><span class="pill new">New</span><h2>3-Question Quiz</h2><span class="page">/pages/visibility-illusion</span><p>Obviously a quiz: one question at a time, a picture of each outfit, tap an answer, get a hard fact.</p></a>
+    <a class="card" data-k="new" href="08-workshop-flashlight-test.html"><span class="num">08</span><span class="pill new">New</span><h2>Test Your Gear in 10 Seconds</h2><span class="page">/pages/night-safety-workshop (+ FAQ, product pages)</span><p>Diagram with two tests: phone flash photo and flashlight-at-your-eye, plus what each material looks like.</p></a>
+    <a class="card" data-k="new" href="09-walking-gear-builder.html"><span class="num">09</span><span class="pill new">New</span><h2>Build Your Night Walk</h2><span class="page">/pages/best-reflective-gear-for-walking-at-night</span><p>"Full reflective vest" (front, back and sides), LED clips on wrists or ankles, no road lines, three views, sock flicker fixed.</p></a>
+    <a class="card" data-k="new" href="10-education-hub-hero.html"><span class="num">10</span><span class="pill new">New</span><h2>Education Hub Hero</h2><span class="page">/pages/education</span><p>Walker, runner (fixed) and cyclist cross a dark road; the reflective lights up only as the beam reaches them.</p></a>
+  </div>
+
+  <h2>How a top 1% marketer would push these further</h2>
+  <ol class="plain">
+    <li><b>One number per demo, framed as an outcome.</b> Not "biomotion improves conspicuity" but "At 55 mph a driver needs 265 ft to stop. A vest gets you seen at 142." Feet, seconds and mph beat adjectives. (Done in 01–05.)</li>
+    <li><b>Sell to people who already own a vest.</b> That's the biggest pool of buyers. The Clemson result is the pitch: same vest plus reflective ankles = 1.9× the distance. Run it as a page headline, an ad and a bundle: "Already have a vest? Add socks."</li>
+    <li><b>Make the reader do something.</b> The quiz, the flash test and the gear builder turn a reader into a participant. People believe what they find out themselves. Put a demo in the first screen of each page, not halfway down.</li>
+    <li><b>Every demo ends at a cart.</b> After the gear builder or quiz, show "Your setup: socks + gloves, $X, 15% off as a kit" with one button. The demo is the product picker.</li>
+    <li><b>Turn the demos into 6–10 second vertical videos.</b> The 55 mph crash outcome and the "hide the body" moment are thumb-stoppers for Reels, TikTok and Meta ads. Same code, recorded to MP4 in Claude Code.</li>
+    <li><b>#FlashTest user content.</b> Ask buyers to post a phone-flash photo of their gear. Free proof, and it makes every competitor's "reflective" claim testable.</li>
+    <li><b>Capture emails on the quiz.</b> "Get your score + the 1-page night safety checklist." Feeds the Klaviyo flows.</li>
+    <li><b>One set of numbers sitewide.</b> Mixed studies on different pages (~410 ft here, 486 ft there) quietly cost trust. Pick one source per claim and cite it under the demo. Table below.</li>
+    <li><b>Say the scary part honestly.</b> "These drivers knew they were looking for pedestrians. Real drivers don't." It's true, it's from the studies, and it makes every number land harder.</li>
+  </ol>
+
+  <h2>Every number used, with its source</h2>
+  <input id="q" type="search" placeholder="Filter by number, claim or source" aria-label="Filter numbers">
+  <div class="tablewrap">
+    <table id="nums">
+      <thead><tr><th data-c="0">Number</th><th data-c="1">Claim</th><th data-c="2">Source</th><th data-c="3">Used in</th></tr></thead>
+      <tbody>
+        <tr><td><b>3×</b> (148 vs 43 m)</td><td>Biomotion recognized ~3× farther than a vest, same amount of reflective</td><td>Wood 2005, reported in Wood JM 2023, Clin Exp Optom</td><td>01, 10</td></tr>
+        <tr><td><b>26×</b> (148 vs 5.6 m)</td><td>Biomotion vs black clothing</td><td>Same</td><td>available</td></tr>
+        <tr><td><b>100% / 60% / 40%</b></td><td>Share of drivers who responded: biomotion / vest / black</td><td>Same</td><td>01</td></tr>
+        <tr><td><b>18 / 142 / 486 ft</b></td><td>Pedestrian recognition: black / vest / biomotion, low beams</td><td>Same</td><td>04, 07</td></tr>
+        <tr><td><b>65 / 126 / 386 ft</b></td><td>Cyclist recognition: black / vest / vest + ankle and knee</td><td>Wood et al. 2012, Accid Anal Prev 45:726</td><td>04</td></tr>
+        <tr><td><b>1.9×</b> (79 vs 41 m)</td><td>Vest + ankle straps vs same vest; only 13% of the material moved</td><td>Balk 2007, Clemson University thesis (on-road, 120 drivers)</td><td>01, 03, 09</td></tr>
+        <tr><td><b>2.5×</b> (100 vs 40 m)</td><td>Walking in place vs standing still</td><td>Balk 2007, Clemson</td><td>03</td></tr>
+        <tr><td><b>0 missed</b></td><td>No pedestrians were missed when walking or facing the car</td><td>Balk 2007, Clemson</td><td>03, 10</td></tr>
+        <tr><td><b>134 / 260 ft</b></td><td>Response distance: vest / vest + ankles</td><td>Balk 2007, Clemson</td><td>03</td></tr>
+        <tr><td><b>2.8×</b> (12.5 vs 4.5)</td><td>Retroreflective judged brighter than fluorescent yellow in a beam</td><td>King, Szubski &amp; Tyrrell 2023, Human Factors (Clemson)</td><td>05, 10</td></tr>
+        <tr><td><b>11.0 → 4.5</b></td><td>Fluorescent yellow: predicted vs judged brightness</td><td>King 2023</td><td>05</td></tr>
+        <tr><td><b>6.0 → 12.5</b></td><td>Retroreflective: predicted vs judged brightness</td><td>King 2023</td><td>05, 08</td></tr>
+        <tr><td><b>79%</b></td><td>Drivers who never noticed a dark-clad walker, though they knew to look</td><td>Tyrrell et al. 2016 review, Clin Exp Optom</td><td>07</td></tr>
+        <tr><td><b>97%</b></td><td>Headlights dimmed 97% and pedestrians still felt just as visible</td><td>Tyrrell et al. 2016 review</td><td>07</td></tr>
+        <tr><td><b>51%</b></td><td>U.S. bicyclist deaths not in dark conditions: daylight, dawn or dusk (48.9% were in the dark, 2018–2022)</td><td>NHTSA FARS via PBIC</td><td>02</td></tr>
+        <tr><td><b>Fluorescent = earlier by day</b></td><td>Fluorescent yellow, orange, red improve daytime detection and recognition</td><td>Kwan &amp; Mapstone, Cochrane review 2006</td><td>02</td></tr>
+        <tr><td><b>265 ft / 136 ft</b></td><td>Stopping distance at 55 / 35 mph (1.5 s reaction, 0.7 g braking)</td><td>Calculated; assumptions shown on the demo</td><td>04, 07</td></tr>
+        <tr><td><b>~51 mph</b></td><td>Impact speed: vest at 55 mph, pedestrian data</td><td>Calculated from the rows above</td><td>04</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>How these ship (when you approve)</h2>
+  <ul class="plain">
+    <li>One shared theme asset (<code>rt-figures.js</code>, no libraries) plus one CSS file. Each demo becomes a theme section you can drop on any page from the theme editor. Scripts in a theme section run reliably, unlike scripts pasted into a page's rich-text body (which may be why the live demos are pure CSS).</li>
+    <li>Built and checked on an unpublished theme first.</li>
+    <li>Every demo starts on its own, like the live CSS animations. They pause only when scrolled off screen, to save battery.</li>
+  </ul>
+  <p class="plain" style="font-size:13px">Local preview: run <code>python _serve.py 8766</code> in this folder, then open http://localhost:8766. Opening the files directly from disk also works.</p>
+</div>
+<script>
+  const btns = document.querySelectorAll('[data-f]');
+  btns.forEach((b) => b.onclick = () => {
+    btns.forEach((x) => x.setAttribute('aria-pressed', x === b));
+    document.querySelectorAll('#grid .card').forEach((c) => c.hidden = b.dataset.f !== 'all' && c.dataset.k !== b.dataset.f);
+  });
+  // numbers table: filter + sort
+  const tb = document.querySelector('#nums tbody'), rows = [...tb.rows];
+  document.getElementById('q').oninput = (e) => { const v = e.target.value.toLowerCase(); rows.forEach((r) => (r.hidden = !r.textContent.toLowerCase().includes(v))); };
+  let dir = 1;
+  document.querySelectorAll('#nums th').forEach((th) => th.onclick = () => { const c = +th.dataset.c; dir = -dir; rows.sort((a, b) => a.cells[c].textContent.localeCompare(b.cells[c].textContent, undefined, { numeric: true }) * dir).forEach((r) => tb.appendChild(r)); });
+</script>
+</body>
+</html>

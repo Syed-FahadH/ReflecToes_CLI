@@ -1,0 +1,228 @@
+/* ReflecToes product card. One look for every product card on the site:
+   collection grids, search, recommendations, featured lists and the mega menu. */
+
+/* ---------- Media ---------- */
+product-card .card-gallery,
+.resource-card[data-resource-type='product'] .resource-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f3f4ef;
+}
+
+product-card .card-gallery {
+  height: auto;
+}
+
+product-card .card-gallery :is(slideshow-component, slideshow-container, slideshow-slides, slideshow-slide, .product-media) {
+  background: transparent !important;
+}
+
+product-card .card-gallery .product-media,
+product-card .card-gallery slideshow-component,
+product-card .card-gallery slideshow-container,
+product-card .card-gallery slideshow-slides,
+product-card .card-gallery slideshow-slide {
+  height: 100% !important;
+}
+
+product-card .card-gallery .product-media {
+  --ratio: 1 !important;
+}
+
+product-card .card-gallery .product-media__image,
+.resource-card[data-resource-type='product'] .resource-card__image {
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto !important;
+  padding: 6%;
+  object-fit: contain !important;
+  border-radius: 0;
+  mix-blend-mode: multiply;
+  box-sizing: border-box;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+}
+
+product-card:hover .card-gallery .product-media__image,
+.resource-card:hover .resource-card__image {
+  transform: scale(1.04);
+}
+
+/* ---------- Sale and sold-out tags ---------- */
+product-card .product-badges {
+  inset: 12px auto auto 12px;
+}
+
+product-card .product-badges__badge,
+.rt-card-badge {
+  padding: 5px 9px;
+  border-radius: 3px;
+  background: #d6ff3d;
+  color: #0a0d10;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+product-card .product-badges__badge.color-custom-badge-sold-out,
+.rt-card-badge--sold {
+  background: #0a0d10;
+  color: #fff;
+}
+
+.rt-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+}
+
+/* ---------- Rating chip (bottom left of the image) ---------- */
+.rt-rating {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: block;
+  margin: 0;
+  pointer-events: none;
+}
+
+.rt-rating .opinew-stars-plugin-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.94);
+  color: #0a0d10 !important;
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none !important;
+}
+
+.rt-rating .opinew-star-plugin-inside {
+  display: inline-flex;
+  gap: 1px;
+}
+
+.rt-rating .opinew-star-plugin-inside i {
+  font-size: 12px !important;
+}
+
+.rt-rating .opinew-no-reviews-stars-plugin b {
+  font-weight: 600;
+}
+
+/* Products with no reviews yet show no chip */
+.rt-rating:not(:has([class*='star-full'], [class*='star-half'])) {
+  display: none;
+}
+
+/* ---------- Title ---------- */
+.resource-card[data-resource-type='product'] .resource-card__content {
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.resource-card[data-resource-type='product'] .resource-card__title,
+product-card .group-block .text-block h2,
+product-card .group-block .text-block h3 {
+  display: -webkit-box;
+  min-height: 2.7em;
+  margin: 0;
+  overflow: hidden;
+  color: #0a0d10 !important;
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+  text-transform: none !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ---------- Price ---------- */
+.resource-card[data-resource-type='product'] .price__sale:not(.price__hidden),
+product-card product-price .price__sale:not(.price__hidden) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  align-items: baseline;
+}
+
+.resource-card .price__hidden,
+product-card .price__hidden {
+  display: none !important;
+}
+
+/* sale price first, old price after it */
+.resource-card[data-resource-type='product'] .price-item__group:has(.price-item--sale),
+product-card product-price .price-item__group:has(.price-item--sale) {
+  order: -1;
+}
+
+.resource-card[data-resource-type='product'] .price,
+product-card product-price .price,
+product-card product-price .price-item--sale {
+  color: #0a0d10;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.resource-card[data-resource-type='product'] .compare-at-price,
+product-card product-price .compare-at-price {
+  color: #7a848d !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  text-decoration: line-through;
+}
+
+/* ---------- Card spacing and focus ---------- */
+/* Text starts right under the image, so titles line up across a row */
+product-card .group-block {
+  height: auto !important;
+}
+
+product-card .group-block-content {
+  justify-content: flex-start !important;
+  gap: 8px;
+}
+
+product-card .product-card__content {
+  gap: 14px;
+}
+
+product-card:focus-within .card-gallery,
+.resource-card:focus-within .resource-card__media {
+  outline: 2px solid #0a0d10;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  product-card .card-gallery .product-media__image,
+  .resource-card[data-resource-type='product'] .resource-card__image {
+    transition: none;
+  }
+
+  product-card:hover .card-gallery .product-media__image,
+  .resource-card:hover .resource-card__image {
+    transform: none;
+  }
+}
+
+/* Skip rendering of product grid items that are far off screen; the browser remembers each real height once seen */
+.product-grid__item {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 560px;
+}

@@ -1,0 +1,64 @@
+<section class="rth rth-kits" aria-labelledby="rth-kits-{{ section.id }}">
+  <div class="rth-wrap">
+    <div class="rth-kits__head" data-reveal>
+      <p class="rth-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="rth-h2" id="rth-kits-{{ section.id }}">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="rth-kits__grid">
+      {%- for block in section.blocks -%}
+        <a
+          class="rth-kit{% if block.settings.style == 'day' %} rth-kit--day{% endif %}"
+          href="{{ block.settings.link }}"
+          data-reveal
+          style="--i: {{ forloop.index0 }}"
+          {{ block.shopify_attributes }}
+        >
+          <div>
+            <h3 class="rth-kit__title">{{ block.settings.title }}</h3>
+            <p class="rth-kit__text">{{ block.settings.text }}</p>
+            <span class="rth-kit__go">{{ block.settings.cta }}</span>
+          </div>
+          {%- if block.settings.image != blank -%}
+            <img
+              src="{{ block.settings.image | image_url: width: 480 }}"
+              srcset="{{ block.settings.image | image_url: width: 320 }} 320w, {{ block.settings.image | image_url: width: 480 }} 480w, {{ block.settings.image | image_url: width: 640 }} 640w"
+              sizes="(min-width: 900px) 20vw, 40vw"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+              alt="{{ block.settings.image_alt }}"
+              loading="lazy"
+              decoding="async"
+            >
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RT Kits",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Kits" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pick your light" }
+  ],
+  "blocks": [
+    {
+      "type": "kit",
+      "name": "Kit",
+      "settings": [
+        { "type": "select", "id": "style", "label": "Style", "default": "night", "options": [{ "value": "night", "label": "Night (dark)" }, { "value": "day", "label": "Day (lime)" }] },
+        { "type": "text", "id": "title", "label": "Title", "default": "The Night Kit" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Reflective socks + gloves." },
+        { "type": "text", "id": "cta", "label": "Link text", "default": "Build your kit" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Image description" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [{ "name": "RT Kits" }]
+}
+{% endschema %}

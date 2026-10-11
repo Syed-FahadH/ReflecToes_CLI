@@ -1,0 +1,59 @@
+<section class="rth rth-sci" aria-labelledby="rth-sci-{{ section.id }}">
+  <div class="rth-wrap">
+    <p class="rth-eyebrow" data-reveal style="color: var(--rth-lime)">{{ section.settings.eyebrow }}</p>
+    <h2 class="rth-h2" data-reveal id="rth-sci-{{ section.id }}">{{ section.settings.heading }}</h2>
+
+    <ul class="rth-sci__grid">
+      {%- for block in section.blocks -%}
+        <li class="rth-stat" data-reveal style="--i: {{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.prefix != blank -%}<p class="rth-stat__pre">{{ block.settings.prefix }}</p>{%- endif -%}
+          <p class="rth-stat__num">{{ block.settings.number }}</p>
+          <p class="rth-stat__label">{{ block.settings.label }}</p>
+          <p class="rth-stat__text">
+            {{- block.settings.text -}}
+            {%- if block.settings.source != blank -%}
+              <a class="rth-src" href="{{ routes.root_url }}pages/science-sources#source-{{ block.settings.source }}" aria-label="Source {{ block.settings.source }}">{{ block.settings.source }}</a>
+            {%- endif -%}
+          </p>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <p class="rth-sci__note">{{ section.settings.note }}</p>
+
+    <div class="rth-sci__ctas">
+      <a class="rth-btn rth-btn--lime" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>
+      <a class="rth-btn rth-btn--ghost" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RT Research",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "The research" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Seen farther. Seen sooner." },
+    { "type": "text", "id": "note", "label": "Note under the cards", "default": "Numbers come from published studies of reflective and fluorescent placement. They did not test ReflecToes products." },
+    { "type": "text", "id": "primary_label", "label": "First button text", "default": "See the sources" },
+    { "type": "url", "id": "primary_link", "label": "First button link" },
+    { "type": "text", "id": "secondary_label", "label": "Second button text", "default": "How biomotion works" },
+    { "type": "url", "id": "secondary_link", "label": "Second button link" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "prefix", "label": "Small text above the number (optional)" },
+        { "type": "text", "id": "number", "label": "Big number", "default": "6x" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Farther" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "source", "label": "Source number on the Science & Sources page" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "RT Research" }]
+}
+{% endschema %}

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReflecToes Visibility Page Tasks</title>
+<style>
+  :root { --ink:#1b1f24; --muted:#5b6470; --line:#d9dde3; --accent:#c8f000; --accent-ink:#2f3a00; --box:#f5f7f9; --warn:#fff4d6; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#fff; color:var(--ink); font:16px/1.55 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  main { max-width:860px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:28px; margin:0 0 4px; }
+  h2 { font-size:21px; margin:36px 0 8px; padding-top:12px; border-top:2px solid var(--ink); }
+  h3 { font-size:17px; margin:22px 0 6px; }
+  .sub { color:var(--muted); margin:0 0 20px; }
+  .rules { background:var(--warn); border:1px solid #e8cf80; border-radius:8px; padding:14px 18px; }
+  .rules li { margin:4px 0; }
+  .box { background:var(--box); border:1px solid var(--line); border-radius:8px; padding:12px 16px; margin:10px 0; }
+  .copy { background:#fbfff0; border:1px solid #dbe8a8; border-radius:8px; padding:10px 14px; margin:8px 0; }
+  table { width:100%; border-collapse:collapse; font-size:14.5px; margin:8px 0; }
+  th, td { border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top; }
+  th { background:var(--box); }
+  code { background:var(--box); padding:1px 5px; border-radius:4px; font-size:13.5px; word-break:break-all; }
+  .tag { display:inline-block; font-size:12px; font-weight:600; padding:1px 8px; border-radius:10px; background:var(--accent); color:var(--accent-ink); margin-left:6px; vertical-align:middle; }
+  .dev { background:#dfe9ff; color:#1d3a7a; }
+  ol li, ul li { margin:3px 0; }
+  @media print { h2 { break-after:avoid; } .box, .copy, table { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<main>
+<h1>ReflecToes Visibility Pages: Task List</h1>
+<p class="sub">From Ben, October 7, 2026. Goal: make our Biomotion Science page and product pages sell better than Pearl Izumi's BioViz page (pearlizumi.com/pages/bioviz) while keeping our stronger research.</p>
+
+<div class="rules">
+<strong>Rules for this work. Read first.</strong>
+<ul>
+  <li><strong>Do not remove or soften any claim.</strong> If a claim has no citation, leave it. Only fix an actual mistake, and the fixes are listed below.</li>
+  <li>Do not touch supplier specs (330+ cd/lx/m², 720+ cd/lx/m²), the "highway brightness standards" line, or the "10x brighter" sticker claim. They are approved.</li>
+  <li>Back up any page or product text before editing (copy it into a doc with the date).</li>
+  <li>Theme files (Biomotion Science layout, schema, product blocks) go on an <strong>unpublished theme</strong> first. Ben or the developer publishes.</li>
+  <li>No em dashes in site copy. Plain wording.</li>
+</ul>
+</div>
+
+<h2>What Pearl Izumi does better (and what we copy as an idea, not as wording)</h2>
+<table>
+<tr><th>Pearl BioViz page has</th><th>Our Biomotion Science page</th><th>Task</th></tr>
+<tr><td>Meta description with a hard number</td><td>No meta description at all</td><td>Task 1</td></tr>
+<tr><td>A "Shop" button after every section</td><td>3 product links on the whole page</td><td>Task 2</td></tr>
+<tr><td>FAQs on lights, care, fluorescent at night</td><td>5 FAQs, two are repeats</td><td>Task 3</td></tr>
+<tr><td>FAQ, Article and Breadcrumb schema</td><td>Only Organization schema</td><td>Task 4</td></tr>
+<tr><td>"Related" reading block at the bottom</td><td>None</td><td>Task 5</td></tr>
+<tr><td>The same visibility language on every product</td><td>"Why Choose ReflecToes?" block on 17 products, not linked to the science</td><td>Task 6</td></tr>
+</table>
+<p>Where we already win: more real research, primary citations, the interactive vest-vs-biomotion toggle, and more specific numbers. Keep all of it.</p>
+
+<h2>Task 1. Add a meta description to Biomotion Science <span class="tag">Shopify admin</span></h2>
+<p>Page: <code>reflectoes.com/pages/biomotion-science</code>. Online Store &gt; Pages &gt; Biomotion Science &gt; Search engine listing. Do not change the title tag.</p>
+<div class="copy">Reflective gear on your ankles, knees and wrists helps drivers recognize you up to 7x farther at night. See the research and where to wear it.</div>
+
+<h2>Task 2. Add shop buttons after each section <span class="tag dev">Theme</span></h2>
+<table>
+<tr><th>After this section</th><th>Button text</th><th>Link</th></tr>
+<tr><td>What is biological motion?</td><td>Shop reflective socks</td><td><code>/products/reflective-cycling-and-running-socks</code></td></tr>
+<tr><td>Why biomotion works at night</td><td>Shop reflective bands</td><td><code>/products/reflective-safety-bands-2-pack-high-visibility-fluorescent-arm-ankle-or-wrist-straps</code></td></tr>
+<tr><td>How far away can drivers actually see reflective gear?</td><td>Build your Night Kit</td><td><code>/pages/night-kit</code></td></tr>
+<tr><td>Retroreflective vs. fluorescent</td><td>Shop fluorescent socks</td><td><code>/products/3-pair-fluorescent-socks-day-glow-neon-socks-for-cyclists-runners</code></td></tr>
+<tr><td>Best placement for cyclists and runners</td><td>Shop by body zone</td><td><code>/pages/shop-by-body-zone</code></td></tr>
+</table>
+<p>Also change the existing <code>/collections/all</code> link on this page to <code>/pages/shop-by-body-zone</code>.</p>
+
+<h2>Task 3. Replace the duplicate FAQs and add new ones <span class="tag dev">Theme</span></h2>
+<p>The FAQ currently repeats "What is biological motion?" and "How far away can drivers see reflective gear?" from the sections above it. Keep one version of each and add these:</p>
+
+<h3>Do I still need bike lights if I wear reflective gear?</h3>
+<div class="copy">Yes. Lights let drivers see you from angles their headlights don't reach, and many places require them. Reflective material on your ankles and wrists is what makes a driver recognize you as a person once their headlights hit you. Use both. <em>Link:</em> LED clip lights product, Night Kit.</div>
+
+<h3>Are reflective socks better than a reflective vest?</h3>
+<div class="copy">For being recognized at night, placement beats area. In a cyclist study, riders wearing ankle and knee reflectors with a vest were recognized over 3x farther than with the vest alone.<sup>2</sup> In a pedestrian study, the same amount of reflective material on the ankles and wrists was recognized about 23x farther than on the chest (212.7 m vs 9.1 m).<sup>6</sup> <em>Link:</em> reflective socks, reflective bands.</div>
+
+<h3>Does fluorescent yellow work at night?</h3>
+<div class="copy">No. Fluorescent color needs the UV in sunlight. Car headlights give off almost none, so fluorescent fabric looks like ordinary fabric at night. For night, you need retroreflective material. <em>Link:</em> <code>/pages/retroreflective-vs-fluorescent</code></div>
+
+<h3>Where should I wear reflective material?</h3>
+<div class="copy">Start with your feet and ankles. They move the most when you run or pedal, which is the motion drivers recognize as human. Then add wrists and hands, then knees and elbows. <em>Link:</em> <code>/pages/shop-by-body-zone</code></div>
+
+<h3>How do I wash reflective gear?</h3>
+<div class="copy">Reflective and fluorescent socks: machine wash cold. Our reflective socks are rated for 50+ washes. Jackets, vests and gloves: hand wash cold and hang dry. Summer cycling gloves: close the hook-and-loop straps before washing so they don't snag. <em>Link:</em> <code>/blogs/news/wash-reflective-running-gear</code></div>
+
+<p>Superscripts link to the matching anchor on <code>/pages/science-sources</code>, same style as the rest of the site.</p>
+
+<h2>Task 4. Add FAQ, Breadcrumb and Article schema <span class="tag dev">Theme</span></h2>
+<p>On the Biomotion Science page, add JSON-LD for <code>FAQPage</code> (only the FAQs visible on the page, word for word), <code>BreadcrumbList</code> (Education &gt; Biomotion Science) and <code>Article</code>. Test with Google's Rich Results Test before publishing.</p>
+
+<h2>Task 5. Add a "Keep reading" block at the bottom <span class="tag dev">Theme</span></h2>
+<ul>
+  <li>Retroreflective vs. Fluorescent: <code>/pages/retroreflective-vs-fluorescent</code></li>
+  <li>How Fluorescent Fabric Works: <code>/pages/how-fluorescent-fabric-works</code></li>
+  <li>Best Reflective Gear for Walking at Night: <code>/pages/best-reflective-gear-for-walking-at-night</code></li>
+  <li>Free Night-Safety Workshop Kit: <code>/pages/workshop-kit</code></li>
+  <li>All the research: <code>/pages/science-sources</code></li>
+</ul>
+
+<h2>Task 6. Product page "Why Choose ReflecToes?" block <span class="tag dev">Theme or metafield</span></h2>
+<p>This block is on 17 product pages. <strong>Keep every claim as is.</strong> Two changes:</p>
+<ol>
+  <li><strong>Link it to the science.</strong> Make "Bio-Motion Design" link to <code>/pages/biomotion-science</code> and "Engineer-Grade Reflectivity" link to <code>/pages/retroreflective-vs-fluorescent</code>. This is how Pearl ties every product back to BioViz.</li>
+  <li><strong>Fix the two pages where the block is wrong for the product.</strong> The block says "Every ReflecToes product uses retroreflective materials." It also shows on:
+    <ul>
+      <li><code>3-pair-fluorescent-socks-day-glow-neon-socks-for-cyclists-runners</code> (fluorescent yarn, no retroreflective material)</li>
+      <li><code>reflectoes-led-clip-lights-for-runners</code> (lights)</li>
+    </ul>
+    On the fluorescent socks, replace the first item with:
+    <div class="copy"><strong>Daylight Fluorescent Color.</strong> UV-reactive fluorescent yarn turns sunlight into extra-vivid color. In daylight research, fluorescent color on the moving legs was recognized 3.3x farther than a fluorescent jersey alone.<sup>4</sup></div>
+    On the LED clip lights, replace it with a line about the lights (Ben to supply the spec he wants to lead with). Leave the other three items as they are on both pages.
+  </li>
+</ol>
+
+<h2>Task 7. Add sources to claims that already exist <span class="tag">Shopify admin</span></h2>
+<p>These claims stay exactly as written. We just found the research behind them.</p>
+<table>
+<tr><th>Claim (where)</th><th>Source to add</th></tr>
+<tr><td>"7x farther than dark clothing" (Biomotion Science stat tile, Visibility Illusion)</td><td>Wood, Tyrrell &amp; Carberry 2005, Human Factors 47(3):644-653. Biomotion 148.2 m vs black clothing 5.6 m, which is about 26x. Already Science &amp; Sources entry 7. Point the superscript there and add the study to the Biomotion page's reference list.</td></tr>
+<tr><td>"7 times farther than a standard vest" (Education hub)</td><td>Tyrrell et al. 2009, Accident Analysis &amp; Prevention 41(3):506-512. Full biomotion 181.0 m and ankles+wrists 212.7 m vs vest 9.1 m. Science &amp; Sources entry 6. <strong>Keep the live wording.</strong> Do not publish the softer Education hub wording sitting in the unpublished "Codex Phase 3" theme.</td></tr>
+<tr><td>55 / 120 / 410 ft chart (Biomotion Science, Retroreflective vs Fluorescent)</td><td>Rounded from Wood 2012 (cyclists: 65 / 126 / 386 ft) and Wood 2005 (pedestrians, low beam, biomotion 3.4x the vest). The page already says the figures are approximate. Add Wood 2005 to the reference list. Leave the numbers.</td></tr>
+<tr><td>Wheel reflectors / biomotion on wheels (Why Your Bike Lights Aren't Enough)</td><td>Fekety, D.K. (2018). <em>Using Motion Perception to Improve the Nighttime Conspicuity of Bicyclists at Street Crossings</em>. Clemson University dissertation. Highlighting wheel rotation helped drivers quickly identify cyclists seen from the side. Add it as a link in the article.</td></tr>
+</table>
+<p><strong>Add the numbers to Science &amp; Sources entry 6</strong> (Tyrrell 2009). It has no figures today:</p>
+<div class="copy">On a closed road at night, drivers responded to a pedestrian in a reflective vest at an average of 9.1 m. With the same amount of reflective material on the ankles and wrists, the average was 212.7 m. Full biomotion averaged 181.0 m. Visual clutter did not reduce the advantage.</div>
+
+<h2>Task 8. Fix one wrong statistic in old blog posts <span class="tag">Shopify admin</span></h2>
+<p>NHTSA's 77% figure is for <strong>pedestrian</strong> deaths only. For cyclists, NHTSA reports about half (48.9% of bicyclist deaths in the dark, 2018-2022). Fix only these sentences and leave the rest of each article alone.</p>
+<table>
+<tr><th>Article</th><th>Now says</th><th>Change to</th></tr>
+<tr><td><code>/blogs/news/why-reflective-bike-clothing-is-essential-for-nighttime-cyclist-safety</code></td><td>"77% of pedestrian and cyclist fatalities occur in darkness"</td><td>"77% of pedestrian deaths and about half of cyclist deaths happen in the dark"</td></tr>
+<tr><td>same article, FAQ</td><td>"Because 77% of cyclist fatalities occur in the dark."</td><td>"Because about half of cyclist deaths happen in the dark, even though far fewer people ride at night."</td></tr>
+<tr><td><code>/blogs/news/fluorescent-vs-retroreflective-what-actually-keeps-cyclists-safe-at-night</code></td><td>"77% of pedestrian and cyclist fatalities in the U.S. happen in darkness (NHTSA, 2022)"</td><td>"77% of pedestrian deaths and about half of cyclist deaths in the U.S. happen in darkness (NHTSA)"</td></tr>
+</table>
+<p>If the article has FAQ schema, update the schema text to match.</p>
+
+<h2>Task 9. Optional, Ben decides</h2>
+<ul>
+  <li><strong>Stronger stat tile on Biomotion Science:</strong> "Up to 23x farther than a vest" (Tyrrell 2009, 212.7 m vs 9.1 m, same amount of reflective material). Stronger than Pearl's "5x".</li>
+  <li><strong>Old articles that tell readers to buy ANSI/ISEA 107 or EN ISO 20471 certified gear</strong> (gilet article, high-visibility jackets article, reflective bike clothing article). That advice can send buyers to work-wear brands. Consider adding a line that for running and cycling, placement on moving joints matters more than a work-wear certification, and link to our products.</li>
+</ul>
+
+<h2>When you're done</h2>
+<ol>
+  <li>Send Ben the list of pages you changed, with before and after text.</li>
+  <li>Send the unpublished theme name for Tasks 2-6 so Ben or the developer can preview it.</li>
+  <li>Check each changed page on your phone.</li>
+</ol>
+</main>
+</body>
+</html>

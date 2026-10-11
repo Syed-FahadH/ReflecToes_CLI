@@ -1,0 +1,50 @@
+<section class="rth rth-cats" aria-labelledby="rth-cats-{{ section.id }}">
+  <div class="rth-wrap">
+    <p class="rth-eyebrow" data-reveal>{{ section.settings.eyebrow }}</p>
+    <h2 class="rth-h2" data-reveal id="rth-cats-{{ section.id }}">{{ section.settings.heading }}</h2>
+    <ul class="rth-cats__grid">
+      {%- for block in section.blocks -%}
+        <li data-reveal style="--i: {{ forloop.index0 | modulo: 4 }}" {{ block.shopify_attributes }}>
+          <a class="rth-cat" href="{{ block.settings.link }}">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 400 }}"
+                srcset="{{ block.settings.image | image_url: width: 300 }} 300w, {{ block.settings.image | image_url: width: 400 }} 400w, {{ block.settings.image | image_url: width: 600 }} 600w"
+                sizes="(min-width: 900px) 22vw, 46vw"
+                width="400"
+                height="400"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              >
+            {%- endif -%}
+            <span class="rth-cat__label">{{ block.settings.label }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RT Shop by gear",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Shop" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by gear" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Jackets" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "RT Shop by gear" }]
+}
+{% endschema %}
