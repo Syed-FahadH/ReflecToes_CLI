@@ -1,0 +1,55 @@
+{%- liquid
+  assign product_resource = closest.product
+  assign has_size = false
+  if product_resource != blank
+    for option in product_resource.options_with_values
+      assign option_name = option.name | downcase
+      if option_name contains 'size'
+        assign has_size = true
+      endif
+    endfor
+  endif
+-%}
+
+{%- if has_size -%}
+  <div class="rt-size-guide" data-rt-size-guide>
+    <button type="button" class="rt-size-guide__link" hidden>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17 17 3l4 4L7 21z"/><path d="m7 13 2 2M10 10l2 2M13 7l2 2"/></svg>
+      <span>Size chart</span>
+      <span class="rt-size-guide__hint">Not sure of your size? Check the chart.</span>
+    </button>
+  </div>
+  <script>
+    (function () {
+      var wrap = document.currentScript.previousElementSibling;
+      if (!wrap || !wrap.matches('[data-rt-size-guide]')) return;
+      var link = wrap.querySelector('.rt-size-guide__link');
+      var done = false;
+      function chartButton() { return document.querySelector('.pify_floating_button'); }
+      function reveal() {
+        if (done || !chartButton()) return;
+        done = true;
+        link.hidden = false;
+        wrap.classList.add('is-ready');
+      }
+      link.addEventListener('click', function () {
+        var b = chartButton();
+        if (b) b.click();
+      });
+      reveal();
+      if (done) return;
+      var mo = new MutationObserver(function () { reveal(); if (done) mo.disconnect(); });
+      mo.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function () { mo.disconnect(); }, 10000);
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "RT Size guide",
+  "tag": null,
+  "settings": [],
+  "presets": [{ "name": "RT Size guide" }]
+}
+{% endschema %}

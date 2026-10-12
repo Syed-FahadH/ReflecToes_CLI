@@ -1,0 +1,552 @@
+/* ReflecToes collection pages. Loaded on collection templates only (see layout/theme.liquid). */
+
+/* ---------- Header band ---------- */
+.rtc-head {
+  background: #0a0d10;
+  color: #fff;
+}
+
+.rtc-head__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: clamp(32px, 5vw, 72px) clamp(16px, 2.8vw, 40px) clamp(24px, 3.5vw, 48px);
+}
+
+.rtc-head__eyebrow {
+  margin: 0 0 10px;
+  color: #d6ff3d;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.rtc-head__title {
+  max-width: 18ch;
+  margin: 0;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: #fff;
+}
+
+.rtc-head__body {
+  max-width: 760px;
+  margin-top: clamp(16px, 2vw, 24px);
+  color: #b9c2c9;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.6;
+}
+
+/* the intro HTML that comes from the collection description */
+.rtc-head__body .coll-intro {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.rtc-head__body h2,
+.rtc-head__body .coll-intro h1 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif);
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.rtc-head__body p {
+  margin: 0 0 14px;
+  color: #b9c2c9;
+}
+
+.rtc-head__body a {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #d6ff3d;
+  text-underline-offset: 3px;
+}
+
+/* quick links as pills: one scrolling row on small screens */
+.rtc-head__body .coll-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 6px;
+}
+
+.rtc-head__body .coll-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.rtc-head__body .coll-chip:hover,
+.rtc-head__body .coll-chip:focus-visible {
+  border-color: #d6ff3d;
+  background: #d6ff3d;
+  color: #0a0d10;
+}
+
+.rtc-head__body .coll-tip {
+  margin-top: 12px;
+  color: #8f9aa3;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.rtc-head__count {
+  margin: clamp(16px, 2vw, 24px) 0 0;
+  color: #8f9aa3;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 749px) {
+  .rtc-head__body .coll-chips {
+    flex-wrap: nowrap;
+    margin-inline: calc(clamp(16px, 2.8vw, 40px) * -1);
+    padding-inline: clamp(16px, 2.8vw, 40px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+
+  .rtc-head__body .coll-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rtc-head__body .coll-chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
+
+/* ---------- Extra content under the grid (images from the description) ---------- */
+.rtc-more {
+  background: #f7f8f3;
+}
+
+.rtc-more__inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: clamp(32px, 5vw, 72px) clamp(16px, 2.8vw, 40px);
+}
+
+.rtc-more table {
+  width: 100% !important;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: clamp(10px, 1.6vw, 20px);
+  margin: calc(clamp(10px, 1.6vw, 20px) * -1);
+  table-layout: fixed;
+}
+
+.rtc-more td {
+  width: auto !important;
+  padding: 0;
+  vertical-align: top;
+}
+
+.rtc-more img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 0 !important;
+}
+
+@media (max-width: 749px) {
+  .rtc-more table,
+  .rtc-more tbody,
+  .rtc-more tr {
+    display: block;
+    width: 100% !important;
+    margin: 0;
+  }
+
+  .rtc-more tr {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .rtc-more tr::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rtc-more td {
+    display: block;
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+}
+
+/* ---------- Product grid ---------- */
+.template-collection product-card {
+  min-width: 0;
+}
+
+/* Best Selling tag sits under the Save tag on narrow cards so they never overlap */
+@media (max-width: 749px) {
+  product-card .rt-flag,
+  .rth-card .rt-flag,
+  .resource-card .rt-flag {
+    top: 44px;
+    right: auto;
+    left: 12px;
+    padding: 4px 8px 4px 6px;
+    font-size: 13px;
+  }
+}
+
+/* ---------- Header refinements ---------- */
+.rtc-head__title {
+  max-width: 22ch;
+  font-size: clamp(32px, 4.6vw, 62px);
+}
+
+.rtc-head__body p,
+.rtc-head__body .coll-intro p {
+  color: #b9c2c9 !important;
+}
+
+.rtc-head__body .coll-tip {
+  color: #98a3ab !important;
+}
+
+.rtc-head__count {
+  color: #98a3ab;
+}
+
+@media (min-width: 1000px) {
+  .rtc-head__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    column-gap: clamp(32px, 5vw, 80px);
+    align-items: end;
+    padding-block: clamp(28px, 4vw, 56px);
+  }
+
+  .rtc-head__eyebrow,
+  .rtc-head__title {
+    grid-column: 1;
+  }
+
+  .rtc-head__body {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+  }
+
+  .rtc-head__count {
+    grid-column: 1;
+  }
+}
+
+@media (min-width: 1000px) {
+  .rtc-head__inner {
+    grid-template-rows: 1fr auto auto;
+    align-items: start;
+  }
+
+  .rtc-head__eyebrow {
+    align-self: end;
+    margin-bottom: 14px;
+  }
+
+  .rtc-head__title {
+    align-self: start;
+  }
+
+  .rtc-head__body {
+    grid-row: 1 / span 3;
+    align-self: end;
+  }
+}
+
+/* =====================================================================
+   Modern pass v2: balanced header, sticky toolbar, calmer product cards
+   ===================================================================== */
+
+.rtc-head__inner,
+.rtc-more__inner {
+  max-width: none;
+  padding-inline: clamp(16px, 2.8vw, 40px);
+}
+
+@media (min-width: 1000px) {
+  .rtc-head__inner {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+    padding-block: clamp(40px, 4.5vw, 64px) clamp(32px, 3.5vw, 48px);
+  }
+
+  .rtc-head__eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin-bottom: 14px;
+  }
+
+  .rtc-head__title {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    max-width: 16ch;
+    font-size: clamp(44px, 5.2vw, 76px);
+  }
+
+  .rtc-head__body {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: start;
+    margin-top: 30px;
+    padding-left: clamp(0px, 3vw, 48px);
+    border-left: 0;
+  }
+
+  .rtc-head__count {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: end;
+  }
+}
+
+/* ---------- Toolbar ---------- */
+.facets-block-wrapper--horizontal {
+  position: sticky;
+  top: var(--header-height, 70px);
+  z-index: 6;
+  border-bottom: 1px solid #eceee6;
+  background: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(10px);
+}
+
+/* ---------- Grid ---------- */
+@media (min-width: 1200px) {
+  ul.product-grid,
+  .product-grid {
+    --product-grid-columns: 4;
+  }
+}
+
+/* ---------- Cards ---------- */
+.product-grid product-card .card-gallery {
+  border-radius: 16px;
+}
+
+.product-grid product-card .text-block--custom,
+.product-grid product-card .product-card__content a.contents .text-block {
+  display: -webkit-box;
+  min-height: 2.7em;
+  overflow: hidden;
+  font-size: 15px !important;
+  font-weight: 600;
+  line-height: 1.35 !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.product-grid product-card product-price {
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.product-grid product-card product-price s,
+.product-grid product-card product-price del,
+.product-grid product-card product-price .compare-at-price {
+  color: #8b949b;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* ---------- Photos under the grid ---------- */
+.rtc-more {
+  border-top: 1px solid #eceee6;
+  background: #fff;
+}
+
+.rtc-more img {
+  border-radius: 20px;
+}
+
+/* ---------- v2 selector fixes ---------- */
+@media (min-width: 1200px) {
+  ul.product-grid--grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 28px 20px !important;
+  }
+}
+
+.facets-block-wrapper--horizontal {
+  background: #fff;
+  backdrop-filter: none;
+}
+
+.product-grid product-card .product-card__content .text-block.custom {
+  display: -webkit-box;
+  min-height: 2.7em;
+  overflow: hidden;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.product-grid product-card .price-item--sale {
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.product-grid product-card .price-item--regular.compare-at-price {
+  margin-left: 6px;
+  color: #8b949b;
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* photo row: a real grid so it lines up with the product grid */
+.rtc-more table,
+.rtc-more tbody {
+  display: block;
+  width: 100% !important;
+  margin: 0 !important;
+  border-spacing: 0;
+}
+
+.rtc-more tr {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.rtc-more td {
+  display: block;
+  min-width: 0;
+}
+
+@media (max-width: 749px) {
+  .rtc-more tr {
+    display: flex;
+  }
+
+  .rtc-more td {
+    flex: 0 0 78%;
+  }
+}
+
+/* =====================================================================
+   Header intro: works with every collection description
+   (chip/chip-row/tip and coll-chip/coll-chips/coll-tip markup, plus plain text)
+   ===================================================================== */
+
+/* all text inside the dark band is light, whatever the description sets inline */
+.rtc-head__body,
+.rtc-head__body :where(p, li, span, div, section, h2, h3, h4, td, strong, em) {
+  color: #b9c2c9 !important;
+  background: none !important;
+}
+
+.rtc-head__body :where(h2, h3, h4, strong) {
+  color: #fff !important;
+}
+
+.rtc-head__body :where(.coll-intro, section) {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* link rows */
+.rtc-head__body :where(.coll-chips, .chip-row, nav) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 6px;
+}
+
+/* every button-style link is a clear pill: light outline, white text, lime on hover */
+.rtc-head__body :where(.coll-chip, .chip, nav a) {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px !important;
+  border: 1.5px solid rgb(255 255 255 / 0.55) !important;
+  border-radius: 999px !important;
+  background: rgb(255 255 255 / 0.08) !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.rtc-head__body :where(.coll-chip, .chip, nav a):hover,
+.rtc-head__body :where(.coll-chip, .chip, nav a):focus-visible {
+  border-color: #d6ff3d !important;
+  background: #d6ff3d !important;
+  color: #0a0d10 !important;
+}
+
+.rtc-head__body :where(.coll-tip, .tip) {
+  margin-top: 12px;
+  color: #98a3ab !important;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ordinary links in the text */
+.rtc-head__body p a,
+.rtc-head__body :where(.coll-tip, .tip) a {
+  color: #fff !important;
+  text-decoration: underline;
+  text-decoration-color: #d6ff3d;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 749px) {
+  .rtc-head__body :where(.coll-chips, .chip-row, nav) {
+    flex-wrap: nowrap;
+    margin-inline: calc(clamp(16px, 2.8vw, 40px) * -1);
+    padding-inline: clamp(16px, 2.8vw, 40px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .rtc-head__body :where(.coll-chip, .chip, nav a) {
+    flex: 0 0 auto;
+  }
+}
+
+.rtc-head__body,
+.rtc-head__body * {
+  text-align: left !important;
+}

@@ -1,0 +1,23 @@
+{%- liquid
+  assign desc_parts = collection.description | split: '<table'
+  assign intro = desc_parts | first
+-%}
+<section class="rtc-head" aria-labelledby="rtc-title-{{ section.id }}">
+  <div class="rtc-head__inner">
+    <p class="rtc-head__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="rtc-head__title" id="rtc-title-{{ section.id }}">{{ collection.title }}</h1>
+    {%- if intro != blank -%}
+      <div class="rtc-head__body rte">{{ intro }}</div>
+    {%- endif -%}
+    <p class="rtc-head__count">{{ collection.all_products_count }} {% if collection.all_products_count == 1 %}product{% else %}products{% endif %}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RT Collection header",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "Collection" }
+  ]
+}
+{% endschema %}

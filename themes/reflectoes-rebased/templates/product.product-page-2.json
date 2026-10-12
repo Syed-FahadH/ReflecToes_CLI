@@ -21,13 +21,13 @@
             "image_gap": 4,
             "large_first_image": false,
             "icons_style": "none",
-            "slideshow_controls_style": "counter",
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 72,
             "aspect_ratio": "1/1.25",
             "constrain_to_viewport": false,
-            "media_radius": 0,
+            "media_radius": 20,
             "extend_media": true,
             "zoom": true,
             "video_loop": false,
@@ -35,7 +35,8 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "thumbnail_radius": 12
           },
           "blocks": {}
         },
@@ -289,7 +290,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Reliable shipping</p>",
+                        "text": "<p>Free U.S. shipping over $50</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -366,7 +367,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Flexible returns</p>",
+                        "text": "<p>30-day returns</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -423,12 +424,17 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "rt_size_guide": {
+              "type": "rt-size-guide",
+              "settings": {}
             }
           },
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "rt_size_guide",
             "buy_buttons_eYQEYi",
             "group_JbmQwr",
             "text_aEtTtq"

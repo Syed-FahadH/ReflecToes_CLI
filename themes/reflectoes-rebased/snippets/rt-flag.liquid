@@ -1,0 +1,9 @@
+{%- comment -%}
+  "Best Seller" tag for the top right of a product card image.
+  Shows for products tagged "Best Selling" in admin, or whose handle is in the list below.
+  Usage: {% render 'rt-flag', product: product %}
+{%- endcomment -%}
+{%- assign rt_best_handles = 'reflective-running-gloves' | split: ',' -%}
+{%- if product.tags contains 'Best Selling' or rt_best_handles contains product.handle -%}
+  <span class="rt-flag">Best Selling</span>
+{%- endif -%}

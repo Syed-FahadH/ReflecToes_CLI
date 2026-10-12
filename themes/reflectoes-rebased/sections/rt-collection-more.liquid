@@ -1,0 +1,21 @@
+{%- liquid
+  assign desc_parts = collection.description | split: '<table'
+  assign more = ''
+  for part in desc_parts
+    unless forloop.first
+      assign more = more | append: '<table' | append: part
+    endunless
+  endfor
+-%}
+{%- if more != blank -%}
+  <section class="rtc-more">
+    <div class="rtc-more__inner rte">{{ more }}</div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "RT Collection extras",
+  "settings": []
+}
+{% endschema %}

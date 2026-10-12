@@ -1,7 +1,29 @@
 
 
+{%- liquid
+  assign edu_handles = 'science-sources,best-reflective-gear-for-walking-at-night,workshop-kit' | split: ','
+  assign body = page.content
+  if page.handle == 'science-sources'
+    comment
+      The page template already prints the title as the H1, so the H1 inside the page body is dropped
+      instead of showing the same title twice.
+    endcomment
+    assign body_parts = page.content | split: '</h1>'
+    if body_parts.size > 1
+      assign body = ''
+      for part in body_parts
+        unless forloop.first
+          assign body = body | append: part
+          unless forloop.last
+            assign body = body | append: '</h1>'
+          endunless
+        endunless
+      endfor
+    endif
+  endif
+-%}
 <div
-  class="page-content"
+  class="page-content{% if edu_handles contains page.handle %} rt-edu-body rt-edu-body--{{ page.handle }}{% endif %}"
   style="
     {% if block.settings.text_color != blank %}
       --color: {{ block.settings.text_color }};
@@ -10,15 +32,7 @@
   "
 >
   <rte-formatter>
-    {%- comment -%}
-      The page template already prints the title as the H1. A second H1 in the page body
-      (science-sources) is shown as an H2 so each page keeps one H1.
-    {%- endcomment -%}
-    {%- if page.handle == 'science-sources' -%}
-      {{ page.content | replace: '<h1', '<h2' | replace: '</h1>', '</h2>' }}
-    {%- else -%}
-      {{ page.content }}
-    {%- endif -%}
+    {{ body }}
   </rte-formatter>
 </div>
 

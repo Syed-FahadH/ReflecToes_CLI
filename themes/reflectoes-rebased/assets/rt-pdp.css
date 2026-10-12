@@ -1,0 +1,715 @@
+/* ReflecToes product page. Loaded on product templates only (see layout/theme.liquid). */
+
+/* ---------- Purchase column ---------- */
+.product-details .text-block h1 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(26px, 2.3vw, 32px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.product-details product-price,
+.product-details .price {
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 700;
+}
+
+.product-details .variant-option__button-label,
+.product-details fieldset .variant-option__button-label {
+  min-height: 46px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.product-details .variant-option__button-label:hover {
+  border-color: #0a0d10;
+}
+
+/* unavailable sizes: struck through and faded */
+.product-details .variant-option__button-label:has(input:disabled),
+.product-details .variant-option__button-label.is-disabled {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.product-details add-to-cart-component .button,
+.product-details .add-to-cart-button {
+  min-height: 52px;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.product-details .add-to-cart-button:hover {
+  transform: translateY(-1px);
+}
+
+/* ---------- Size chart link, directly under the size options ---------- */
+.rt-size-guide {
+  min-height: 44px;
+}
+
+.rt-size-guide__link {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #0a0d10;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rt-size-guide__link > span:first-of-type {
+  text-decoration: underline;
+  text-decoration-color: #d6ff3d;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+.rt-size-guide__link:hover > span:first-of-type {
+  text-decoration-color: #0a0d10;
+}
+
+.rt-size-guide__hint {
+  color: #5b646b;
+  font-weight: 400;
+}
+
+.rt-size-guide__link:focus-visible {
+  outline: 3px solid #0a0d10;
+  outline-offset: 3px;
+}
+
+/* the app's floating tab on the page edge is replaced by the link above */
+body:has(.rt-size-guide.is-ready) .pify_floating_button {
+  display: none !important;
+}
+
+/* ---------- Shipping and returns line ---------- */
+.product-details .group-block:has(> .group-block > .icon-block) {
+  gap: 8px;
+}
+
+.product-details .group-block-content:has(> .icon-block) {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f4f5f0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ---------- Product highlights and why choose: accordions ---------- */
+.product-details accordion-custom {
+  display: block;
+  border-radius: 8px;
+}
+
+#MainContent accordion-custom .details__header {
+  padding-block: 16px;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.product-details accordion-custom ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-details accordion-custom li {
+  position: relative;
+  padding: 7px 0 7px 28px;
+  line-height: 1.45;
+}
+
+.product-details accordion-custom li::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #d6ff3d url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 8.5 2.6 2.5L12 5.5' fill='none' stroke='%230a0d10' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat;
+}
+
+.product-details accordion-custom li strong {
+  font-weight: 700;
+}
+
+/* ---------- Gallery ---------- */
+.product-information media-gallery img,
+.product-information slideshow-component img {
+  border-radius: 8px;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 749px) {
+  .product-details .text-block h1 {
+    font-size: 25px;
+  }
+
+  .rt-size-guide__hint {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-details .add-to-cart-button,
+  .product-details .variant-option__button-label {
+    transition: none;
+  }
+}
+
+/* =====================================================================
+   Modern pass: gallery, size chart popup, page flow, reviews
+   ===================================================================== */
+
+/* ---------- Gallery ---------- */
+media-gallery {
+  --rt-media-bg: #f4f5f0;
+}
+
+media-gallery slideshow-slides {
+  border-radius: 16px;
+  background: var(--rt-media-bg);
+}
+
+media-gallery slideshow-slide img {
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  media-gallery slideshow-slide:hover img {
+    transform: scale(1.03);
+  }
+}
+
+/* arrows: small round buttons that appear on hover */
+media-gallery .slideshow-control {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: #0a0d10;
+  box-shadow: 0 4px 16px rgb(10 13 16 / 0.16);
+  transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
+}
+
+media-gallery .slideshow-control:hover {
+  background: #d6ff3d;
+  transform: scale(1.06);
+}
+
+/* thumbnails */
+media-gallery .slideshow-controls__thumbnails button,
+media-gallery .slideshow-controls__thumbnails .slideshow-control {
+  overflow: hidden;
+  border-radius: 10px;
+  opacity: 0.6;
+  box-shadow: none;
+  transition: opacity 0.25s ease, outline-color 0.25s ease;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+media-gallery .slideshow-controls__thumbnails button:hover,
+media-gallery .slideshow-controls__thumbnails button[aria-selected='true'],
+media-gallery .slideshow-controls__thumbnails button[aria-current='true'] {
+  opacity: 1;
+  outline-color: #0a0d10;
+  transform: none;
+}
+
+/* mobile counter pill */
+media-gallery .slideshow-controls__counter {
+  border-radius: 999px;
+  background: rgb(10 13 16 / 0.72);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Size chart popup (Pify) ---------- */
+.pify_modal_overlay {
+  background: rgb(10 13 16 / 0.6) !important;
+  backdrop-filter: blur(3px);
+}
+
+.pify_modal_content {
+  width: min(760px, 94vw) !important;
+  max-height: 88vh !important;
+  overflow: auto !important;
+  padding: 28px 28px 24px !important;
+  border: 0 !important;
+  border-radius: 20px !important;
+  background: #fff !important;
+  box-shadow: 0 30px 80px rgb(10 13 16 / 0.35) !important;
+  animation: rt-pop 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif);
+}
+
+.pify_modal_content .pify_close_button {
+  top: 14px !important;
+  right: 14px !important;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f4f5f0;
+  transition: background-color 0.2s ease;
+}
+
+.pify_modal_content .pify_close_button:hover {
+  background: #d6ff3d;
+}
+
+.pify_modal_content table {
+  width: 100%;
+  margin-top: 16px;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.pify_modal_content th {
+  padding: 13px 12px !important;
+  border: 0 !important;
+  background: #0a0d10 !important;
+  color: #fff !important;
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pify_modal_content td {
+  padding: 13px 12px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #ecede6 !important;
+  text-align: center;
+}
+
+.pify_modal_content tbody tr:nth-child(even) td {
+  background: #f8f9f4 !important;
+}
+
+.pify_modal_content tbody tr:hover td {
+  background: #f1ffc4 !important;
+}
+
+.pify_modal_content td:first-child {
+  font-weight: 700;
+}
+
+@keyframes rt-pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 749px) {
+  .pify_modal_overlay {
+    align-items: flex-end !important;
+  }
+
+  .pify_modal_content {
+    width: 100vw !important;
+    max-height: 86vh !important;
+    padding: 22px 16px 20px !important;
+    border-radius: 20px 20px 0 0 !important;
+    animation-name: rt-sheet;
+  }
+
+  .pify_modal_content table {
+    font-size: 14px;
+  }
+
+  .pify_modal_content th,
+  .pify_modal_content td {
+    padding: 11px 6px !important;
+  }
+}
+
+@keyframes rt-sheet {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+
+/* ---------- Page flow below the buy box ---------- */
+#MainContent > .shopify-section:not(:first-child) {
+  padding-block: clamp(28px, 4vw, 56px);
+}
+
+#MainContent > .shopify-section:nth-child(even):not(:last-child) {
+  background: #f7f8f3;
+}
+
+/* section headings share one style */
+#MainContent h3,
+#MainContent .rt-pdp-heading {
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+/* ---------- Customer reviews ---------- */
+.shopify-section[id*='opinew-reviews-product-page-code'] {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: clamp(40px, 6vw, 88px) clamp(16px, 4vw, 48px) !important;
+}
+
+.shopify-section[id*='opinew-reviews-product-page-code']::before {
+  content: 'Customer reviews';
+  display: block;
+  margin-bottom: clamp(20px, 3vw, 36px);
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#opinew-reviews-product-page-code {
+  --rt-review-gap: clamp(14px, 2vw, 24px);
+}
+
+#opinew_product_plugin_app > div {
+  display: grid;
+  gap: clamp(24px, 3vw, 40px);
+}
+
+/* every direct child block of the widget gets room to breathe */
+#opinew_product_plugin_app div[class*='shadow'],
+#opinew_product_plugin_app div[class*='rounded'] {
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+/* ---------- Related products ---------- */
+product-recommendations {
+  display: block;
+}
+
+/* ---------- Scroll reveal (CSS only, skipped when motion is reduced) ---------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    #MainContent > .shopify-section:not(:first-child) > * {
+      animation: rt-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}
+
+@keyframes rt-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+
+.pify_modal_content tbody tr:hover td {
+  color: #0a0d10 !important;
+}
+
+/* ---------- Reviews widget (Opinew) ---------- */
+#opinew_product_plugin_app .opw-reviews-border-style {
+  border: 1px solid #e6e8df !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+#opinew_product_plugin_app .opinew-header-new > .opw-reviews-border-style {
+  padding: clamp(22px, 3vw, 40px) !important;
+}
+
+#opinew_product_plugin_app .opw-font6Xl {
+  font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(64px, 8vw, 96px) !important;
+  line-height: 0.9;
+}
+
+#opinew_product_plugin_app .opw-progress-row {
+  line-height: 2;
+}
+
+#opinew_product_plugin_app .opw-reviews-container .opw-grid-cols-2,
+#opinew_product_plugin_app .opw-reviews-container > div > div {
+  gap: clamp(14px, 2vw, 24px) !important;
+}
+
+#opinew_product_plugin_app .opw-review-content {
+  padding: clamp(20px, 2.4vw, 30px) !important;
+  gap: 12px !important;
+}
+
+#opinew_product_plugin_app .opw-review-content .opw-secondaryTextColor {
+  font-size: 17px;
+  letter-spacing: 0.01em;
+}
+
+#opinew_product_plugin_app .opw-date-created {
+  color: #6b747b !important;
+  font-size: 13px !important;
+}
+
+#opinew_product_plugin_app .opw-review-content p,
+#opinew_product_plugin_app .opw-review-content .opw-textColor {
+  line-height: 1.65;
+}
+
+#opinew_product_plugin_app .opw-review-content > div:nth-child(2) {
+  padding-block: 2px;
+}
+
+#opinew_product_plugin_app button,
+#opinew_product_plugin_app .opw-all-button {
+  border-radius: 999px;
+}
+
+#opinew_product_plugin_app .opw-pagination-container {
+  margin-top: clamp(24px, 3vw, 40px);
+}
+
+#opinew_product_plugin_app > div > .opinew-widget-wrapper > div > .opw-main-content-container > .summary-card-container {
+  margin-bottom: clamp(18px, 2.4vw, 32px);
+}
+
+@media (max-width: 749px) {
+  #opinew_product_plugin_app .opw-review-content {
+    padding: 18px !important;
+  }
+}
+
+/* =====================================================================
+   Layout pass: card accordions, paired buttons, split reviews
+   ===================================================================== */
+
+/* ---------- Accordions as rounded cards ---------- */
+.product-details .accordion {
+  display: grid;
+  gap: 12px;
+}
+
+.product-details accordion-custom {
+  border: 1px solid #e6e8df;
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-details accordion-custom:hover,
+.product-details accordion-custom:has(details[open]) {
+  border-color: #0a0d10;
+}
+
+.product-details accordion-custom .details__header {
+  padding: 16px 20px;
+}
+
+.product-details accordion-custom .details-content {
+  padding: 0 20px 18px;
+}
+
+.product-details accordion-custom details,
+.product-details accordion-custom summary {
+  border: 0 !important;
+}
+
+/* ---------- Shipping and returns as one card ---------- */
+.product-details .group-block-content:has(> .group-block > .group-block-content > .icon-block) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #e6e8df;
+  border-radius: 16px;
+}
+
+.product-details .group-block-content:has(> .group-block > .group-block-content > .icon-block) .group-block-content:has(> .icon-block) {
+  padding: 4px 2px;
+  background: none;
+  font-size: 14px;
+}
+
+/* ---------- Add to cart and Buy now side by side ---------- */
+.product-details .product-form-buttons--stacked {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.product-details .product-form-buttons--stacked > .quantity-selector-wrapper,
+.product-details .product-form-buttons--stacked > .product-form-text__error {
+  grid-column: 1 / -1;
+}
+
+.product-details .product-form-buttons--stacked > span:not(.product-form-text__error),
+.product-details .product-form-buttons--stacked .accelerated-checkout-block {
+  display: block;
+  min-width: 0;
+}
+
+.product-details .product-form-buttons--stacked add-to-cart-component .add-to-cart-button {
+  width: 100%;
+  height: 100%;
+  min-height: 52px;
+  border: 1.5px solid #0a0d10;
+  border-radius: 999px;
+  background: #fff;
+  color: #0a0d10;
+}
+
+.product-details .product-form-buttons--stacked add-to-cart-component .add-to-cart-button:hover {
+  background: #0a0d10;
+  color: #fff;
+}
+
+.product-details .accelerated-checkout-block {
+  --shopify-accelerated-checkout-button-block-size: 52px;
+  --shopify-accelerated-checkout-button-border-radius: 999px;
+}
+
+/* ---------- Gallery: thumbnails under the main image ---------- */
+media-gallery .slideshow-controls__thumbnails {
+  gap: 10px;
+}
+
+/* ---------- Reviews: summary on the left, reviews on the right ---------- */
+@media (min-width: 1000px) {
+  #opinew_product_plugin_app .opw-main-content-container {
+    display: grid;
+    grid-template-columns: minmax(300px, 400px) 1fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+
+  #opinew_product_plugin_app .opw-main-content-container > .summary-card-container.opw-whitespace-nowrap {
+    position: sticky;
+    top: 110px;
+  }
+
+  #opinew_product_plugin_app .opw-reviews-container .opw-grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  #opinew_product_plugin_app .opw-main-content-container > div > .summary-card-container {
+    margin: 0;
+  }
+}
+
+/* ---------- FAQ closes the page ---------- */
+#MainContent > .shopify-section:last-child {
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+@media (max-width: 749px) {
+  .product-details .group-block-content:has(> .group-block > .group-block-content > .icon-block) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* alignment fixes */
+.product-details .product-form-buttons--stacked {
+  align-items: start;
+}
+
+.product-details .product-form-buttons--stacked add-to-cart-component .add-to-cart-button {
+  height: 52px;
+}
+
+@media (min-width: 1000px) {
+  #opinew_product_plugin_app .opinew-header-new > div:not(.opw-reviews-border-style) > .opw-flex {
+    justify-content: flex-start !important;
+  }
+}
+
+/* ---------- Gallery sized to the screen: main image and thumbnails visible together ---------- */
+@media (min-width: 750px) {
+  .product-information media-gallery {
+    --rt-thumbs: 96px;
+  }
+
+  .product-information media-gallery slideshow-container,
+  .product-information media-gallery slideshow-slides {
+    height: calc(100svh - var(--header-group-height, 116px) - var(--rt-thumbs) - 48px);
+    min-height: 360px;
+    max-height: 720px;
+  }
+
+  .product-information media-gallery slideshow-slide {
+    height: 100%;
+  }
+
+  .product-information media-gallery slideshow-slide img,
+  .product-information media-gallery slideshow-slide .product-media__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 749px) {
+  .product-information media-gallery slideshow-slides {
+    max-height: 66svh;
+  }
+
+  .product-information media-gallery slideshow-slide img {
+    height: 100%;
+    max-height: 66svh;
+    object-fit: contain;
+  }
+}
+
+/* square thumbnails keep the strip short */
+media-gallery .slideshow-controls__thumbnails button,
+media-gallery .slideshow-controls__thumbnails .slideshow-control {
+  aspect-ratio: 1 / 1;
+  height: auto;
+}
+
+media-gallery .slideshow-controls__thumbnails img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* product description inside the right-hand accordion */
+.product-details accordion-custom .details-content img,
+.product-details accordion-custom .details-content video,
+.product-details accordion-custom .details-content iframe {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.product-details accordion-custom .details-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}

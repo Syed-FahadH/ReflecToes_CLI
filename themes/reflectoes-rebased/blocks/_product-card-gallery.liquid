@@ -27,6 +27,7 @@
       {%- endif -%}
     </div>
     {% render 'rt-rating', product: product %}
+    {% render 'rt-flag', product: product %}
     {%  if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add', product: product, section_id: section.id %}
     {% endif %}

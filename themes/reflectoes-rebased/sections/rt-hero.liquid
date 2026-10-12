@@ -21,9 +21,12 @@
       </h1>
       <p class="rth-hero__lead">{{ section.settings.lead }}</p>
 
-      <div class="rth-toggle" role="group" aria-label="{{ section.settings.toggle_label }}">
-        <button type="button" data-mode="night" aria-pressed="true">{{ section.settings.night_label }}</button>
-        <button type="button" data-mode="day" aria-pressed="false">{{ section.settings.day_label }}</button>
+      <div class="rth-toggle-wrap">
+        <p class="rth-toggle__hint" aria-hidden="true">{{ section.settings.toggle_hint }}<span class="rth-toggle__arrow">&rarr;</span></p>
+        <div class="rth-toggle" role="group" aria-label="{{ section.settings.toggle_label }}">
+          <button type="button" data-mode="night" aria-pressed="true"><svg class="rth-toggle__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 14.5A9 9 0 0 1 9.5 3a9 9 0 1 0 11.5 11.5Z"/></svg><span>{{ section.settings.night_label }}</span></button>
+          <button type="button" data-mode="day" aria-pressed="false"><svg class="rth-toggle__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><span>{{ section.settings.day_label }}</span></button>
+        </div>
       </div>
 
       <div class="rth-hero__ctas">
@@ -115,6 +118,7 @@
     { "type": "text", "id": "keyword_line", "label": "Keyword line (inside the H1)", "default": "Reflective Running & Cycling Gear" },
     { "type": "text", "id": "lead", "label": "Lead text", "default": "Fluorescent by day. Retroreflective by night." },
     { "type": "text", "id": "toggle_label", "label": "Toggle label", "default": "Preview in night or day light" },
+    { "type": "text", "id": "toggle_hint", "label": "Toggle hint (visible text)", "default": "Tap to see it day or night" },
     { "type": "text", "id": "night_label", "label": "Night button", "default": "Night" },
     { "type": "text", "id": "day_label", "label": "Day button", "default": "Day" },
     { "type": "image_picker", "id": "night_image", "label": "Night image (loads first)" },

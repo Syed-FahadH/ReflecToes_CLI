@@ -34,6 +34,17 @@
     <link rel="preload" href="{{ 'barlow-condensed-700.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
     {{ 'rt-header.css' | asset_url | stylesheet_tag }}
     {{ 'rt-cards.css' | asset_url | stylesheet_tag }}
+    {{ 'rt-cart.css' | asset_url | stylesheet_tag }}
+    {%- if template.name == 'page' -%}
+      {{ 'rt-edu.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+    {%- if template.name == 'collection' -%}
+      {{ 'rt-collection.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+    {%- if template.name == 'product' -%}
+      {{ 'rt-pdp.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'rt-reviews.js' | asset_url }}" defer></script>
+    {%- endif -%}
 
     {%- if template.name == 'index' -%}
       <script>document.documentElement.classList.add('rth-js')</script>
@@ -48,7 +59,8 @@
         [data-template^='product'] > .shopify-section:nth-child(n + 3),
         footer .shopify-section {
           content-visibility: auto;
-          contain-intrinsic-size: auto 700px;
+          contain-intrinsic-width: 0;
+          contain-intrinsic-height: auto 700px;
         }
       </style>
     {%- endunless -%}

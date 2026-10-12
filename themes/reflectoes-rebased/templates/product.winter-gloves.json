@@ -23,13 +23,13 @@
             "icons_style": "chevron_large",
             "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "counter",
-            "thumbnail_position": "left",
-            "thumbnail_width": 44,
-            "thumbnail_radius": 0,
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 72,
+            "thumbnail_radius": 12,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "cover",
-            "media_radius": 8,
+            "media_radius": 20,
             "extend_media": true,
             "zoom": true,
             "video_loop": false,
@@ -152,38 +152,12 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "text_EWq3mr": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<ul><li>30-day returns  </li></ul>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "text_xrnftG",
                 "opinew_reviews_product_stars_7gUnBj",
-                "price_tVjtKg",
-                "text_EWq3mr"
+                "price_tVjtKg"
               ]
             },
             "variant_picker_R3rGDr": {
@@ -325,7 +299,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Reliable shipping</p>",
+                        "text": "<p>Free U.S. shipping over $50</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -405,7 +379,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Flexible returns</p>",
+                        "text": "<p>30-day returns</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -530,9 +504,48 @@
                   "block_order": [
                     "txt_why"
                   ]
+                },
+                "accordion_row_description": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Product Description",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_desc_winter_glove": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.description }}",
+                        "width": "100%",
+                        "max_width": "",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_desc_winter_glove"
+                  ]
                 }
               },
               "block_order": [
+                "accordion_row_description",
                 "row_features",
                 "row_why"
               ]
@@ -562,14 +575,19 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "rt_size_guide": {
+              "type": "rt-size-guide",
+              "settings": {}
             }
           },
           "block_order": [
             "group_icgrde",
+            "accordion_K4PNra",
             "variant_picker_R3rGDr",
+            "rt_size_guide",
             "buy_buttons_eYQEYi",
             "group_JbmQwr",
-            "accordion_K4PNra",
             "text_aEtTtq"
           ]
         }
@@ -602,101 +620,6 @@
         "alignment_horizontal": "center",
         "padding-block-start": 20,
         "padding-block-end": 20
-      }
-    },
-    "section_desc_winter_glove": {
-      "type": "section",
-      "blocks": {
-        "accordion_desc_winter_glove": {
-          "type": "accordion",
-          "settings": {
-            "icon": "caret",
-            "dividers": true,
-            "type_preset": "h4",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "accordion_row_d_winter_glove": {
-              "type": "_accordion-row",
-              "settings": {
-                "heading": "Product Description",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_desc_winter_glove": {
-                  "type": "text",
-                  "settings": {
-                    "text": "{{ closest.product.description }}",
-                    "width": "100%",
-                    "max_width": "",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_desc_winter_glove"
-              ]
-            }
-          },
-          "block_order": [
-            "accordion_row_d_winter_glove"
-          ]
-        }
-      },
-      "block_order": [
-        "accordion_desc_winter_glove"
-      ],
-      "name": "Product Description",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 0,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 48,
-        "padding-block-end": 48
       }
     },
     "custom_liquid_4qGExE": {
@@ -1209,11 +1132,10 @@
   "order": [
     "main",
     "divider_JCTMU7",
-    "section_desc_winter_glove",
     "custom_liquid_4qGExE",
-    "section_EYFXrJ",
-    "product_recommendations_qggXJq",
     "opinew-reviews-product-page-code",
+    "product_recommendations_qggXJq",
+    "section_EYFXrJ",
     "custom_liquid_seo_schema"
   ]
 }

@@ -154,6 +154,7 @@
         <span class="rt-card-badge">Save {{ resource.compare_at_price | minus: resource.price | times: 100 | divided_by: resource.compare_at_price }}%</span>
       {%- endif -%}
       {% render 'rt-rating', product: resource %}
+      {% render 'rt-flag', product: resource %}
     {%- endif -%}
 </div>
 

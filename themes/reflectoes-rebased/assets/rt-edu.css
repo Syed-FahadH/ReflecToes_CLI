@@ -1,0 +1,859 @@
+/* ReflecToes education pages: brand skin for the science guides, the workshop page and the hub.
+   Loaded on page templates only (see layout/theme.liquid). Overrides subpage.css and biomotion-page.css. */
+
+:root {
+  --edu-ink: #0a0d10;
+  --edu-ink-2: #12171c;
+  --edu-lime: #d6ff3d;
+  --edu-lime-soft: #f3ffc2;
+  --edu-paper: #f6f7f2;
+  --edu-line: #e4e7dc;
+  --edu-muted: #5d676f;
+  --edu-display: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* ---------- Page frame ---------- */
+.sp-breakout,
+.bm-breakout {
+  background: #fff !important;
+}
+
+.sp-wrap,
+.bm-wrap {
+  max-width: 980px;
+  padding: 0 clamp(16px, 4vw, 24px) clamp(48px, 7vw, 96px) !important;
+  font-family: var(--font-body--family, Inter, system-ui, sans-serif) !important;
+  color: #1b2127 !important;
+}
+
+/* ---------- Hero band: breadcrumb and header share one full-width dark block ---------- */
+.sp-wrap > .sp-breadcrumb,
+.bm-wrap > .sp-breadcrumb,
+.sp-wrap > header,
+.bm-wrap > header {
+  position: relative;
+  margin: 0 !important;
+  background: var(--edu-ink);
+  color: #fff;
+  box-shadow: 0 0 0 100vmax var(--edu-ink);
+  clip-path: inset(0 -100vmax);
+}
+
+.sp-wrap > .sp-breadcrumb,
+.bm-wrap > .sp-breadcrumb {
+  padding: clamp(28px, 4vw, 48px) 0 18px;
+  color: #98a3ab !important;
+  font-size: 13px !important;
+}
+
+.sp-wrap > .sp-breadcrumb a,
+.bm-wrap > .sp-breadcrumb a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.sp-wrap > header,
+.bm-wrap > header {
+  padding: 0 0 clamp(32px, 5vw, 64px);
+}
+
+.sp-eyebrow,
+.bm-eyebrow {
+  display: inline-block;
+  margin: 0 0 18px !important;
+  padding: 0 !important;
+  background: none !important;
+  color: var(--edu-lime) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+}
+
+.sp-h1,
+.bm-h1 {
+  max-width: 18ch;
+  margin: 0 0 20px !important;
+  color: #fff !important;
+  font-family: var(--edu-display);
+  font-size: clamp(38px, 6.4vw, 78px) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.005em !important;
+  line-height: 0.96 !important;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.sp-lede,
+.bm-lede {
+  max-width: 62ch !important;
+  margin: 0 0 20px !important;
+  color: #c3ccd2 !important;
+  font-size: clamp(16px, 1.5vw, 19px) !important;
+  line-height: 1.6 !important;
+}
+
+.bm-lede strong,
+.sp-lede strong {
+  color: var(--edu-lime) !important;
+}
+
+.sp-research-credit,
+.bm-wrap > header > p:not(.bm-lede) {
+  max-width: 70ch;
+  margin: 0 !important;
+  padding: 0 0 0 14px !important;
+  border-left: 3px solid var(--edu-lime) !important;
+  color: #98a3ab !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+}
+
+/* ---------- Contents: pill row ---------- */
+.sp-toc,
+.bm-toc {
+  margin: clamp(24px, 3vw, 36px) 0 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+}
+
+.sp-toc-title,
+.bm-toc-title {
+  margin: 0 0 12px !important;
+  color: var(--edu-muted) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+}
+
+.sp-toc ol,
+.bm-toc ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 !important;
+  padding: 0 !important;
+  columns: auto !important;
+  list-style: none;
+}
+
+.sp-toc li,
+.bm-toc li {
+  padding: 0 !important;
+}
+
+.sp-toc li a,
+.bm-toc li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--edu-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--edu-ink) !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.sp-toc li a:hover,
+.bm-toc li a:hover {
+  border-color: var(--edu-ink);
+  background: var(--edu-lime) !important;
+}
+
+.sp-toc li {
+  counter-increment: none;
+}
+
+@media (max-width: 749px) {
+  .sp-toc ol,
+  .bm-toc ol {
+    flex-wrap: nowrap;
+    margin-inline: calc(clamp(16px, 4vw, 24px) * -1) !important;
+    padding-inline: clamp(16px, 4vw, 24px) !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .sp-toc li,
+  .bm-toc li {
+    flex: 0 0 auto;
+  }
+}
+
+/* ---------- Typography in the body ---------- */
+.sp-h2,
+.bm-h2 {
+  margin: clamp(48px, 6vw, 80px) 0 18px !important;
+  color: var(--edu-ink);
+  font-family: var(--edu-display);
+  font-size: clamp(30px, 4vw, 46px) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1 !important;
+  text-transform: uppercase;
+  scroll-margin-top: 100px;
+}
+
+.sp-h2::after,
+.bm-h2::after {
+  width: 56px !important;
+  height: 5px !important;
+  margin-top: 14px !important;
+  border-radius: 0 !important;
+  background: var(--edu-lime) !important;
+}
+
+.sp-h3,
+.bm-h3 {
+  color: var(--edu-ink);
+  font-weight: 700 !important;
+}
+
+.sp-wrap p,
+.bm-wrap p {
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.sp-wrap strong,
+.bm-wrap strong {
+  color: var(--edu-ink) !important;
+}
+
+.sp-wrap a:not(.sp-btn):not(.sp-cite),
+.bm-wrap a:not(.bm-btn):not(.bm-cite) {
+  color: var(--edu-ink) !important;
+  text-decoration-color: var(--edu-lime) !important;
+  text-decoration-thickness: 3px !important;
+}
+
+.sp-wrap a:not(.sp-btn):not(.sp-cite):hover,
+.bm-wrap a:not(.bm-btn):not(.bm-cite):hover {
+  background: var(--edu-lime-soft) !important;
+}
+
+.sp-cite,
+.bm-cite {
+  background: var(--edu-lime-soft) !important;
+  color: var(--edu-ink) !important;
+  border-radius: 6px !important;
+}
+
+.sp-cite:hover,
+.bm-cite:hover {
+  background: var(--edu-lime) !important;
+}
+
+/* ---------- Facts: dark cards with lime numbers ---------- */
+.sp-facts,
+.bm-facts {
+  gap: clamp(10px, 1.6vw, 16px) !important;
+  margin: clamp(28px, 4vw, 44px) 0 !important;
+}
+
+.sp-fact,
+.bm-fact {
+  padding: clamp(20px, 2.4vw, 28px) !important;
+  border-radius: 20px !important;
+  background: var(--edu-ink) !important;
+}
+
+.sp-fact-num,
+.bm-fact-num {
+  color: var(--edu-lime) !important;
+  font-family: var(--edu-display);
+  font-size: clamp(44px, 5vw, 64px) !important;
+  font-weight: 700;
+  line-height: 0.95 !important;
+}
+
+.sp-fact-label,
+.bm-fact-label {
+  margin-top: 10px !important;
+  color: #c3ccd2;
+  font-size: 0.92rem !important;
+  opacity: 1 !important;
+}
+
+/* ---------- Cards ---------- */
+.sp-card,
+.sp-stat-box,
+.sp-product,
+.sp-tip,
+.bm-place-card,
+.bm-physics-card,
+.bm-dn-card {
+  border: 1px solid var(--edu-line) !important;
+  border-radius: 18px !important;
+  background: #fff !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.sp-card:hover,
+.sp-product:hover {
+  border-color: var(--edu-ink) !important;
+  box-shadow: 0 14px 34px rgb(10 13 16 / 0.08);
+  transform: translateY(-2px);
+}
+
+.sp-card.sp-card--best {
+  border-color: var(--edu-ink) !important;
+  background: var(--edu-lime-soft) !important;
+}
+
+.sp-card.sp-card--best::after {
+  background: var(--edu-ink) !important;
+  color: var(--edu-lime) !important;
+}
+
+.sp-card.sp-card--warn {
+  border-color: #f0b24a !important;
+  background: #fff9ee !important;
+}
+
+.sp-stat-box .sp-stat-num {
+  color: var(--edu-ink) !important;
+  font-family: var(--edu-display);
+  font-size: clamp(40px, 4.4vw, 56px) !important;
+}
+
+/* ---------- Callouts ---------- */
+.sp-callout,
+.bm-callout {
+  padding: 22px 26px !important;
+  border: 0 !important;
+  border-left: 5px solid var(--edu-ink) !important;
+  border-radius: 0 16px 16px 0 !important;
+  background: var(--edu-lime-soft) !important;
+}
+
+.sp-callout-label,
+.bm-callout-label {
+  color: var(--edu-ink) !important;
+}
+
+.sp-callout-warn {
+  border-left: 5px solid #e0912b !important;
+  border-radius: 0 16px 16px 0 !important;
+}
+
+.sp-compare-card,
+.sp-activity,
+.sp-agenda {
+  border-radius: 20px !important;
+}
+
+.sp-result-retro {
+  background: var(--edu-ink) !important;
+  color: var(--edu-lime) !important;
+  border-color: var(--edu-lime) !important;
+}
+
+.sp-agenda-time,
+.sp-activity-title,
+.sp-activity strong,
+.sp-activity a {
+  color: var(--edu-lime) !important;
+}
+
+.sp-agenda-time {
+  background: var(--edu-ink) !important;
+}
+
+.sp-steps li::before {
+  background: var(--edu-lime) !important;
+}
+
+/* ---------- FAQ as cards ---------- */
+.sp-faq,
+.bm-faq {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 !important;
+}
+
+.sp-faq details,
+.bm-faq details,
+.sp-faq details:first-child,
+.bm-faq details:first-child {
+  padding: 0 22px !important;
+  border: 1px solid var(--edu-line) !important;
+  border-radius: 16px;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.sp-faq details[open],
+.bm-faq details[open] {
+  border-color: var(--edu-ink) !important;
+}
+
+.sp-faq summary,
+.bm-faq summary {
+  min-height: 60px;
+  font-size: 1.02rem !important;
+}
+
+.sp-faq summary::after,
+.bm-faq summary::after {
+  color: var(--edu-ink) !important;
+}
+
+.sp-faq-answer,
+.bm-faq-answer {
+  padding: 0 0 20px !important;
+}
+
+/* ---------- Call to action ---------- */
+.sp-cta,
+.bm-cta {
+  padding: clamp(32px, 5vw, 56px) clamp(20px, 4vw, 40px) !important;
+  border-radius: 24px !important;
+  background: var(--edu-ink) !important;
+}
+
+.sp-cta h3,
+.bm-cta h3 {
+  font-family: var(--edu-display);
+  font-size: clamp(30px, 4vw, 44px) !important;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.sp-btn,
+.bm-btn {
+  min-height: 48px;
+  padding: 14px 28px !important;
+  border-radius: 999px !important;
+  background: var(--edu-lime) !important;
+  color: var(--edu-ink) !important;
+  font-weight: 700;
+}
+
+.sp-btn:hover,
+.bm-btn:hover {
+  background: #fff !important;
+  color: var(--edu-ink) !important;
+}
+
+.sp-btn-outline {
+  border: 2px solid var(--edu-lime) !important;
+  background: transparent !important;
+  color: var(--edu-lime) !important;
+}
+
+.sp-btn-outline:hover {
+  background: var(--edu-lime) !important;
+  color: var(--edu-ink) !important;
+}
+
+/* ---------- References ---------- */
+.sp-refs li em,
+.bm-refs li em {
+  color: var(--edu-ink) !important;
+}
+
+/* =====================================================================
+   Education hub (/pages/education)
+   ===================================================================== */
+.edu-index {
+  max-width: none !important;
+  padding: 0 0 clamp(48px, 7vw, 96px) !important;
+}
+
+.edu-intro {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 48px) clamp(36px, 5vw, 64px);
+  background: var(--edu-ink);
+  text-align: left !important;
+}
+
+.edu-intro > * {
+  max-width: 1200px;
+  margin-inline: auto !important;
+}
+
+.edu-intro h1 {
+  max-width: 1200px !important;
+  margin-bottom: 18px !important;
+  color: #fff;
+  font-family: var(--edu-display);
+  font-size: clamp(44px, 7vw, 96px) !important;
+  font-weight: 700;
+  line-height: 0.95 !important;
+  text-transform: uppercase;
+}
+
+.edu-intro p {
+  max-width: 60ch !important;
+  margin-left: 0 !important;
+  color: #c3ccd2 !important;
+  font-size: clamp(16px, 1.6vw, 19px) !important;
+  line-height: 1.6 !important;
+}
+
+.edu-grid {
+  max-width: 1200px;
+  margin: clamp(-40px, -3vw, -24px) auto 0 !important;
+  padding: 0 clamp(16px, 4vw, 48px);
+  gap: clamp(12px, 1.6vw, 20px) !important;
+}
+
+@media (min-width: 640px) {
+  .edu-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 1000px) {
+  .edu-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+.edu-card {
+  position: relative;
+  border: 1px solid var(--edu-line) !important;
+  border-radius: 22px !important;
+  padding: clamp(22px, 2.4vw, 30px) !important;
+  background: #fff !important;
+  box-shadow: 0 10px 30px rgb(10 13 16 / 0.06);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, background-color 0.25s ease !important;
+}
+
+.edu-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--edu-ink) !important;
+  background: var(--edu-ink) !important;
+}
+
+.edu-card svg {
+  box-sizing: content-box;
+  width: 26px !important;
+  height: 26px !important;
+  padding: 12px;
+  border-radius: 50%;
+  background: var(--edu-lime);
+  color: var(--edu-ink) !important;
+  transition: transform 0.3s ease;
+}
+
+.edu-card:hover svg {
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.edu-card .edu-pill {
+  background: var(--edu-paper) !important;
+  color: var(--edu-ink) !important;
+  letter-spacing: 0.12em !important;
+}
+
+.edu-card h2 {
+  color: var(--edu-ink);
+  font-family: var(--edu-display);
+  font-size: clamp(26px, 2.6vw, 34px) !important;
+  letter-spacing: 0.01em;
+  line-height: 1 !important;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+.edu-card p {
+  color: var(--edu-muted) !important;
+  transition: color 0.25s ease;
+}
+
+.edu-card .edu-cta {
+  color: var(--edu-ink) !important;
+  transition: color 0.25s ease, gap 0.25s ease;
+}
+
+.edu-card:hover h2,
+.edu-card:hover .edu-cta {
+  color: #fff !important;
+}
+
+.edu-card:hover p {
+  color: #b9c2c9 !important;
+}
+
+.edu-card:hover .edu-cta {
+  gap: 10px;
+  color: var(--edu-lime) !important;
+}
+
+.edu-divider {
+  max-width: 1200px;
+  margin: clamp(36px, 5vw, 64px) auto !important;
+  border-top-color: var(--edu-line) !important;
+}
+
+.edu-footer,
+.edu-press {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+.edu-btn {
+  min-height: 48px;
+  border-radius: 999px !important;
+}
+
+.edu-btn-primary {
+  border-color: var(--edu-ink) !important;
+  background: var(--edu-ink) !important;
+}
+
+.edu-btn-primary:hover {
+  border-color: var(--edu-lime) !important;
+  background: var(--edu-lime) !important;
+  color: var(--edu-ink) !important;
+}
+
+.edu-press-items a:hover {
+  color: var(--edu-ink) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edu-card,
+  .sp-card,
+  .sp-product,
+  .edu-card svg {
+    transition: none !important;
+  }
+}
+
+@media print {
+  .sp-wrap > .sp-breadcrumb,
+  .bm-wrap > .sp-breadcrumb,
+  .sp-wrap > header,
+  .bm-wrap > header {
+    box-shadow: none;
+    background: none;
+    color: #000;
+  }
+}
+
+/* ---------- Fixes after first review ---------- */
+.sp-wrap > .sp-breadcrumb a:not(.x),
+.bm-wrap > .sp-breadcrumb a:not(.x) {
+  color: #fff !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+.sp-wrap > .sp-breadcrumb a:hover,
+.bm-wrap > .sp-breadcrumb a:hover {
+  color: var(--edu-lime) !important;
+}
+
+/* overlap the pieces by 2px so no thin white seam shows between them */
+.sp-wrap > .sp-breadcrumb,
+.bm-wrap > .sp-breadcrumb {
+  margin-top: -2px !important;
+  padding-top: calc(clamp(28px, 4vw, 48px) + 2px);
+}
+
+.sp-wrap > header,
+.bm-wrap > header {
+  margin-top: -2px !important;
+  padding-top: 10px;
+}
+
+/* hub: full-width dark band */
+.edu-intro {
+  position: relative;
+  box-shadow: 0 0 0 100vmax var(--edu-ink);
+  clip-path: inset(0 -100vmax);
+}
+
+/* ---------- Fixes after second review ---------- */
+.sp-h1,
+.bm-h1 {
+  max-width: 22ch;
+  font-size: clamp(34px, 5.2vw, 64px) !important;
+}
+
+.bm-wrap .bm-lede strong,
+.sp-wrap .sp-lede strong,
+.sp-wrap > header .sp-lede strong,
+.bm-wrap > header .bm-lede strong {
+  color: var(--edu-lime) !important;
+}
+
+.sp-wrap > .sp-breadcrumb,
+.bm-wrap > .sp-breadcrumb {
+  margin-top: -4px !important;
+  padding-top: calc(clamp(28px, 4vw, 48px) + 4px);
+}
+
+.sp-wrap > header,
+.bm-wrap > header {
+  margin-top: -4px !important;
+  padding-top: 14px;
+}
+
+.edu-intro {
+  margin-top: -4px !important;
+  padding-top: calc(clamp(48px, 7vw, 96px) + 4px);
+}
+
+.edu-intro h1 {
+  font-size: clamp(40px, 6vw, 84px) !important;
+}
+
+/* =====================================================================
+   Pages written in the admin (science sources, walking guide, workshop kit)
+   ===================================================================== */
+
+/* title block becomes a full-width dark hero */
+.section-content-wrapper:has(.rt-edu-body) > .text-block:first-child,
+.section-content-wrapper:has(.rt-edu-body) > .text-block:first-child h1 {
+  margin: 0;
+}
+
+.section-content-wrapper:has(.rt-edu-body) > .text-block:first-child {
+  position: relative;
+  padding: clamp(36px, 5vw, 72px) 0 clamp(28px, 4vw, 48px);
+  background: var(--edu-ink);
+  box-shadow: 0 0 0 100vmax var(--edu-ink);
+  clip-path: inset(0 -100vmax);
+}
+
+.section-content-wrapper:has(.rt-edu-body) > .text-block:first-child h1 {
+  color: #fff !important;
+  font-family: var(--edu-display) !important;
+  font-size: clamp(36px, 5.6vw, 72px) !important;
+  font-weight: 700 !important;
+  line-height: 0.98 !important;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.rt-edu-body {
+  padding-top: clamp(28px, 4vw, 48px);
+  color: #1b2127;
+}
+
+.rt-edu-body h2 {
+  margin: clamp(36px, 5vw, 64px) 0 14px;
+  color: var(--edu-ink);
+  font-family: var(--edu-display);
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.rt-edu-body h2::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 5px;
+  margin-top: 12px;
+  background: var(--edu-lime);
+}
+
+.rt-edu-body h3 {
+  color: var(--edu-ink);
+  font-weight: 700;
+}
+
+.rt-edu-body p,
+.rt-edu-body li {
+  line-height: 1.7;
+}
+
+.rt-edu-body a {
+  text-decoration-color: var(--edu-lime);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+}
+
+/* walking guide blocks */
+.rtng-hero,
+.wk-hero {
+  border-radius: 22px !important;
+  background: var(--edu-ink) !important;
+}
+
+.rtng-hero strong,
+.wk-hero .wk-big {
+  color: var(--edu-lime) !important;
+}
+
+.rtng-proof div,
+.rtng-card,
+.rtng-quote,
+.rtng-src {
+  border-color: var(--edu-line) !important;
+  border-radius: 18px !important;
+}
+
+.rtng-proof b {
+  font-family: var(--edu-display);
+  font-size: clamp(30px, 3.4vw, 42px) !important;
+  line-height: 1;
+}
+
+.rtng-btn {
+  display: inline-flex !important;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 26px !important;
+  border-radius: 999px !important;
+  background: var(--edu-lime) !important;
+  color: var(--edu-ink) !important;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.rtng-btn:hover {
+  background: var(--edu-ink) !important;
+  color: #fff !important;
+}
+
+.rtng-faq details {
+  border: 1px solid var(--edu-line);
+  border-radius: 16px;
+  padding: 4px 20px;
+  margin-bottom: 10px;
+}
+
+.rtng-faq details[open] {
+  border-color: var(--edu-ink);
+}
+
+/* workshop kit form */
+.wk-form {
+  border-radius: 22px !important;
+}
+
+@media (max-width: 749px) {
+  .rtng-proof {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* join the hero to the announcement bar (removes the white gap above the title block) */
+.section-content-wrapper:has(.rt-edu-body) > .text-block:first-child {
+  margin-top: -40px;
+  padding-top: calc(clamp(36px, 5vw, 72px) + 40px);
+}
+
+/* embedded videos and maps never wider than the screen */
+.page-content iframe,
+.rte iframe,
+.sp-wrap iframe,
+.bm-wrap iframe {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+}

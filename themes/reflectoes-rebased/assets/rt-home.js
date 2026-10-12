@@ -54,7 +54,7 @@
   }
 
   buttons.forEach(function (b) {
-    b.addEventListener('click', function () { setMode(b.dataset.mode); });
+    b.addEventListener('click', function () { hero.classList.add('is-switched'); setMode(b.dataset.mode); });
     b.addEventListener('pointerenter', loadDay, { once: true });
     b.addEventListener('focus', loadDay, { once: true });
   });

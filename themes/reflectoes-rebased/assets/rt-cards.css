@@ -182,9 +182,9 @@ product-card product-price .price-item--sale {
 
 .resource-card[data-resource-type='product'] .compare-at-price,
 product-card product-price .compare-at-price {
-  color: #7a848d !important;
-  font-size: 17px !important;
-  font-weight: 600 !important;
+  color: #8b949b !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
   text-decoration: line-through;
 }
 
@@ -224,5 +224,38 @@ product-card:focus-within .card-gallery,
 /* Skip rendering of product grid items that are far off screen; the browser remembers each real height once seen */
 .product-grid__item {
   content-visibility: auto;
-  contain-intrinsic-size: auto 560px;
+  /* width stays 0 so a skipped item never widens its grid column; only the height is remembered */
+  contain-intrinsic-width: 0;
+  contain-intrinsic-height: auto 560px;
+}
+
+/* ---------- Best Selling tag (top right of the image) ---------- */
+.rt-flag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 8px;
+  border-radius: 3px;
+  background: #0a0d10;
+  color: #fff;
+  font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.rt-flag::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: #d6ff3d;
+  clip-path: polygon(50% 0, 62% 36%, 100% 38%, 70% 60%, 81% 100%, 50% 76%, 19% 100%, 30% 60%, 0 38%, 38% 36%);
+  transform: scale(1.35);
 }
